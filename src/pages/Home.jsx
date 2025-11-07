@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 function Home() {
     return(
-        <div className="h-screen bg-cover bg-center bg-[url('/BreadHome.jpg')]"> 
-            <div className="flex justify-between bg-transparent px-6 py-4 text-white-100">
+        <div > 
+            <div className="flex justify-end bg-transparent px-6 py-4 text-white-100">
                 
                 <nav className="flex gap-4">
                 <Link to="/">Home</Link>
