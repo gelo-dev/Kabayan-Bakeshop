@@ -4,7 +4,7 @@ export default function ContactSection() {
       id="contact"
       className="h-screen flex items-center justify-center bg-pink-100"
     >
-      <h1 className="text-4xl font-bold">Contact </h1>
+      <h1 className="text-4xl font-bold">Contact Component</h1>
     </section>
   );
 }

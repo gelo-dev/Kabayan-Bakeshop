@@ -9,20 +9,20 @@ export default function ScrollPage() {
     return (
         <div className="scroll-smooth">
 
-                    <nav className="fixed top-0 left-0 w-full bg-transparent shadow p-4 flex justify-end items-center flex gap-6">                        
+                    <nav className="fixed top-0 left-0 w-full bg-transparent  p-4 flex justify-end items-center gap-6 text-white font-light z-30">                        
                         
-                            <a href="#home" className="text-blue-500 hover:text-blue-700">Home</a>
-                            <a href="#menu" className="text-blue-500 hover:text-blue-700">Menu</a>
-                            <a href="#gallery" className="text-blue-500 hover:text-blue-700">Gallery</a>
-                            <a href="#about" className="text-blue-500 hover:text-blue-700">About</a>
-                            <a href="#contact" className="text-blue-500 hover:text-blue-700">Contact</a>
-                       
+                            <a href="#home" className=' hover:text-black' >Home</a>                         
+                            <a href="#gallery" className=' hover:text-black' >Gallery</a>
+                            <a href="#menu" className=' hover:text-black' >Menu</a>
+                            <a href="#about" className=' hover:text-black' >About</a>
+                            <a href="#contact" className=' hover:text-black' >Contact</a>
+                    
                     </nav>
                 
             
 
-            <Home/>
-            <Gallery/>
+            <Home/>     
+            <Gallery/>       
             <Menu/>
             <About/>
             <Contact/>
