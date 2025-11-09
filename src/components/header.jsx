@@ -8,9 +8,9 @@ import Menu from '../pages/Menu'
 export default function ScrollPage() {
     return (
         <div className="scroll-smooth">
-
-                    <nav className="fixed top-0 left-0 w-full bg-transparent  p-4 flex justify-end items-center gap-6 text-white font-light z-30">                        
-                        
+                <div className="flex justify-between px-6 py-4 text-white bg-transparent fixed top-0 left-0 w-full z-50">
+                    <h1 className='font-serif text-2xl font-dancing' ><i></i>Kabayans Bakery</h1>
+                    <nav  className=' flex gap-5' >                        
                             <a href="#home" className=' hover:text-black' >Home</a>                         
                             <a href="#gallery" className=' hover:text-black' >Gallery</a>
                             <a href="#menu" className=' hover:text-black' >Menu</a>
@@ -18,6 +18,8 @@ export default function ScrollPage() {
                             <a href="#contact" className=' hover:text-black' >Contact</a>
                     
                     </nav>
+                </div>
+                    
                 
             
 
