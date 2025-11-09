@@ -1,26 +1,10 @@
-
-import { Link } from "react-router-dom";
-
-
-
-function Home() {
-    return(
-        <div > 
-            <div className="flex justify-end bg-transparent px-6 py-4 text-white-100">
-                
-                <nav className="flex gap-4">
-                <Link to="/">Home</Link>
-                <Link to="/menu">Menu</Link>
-                <Link to="/gallery">Gallery</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
-                </nav>
-            </div>
-            <div className="col-span-4" >
-                <h1 className="text-white ">Kabayans</h1>
-            </div>
-            
-        </div>
-    );
-}
-export default Home;
+export default function HomeSection() {
+        return (
+            <section
+            id="home"
+            className="h-screen flex items-center justify-center bg-gray-100"
+            >
+            <h1 className="text-4xl font-bold">this is from Home component</h1>
+            </section>
+        );
+        }
