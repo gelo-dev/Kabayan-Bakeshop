@@ -34,7 +34,7 @@ export default function HomeSection() {
                     {slides.map((slide, i) => (
                         <div
                         key={i}
-                        className={`absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-700 ${
+                        className={`absolute top-0 left-0 w-full h-full bg-cover bg-center transition-opacity duration-700 shadow-2xl shadow-gray-600 ${
                             i === displayText ? "opacity-100" : "opacity-0"
                         }`}
                         style={{ backgroundImage: `url(${slide.image})` }}
