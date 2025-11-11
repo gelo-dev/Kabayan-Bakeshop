@@ -48,9 +48,10 @@
 
 /* Combine both with a comma (first fade-in, then slow infinite move) */
 .animate-moveRight {
-  animation: fadeSlideRight 1s ease-out forwards, moveRight 15s ease-in-out infinite;
+  animation: fadeSlideRight 1s ease-out forwards, moveRight 10s ease-in-out infinite;
 }
 
 .animate-moveLeft {
-  animation: fadeSlideLeft 1s ease-out forwards, moveLeft 15s ease-in-out infinite;
+  animation: fadeSlideLeft 1s ease-out forwards, moveLeft 10s ease-in-out infinite;
 }
+
