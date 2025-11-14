@@ -1,13 +1,19 @@
 
 export default function MenuSection (){
+
+    const testButton = ()=>{
+        alert('this is test')
+    }
+
+
     return (
         <section
             id="menu"
-            className="h-screen flex flex-col gap-8 items-center justify-center relative bg-amber-600"
+            className="h-screen flex flex-col gap-8 items-center justify-center relative bg-orange-200 "
             >
                 <div
                     className="absolute inset-0 bg-[url('/pizzaDough.jpg')] bg-cover bg-center"
-                    style={{ opacity: 0.4 }} // Adjust this value
+                    style={{ opacity: 0.2 }} // Adjust this value
                 ></div>
 
 
@@ -33,7 +39,9 @@ export default function MenuSection (){
                
             </div>
             <div>
-                <button className="h-12 w-64 bg-white text-gray-900 font-semibold rounded-full shadow-md hover:bg-gray-100 hover:shadow-lg transition duration-300 ease-in-out">
+                <button
+                onClick={() => testButton()}
+                className="relative z-10 h-12 w-64 text-gray-900 font-semibold rounded-full shadow-md outline-2 outline-amber-50 hover:bg-white hover:shadow-2xl">
                     View Menu
                     </button>
 
