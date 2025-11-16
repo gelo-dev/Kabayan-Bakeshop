@@ -1,18 +1,18 @@
 import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+
 
 export default function LoginSection( {showSignUpForm}) {
 
-    const [isTransitionOn ,setIsTransition]= useState(false)
+    const [isShowPassword ,setIsShowPassword]= useState(false)
     
-    const toggleTransition=()=>{
-            showSignUpForm()
-            setIsTransition(!isTransitionOn)
-    }
+    
+  
 
         return (
-            <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500 ${isTransitionOn ? "opacity-0 z-0":"opacity-100 z-10"}`} >
+            <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500`} >
                 <h2 className="text-3xl font-semibold text-white  mb-6 text-center">
-                    Welcome Back
+                    Welcome Back!
                 </h2>
 
                 <form className="space-y-5">
@@ -26,14 +26,27 @@ export default function LoginSection( {showSignUpForm}) {
                             />
                     </div>
 
+                
+                    <div className="relative w-full">
+                        <input
+                            type={isShowPassword ? "text" : "password"}
+                            placeholder="••••••••"
+                            className="text-white w-full px-4 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        />
+
                     
-                    <div>
-                        <label className="block text-sm font-medium text-white">Password</label>
-                            <input
-                                type="password"
-                                placeholder="••••••••"
-                                className="text-white mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                            />
+                        <button
+                            type="button"
+                            onClick={() => setIsShowPassword(!isShowPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-white hover:text-gray-700"
+                        >
+                            {isShowPassword ? (
+                                <EyeIcon className="h-5 w-5" />
+                                ) : (
+                                
+                                <EyeSlashIcon className="h-5 w-5" />
+                                )}
+                        </button>
                     </div>
 
                     
@@ -47,7 +60,7 @@ export default function LoginSection( {showSignUpForm}) {
                     
                     <div className="flex justify-between text-sm text-white mt-2">
                     <a href="#" className="hover:underline">Forgot password?</a>
-                    <button onClick={toggleTransition} className="text-blue-600 hover:underline font-medium" >Create an Account</button>
+                    <button onClick={showSignUpForm} className="text-blue-600 hover:underline font-medium" >Create an Account</button>
                     </div>
                 </form>
             </div>

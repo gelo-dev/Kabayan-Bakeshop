@@ -4,3 +4,13 @@
 html {
   scroll-behavior: smooth;
 }
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}

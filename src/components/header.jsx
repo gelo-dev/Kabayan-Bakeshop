@@ -3,6 +3,8 @@ import About from '../pages/About'
 import Contact from '../pages/Contact'
 import Gallery from '../pages/Gallery'
 import Menu from '../pages/Menu'
+import Layout from './layoutBackground'
+import ScrollFadeSection from './fadeInAnimation'
 
 
 export default function ScrollPage() {
@@ -20,14 +22,27 @@ export default function ScrollPage() {
                     </nav>
                 </div>
                     
-                
-            
+                    <ScrollFadeSection>
+                        <Home/>
+                    </ScrollFadeSection>
+                        
+                <Layout>      
+                    <ScrollFadeSection>
+                        <Menu />
+                    </ScrollFadeSection>
 
-            <Home/>     
-            <Menu/>
-            <Gallery/>  
-            <About/>
-            <Contact/>
+                    <ScrollFadeSection>
+                        <Gallery />
+                    </ScrollFadeSection>        
+
+                    <ScrollFadeSection>
+                        <About />
+                    </ScrollFadeSection>    
+
+                    <ScrollFadeSection>
+                        <Contact />
+                    </ScrollFadeSection>      
+                </Layout> 
             
             
         </div>

@@ -5,7 +5,7 @@ import LoginSection from "../components/loginSection";
 export default function HomeSection() {
     const slides = [
         {
-        image: "/zoomBread.jpg",
+        image: "/handMade.jpg",
         text: `Fresh is our promise
                 -tale of love, honest ingredients, and the joy of real baking.`
         },
@@ -14,8 +14,12 @@ export default function HomeSection() {
         text: "Taste the tradition — where every loaf tells a story."
         },
         {
-        image: "/handMade.jpg",
+        image: "/zoomBread.jpg",
         text: "Baked with heart — bringing warmth and sweetness to every home."
+        },
+         {
+        image: "/PHFlag.jpg",
+        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
         }
     ];
 
@@ -56,7 +60,7 @@ export default function HomeSection() {
                
                 <div className="grid grid-rows-2 pr-5">
                     <div className="z-10  text-white mb-5">
-                        <span className="font-extralight font-serif text-4xl">Tinapay ni</span>
+                        <span className="font-extralight font-serif text-4xl italic">Tinapay ni</span>
                         <h1 className="text-9xl font-serif animate-">KABAYAN</h1>
                     </div>
 
@@ -72,7 +76,7 @@ export default function HomeSection() {
                     
                     <div className="absolute inset-0 bg-black/30 pointer-events-none "></div>
                     
-                    <h1 className="relative font-light text-4xl text-white ml-5  leading-relaxed">
+                    <h1 className="relative font-light text-4xl text-white ml-5  leading-tight">
                        {slides[displayText].text}</h1>
             
             

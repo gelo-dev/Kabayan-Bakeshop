@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
 export default function SignUpSection ( {showSignUpForm} ) {
 
@@ -9,6 +10,7 @@ export default function SignUpSection ( {showSignUpForm} ) {
     }
 
     const [isTransitionOn ,setIsTransition]= useState(false)
+    const [isSignUPShowPassword ,setSignUPShowPassword]= useState(false)
 
      const toggleTransition=()=>{
             showSignUpForm()
@@ -47,13 +49,24 @@ export default function SignUpSection ( {showSignUpForm} ) {
                     </div>
 
                     
-                    <div>
-                        <label className="block text-sm font-medium text-white">Password</label>
+                    <div className="relative w-full">
                         <input
-                            type="password"
+                            type={isSignUPShowPassword ? "text" : "password"}
                             placeholder="••••••••"
-                            className="text-white mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            className="text-white w-full px-4 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         />
+
+                        <button
+                            type="button"
+                            onClick={() => setSignUPShowPassword(!isSignUPShowPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-white"
+                        >
+                            {isSignUPShowPassword ? (
+                            <EyeIcon className="h-5 w-5" />
+                            ) : (
+                            <EyeSlashIcon className="h-5 w-5" />
+                            )}
+                        </button>
                     </div>
 
                     

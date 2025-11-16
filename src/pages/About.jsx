@@ -1,6 +1,6 @@
 export default function AboutSection() {
     return (
-       <section  id="about" className="h-screen flex items-center justify-between bg-orange-400 p-10">
+       <section  id="about" className="h-screen flex items-center justify-between  p-10">
   {/* Left content area */}
   <div className="bg-white rounded-r-[100px] flex flex-col justify-center px-16 py-10 w-1/2 h-[80%] shadow-lg">
     <h1 className="text-4xl font-bold text-gray-800 leading-snug">
