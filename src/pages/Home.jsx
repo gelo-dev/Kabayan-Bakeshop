@@ -43,7 +43,7 @@ export default function HomeSection() {
 
         return (
             
-            <section id="home" className="h-screen relative grid grid-cols-2 pl-30 pr-15 justify-center items-center overflow-hidden">
+            <section id="home" className="h-screen relative grid grid-cols-1  md:grid-cols-2 md:flex-col-reverse pl-30 pr-15 justify-center items-center overflow-hidden">
                 {isUserExisting ? (
                     <div className={`relative z-10 transition-opacity duration-500 ${isUserExisting ? "opacity-100":"opacity-0" } `}>
                         <LoginSection showSignUpForm={showSignUpForm} />
@@ -58,10 +58,10 @@ export default function HomeSection() {
                 
                 
                
-                <div className="grid grid-rows-2 pr-5">
-                    <div className="z-10  text-white mb-5">
-                        <span className="font-extralight font-serif text-4xl italic">Tinapay ni</span>
-                        <h1 className="text-9xl font-serif animate-">KABAYAN</h1>
+                <div className="grid grid-rows-1 md:grid-rows-2 pr-5">
+                    <div className="z-10  text-white ">
+                        <span className="font-extralight font-serif text-2xl md:text-4xl italic">Tinapay ni</span>
+                        <h1 className=" text-6xl md:text-9xl font-serif animate-">KABAYAN</h1>
                     </div>
 
                     {slides.map((slide, i) => (

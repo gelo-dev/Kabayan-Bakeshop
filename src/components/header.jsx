@@ -4,7 +4,7 @@ import Contact from '../pages/Contact'
 import Gallery from '../pages/Gallery'
 import Menu from '../pages/Menu'
 import Layout from './layoutBackground'
-import ScrollFadeSection from './fadeInAnimation'
+import ScrollFadeSection from './ScrollFadeSection'
 
 
 export default function ScrollPage() {
