@@ -61,7 +61,7 @@ export default function HomeSection() {
                 <div className="grid grid-rows-1 md:grid-rows-2 pr-3">
                     <div className="z-10  text-white ">
                         <span className="font-extralight font-serif text-2xl md:text-4xl italic">Tinapay ni</span>
-                        <h1 className=" text-5xl md:text-9xl font-serif ">KABAYAN</h1>
+                        <h1 className=" text-5xl md:text-9xl font-serif ">Gelo</h1>
                     </div>
 
                     {slides.map((slide, i) => (
