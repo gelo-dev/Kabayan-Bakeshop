@@ -21,12 +21,12 @@ export default function SignUpSection ( {showSignUpForm} ) {
     
 
     return (
-         <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-8 rounded-2xl shadow-xl border border-gray-200  transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
-            <h2 className="text-3xl font-semibold text-white mb-6 text-center">
+         <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8 rounded-2xl shadow-xl border border-gray-200  transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
+            <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 text-center">
                 Create Your Account
             </h2>
 
-                <form className="space-y-5">
+                <form className=" space-y-3 md:space-y-5">
                 
                     <div>
                         <label className="block text-sm font-medium text-white">Full Name</label>

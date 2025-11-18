@@ -10,12 +10,12 @@ export default function LoginSection( {showSignUpForm}) {
   
 
         return (
-            <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500`} >
-                <h2 className="text-3xl font-semibold text-white  mb-6 text-center">
+            <div className={`w-full h-80 md:h-100 max-w-md bg-transparent backdrop-blur-xs p-4 md:p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500`} >
+                <h2 className=" text-lg md:text-3xl font-semibold text-white  mb-2 md:mb-6 text-center">
                     Welcome Back!
                 </h2>
 
-                <form className="space-y-5">
+                <form className="space-y-4 md:space-y-6">
                     
                     <div>
                         <label className="block text-sm font-medium text-white">Email Address</label>
@@ -58,7 +58,7 @@ export default function LoginSection( {showSignUpForm}) {
                     </button>
 
                     
-                    <div className="flex justify-between text-sm text-white mt-2">
+                    <div className="flex justify-between text-sm text-white mt-0 md:mt-2">
                     <a href="#" className="hover:underline">Forgot password?</a>
                     <button onClick={showSignUpForm} className="text-blue-600 hover:underline font-medium" >Create an Account</button>
                     </div>
