@@ -1,70 +1,119 @@
+import { useRef } from "react";
 
 
 export default function MenuSection (){
+
+    const menu = [
+        {
+        image: "/handMade.jpg",
+        text: `Fresh is our promise
+                -tale of love, honest ingredients, and the joy of real baking.`
+        },
+        {
+        image: "/stoneOven.jpg",
+        text: "Taste the tradition — where every loaf tells a story."
+        },
+        {
+        image: "/zoomBread.jpg",
+        text: "Baked with heart — bringing warmth and sweetness to every home."
+        },
+         {
+        image: "/PHFlag.jpg",
+        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        },
+        {
+        image: "/sliceOfCake.jpg",
+        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        },
+        {
+        image: "/Jeepney.jpg",
+        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        }
+    ];
 
     const testButton = ()=>{
         alert('this is test')
     }
 
+    const scrollRef = useRef();
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  // Mouse/touch drag handlers
+  const handleMouseDown = (e) => {
+    isDown = true;
+    startX = e.pageX || e.touches[0].pageX;
+    scrollLeft = scrollRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    const x = e.pageX || e.touches[0].pageX;
+    const walk = (startX - x); // how far mouse moved
+    scrollRef.current.scrollLeft = scrollLeft + walk;
+  };
+
+  const handleMouseUp = () => {
+    isDown = false;
+  };
+
+  const scrollLeftBtn = () => {
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRightBtn = () => {
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
+
     return (
         <section
             id="menu"
-            className="h-screen flex flex-col gap-8 items-center justify-center relative "
+            className="h-250 flex  justify-center relative "
             
             >
-                
-            <div className="flex gap-8 w-3/4 justify-center relative z-10 overflow-x-auto scroll-smooth p-4" >
-{/* Menu for cakes */}
-                <div className="flex-1 h-140 border-2 border-white bg-transparent rounded-4xl hover:shadow-lg shrink-0">                                        
-                        <div className="bg-transparent h-1/2 items-end justify-center ">
-                            <img src="/chocolateCake.png"
-                                alt="Chocolate Cake"
-                                className="w-[60%] object-contain translate-y-10 translate-x-15" />
-                        </div>
+            <div className="relative w-full mx-auto p-8">
+      {/* Left Button - hidden on small screens */}
+      <button
+        onClick={scrollLeftBtn}
+        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+      >
+        ◀
+      </button>
 
-                        <div className="bg-white h-1/2 rounded-b-4xl items-center justify-center text-center flex flex-col gap-3">
-                            <h1 className="font-serif font-extralight text-2xl ">CAKES</h1>
-                            <h4 className="p-7  text-amber-900 leading-tight">"Indulge in our soft, moist cakes baked to perfection and layered with rich frosting. Each slice melts in your mouth — perfect for every celebration or sweet craving"</h4>
-                        </div>                                        
-                </div>
+      {/* Scrollable Container */}
+      <div
+        ref={scrollRef}
+        className="overflow-x-hidden scroll-smooth cursor-grab"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+        onTouchEnd={handleMouseUp}
+      >
+        <div className="flex space-x-3">
+          {menu.concat(menu).map((element, i) => (
+            <div
+              key={i}
+              className="shrink-0 w-100 h-100 bg-white bg-cover bg-center rounded-lg hover:scale-90"
+              style={{ backgroundImage: `url(${element.image})` }}
+            ></div>
+          ))}
+        </div>
+      </div>
 
- {/* Menu for Cookies */}       
-                <div className="flex-1 h-140 border-2 border-white bg-transparent rounded-4xl hover:shadow-lg shrink-0">                                        
-                        <div className="bg-transparent h-1/2 items-end justify-center ">
-                            <img src="/CookiesForMenu.png"
-                                alt="Stack of Cookies"
-                                className="w-[70%] object-contain translate-y-25 translate-x-15" />
-                        </div>
-
-                        <div className="bg-white h-1/2 rounded-b-4xl items-center justify-center text-center flex flex-col gap-3">
-                            <h1 className="font-serif font-extralight text-2xl ">COOKIES</h1>
-                            <h4 className="p-7 text-amber-900 leading-tight">"Savor our freshly baked cookies — crisp on the edges, soft and chewy inside, and bursting with flavor in every bite. Perfect for snacking, sharing, or satisfying your sweet tooth anytime"</h4>
-                        </div>                                        
-                </div>
-
-
- {/* Menu for Pastries */}       
-                <div className="flex-1 h-140 border-2 border-white bg-transparent rounded-4xl hover:shadow-lg shrink-0">                                        
-                        <div className="bg-transparent h-1/2 items-end justify-center ">
-                            <img src="/pastryMenu.png"
-                                alt="Pastry in Plate"
-                                className="w-[85%] object-contain translate-y-10 translate-x-10" />
-                        </div>
-
-                        <div className="bg-white h-1/2 rounded-b-4xl items-center justify-center text-center flex flex-col gap-3">
-                            <h1 className="font-serif font-extralight text-2xl ">PASTRIES</h1>
-                            <h4 className="p-7 text-amber-900 leading-tight">"Delight in our golden, flaky pastries — buttery layers baked to perfection and filled with sweet or savory goodness. Each bite is a delicate treat, perfect for breakfast, dessert, or any indulgent moment."</h4>
-                        </div>                                        
-                </div> 
-            </div>
-            <div>
-                <button
-                onClick={() => testButton()}
-                className="relative z-10 h-12 w-64  font-semibold rounded-full shadow-md outline-1 outline-white text-white hover:bg-amber-500 hover:shadow-lg hover:text-black">
-                    View Menu
-                    </button>
-
-            </div>
+      {/* Right Button - hidden on small screens */}
+      <button
+        onClick={scrollRightBtn}
+        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-20"
+      >
+        ▶
+      </button>
+    </div>
+            
              
             </section>
 

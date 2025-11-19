@@ -4,16 +4,16 @@ export default function Layout({ children }) {
       className="
         relative 
         min-h-screen 
-        bg-[url('/BreadHome.jpg')] 
+        bg-[url('/bakery.jpg')] 
         bg-cover 
         bg-center 
-        bg-no-repeat 
+        bg-no-repeat
         md:bg-fixed
       "
     >
 
       {/* OVERLAY FOR READABILITY */}
-      <div className="absolute inset-0 bg-black/20 backdrop-brightness-90"></div>
+      <div className="absolute inset-0 bg-black/30 md:bg-black/40 backdrop-brightness-90"></div>
 
       {/* PAGE CONTENT */}
       <div className="relative z-10">
