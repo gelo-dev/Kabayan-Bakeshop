@@ -23,10 +23,10 @@ export default function GallerySection(){
                     <div className="h-75 bg-transparent flex flex-col-reverse gap-4">
                         
                         <p className="text-white text-lg max-w-md">
-                            A curated gallery of our best-selling pastries, cookies, and breads — each treat inspired by the memories we cherish, the places we’ve grown from, and the moments we love sharing with the people who matter.
+                            A curated gallery of our best-selling pastries, cookies, and breads — each one capturing the joyful moments of every event and the warm smiles of the customers who inspire us every day.
                         </p>
                         <h1 className="text-4xl font-bold text-white leading-tight">
-                            Discover Our Favoritess
+                            Sweet Moments Captured
                         </h1>
 
                     </div>

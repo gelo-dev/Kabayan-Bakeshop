@@ -3,8 +3,9 @@ export default function Layout({ children }) {
     <div
       className="
         relative 
-        min-h-screen 
-        bg-[url('/bakery.jpg')] 
+        min-h-screen
+        bg-amber-400 
+        md:bg-[url('/bakery.jpg')] 
         bg-cover 
         bg-center 
         bg-no-repeat
