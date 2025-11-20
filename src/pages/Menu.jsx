@@ -6,28 +6,28 @@ export default function MenuSection (){
 
     const menu = [
         {
-        image: "/chocolateCake.png",
+        image: "/loafBreadForMenu.jpg",
         text: `Fresh is our promise
                 -tale of love, honest ingredients, and the joy of real baking.`
         },
         {
-        image: "/stoneOven.jpg",
+        image: "/cookiesForMenu.jpg",
         text: "Taste the tradition — where every loaf tells a story."
         },
         {
-        image: "/zoomBread.jpg",
+        image: "/pastryForMenu.jpg",
         text: "Baked with heart — bringing warmth and sweetness to every home."
         },
          {
-        image: "/PHFlag.jpg",
+        image: "/PandecocoForMenu.jpg",
         text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
         },
         {
-        image: "/sliceOfCake.jpg",
+        image: "/chocolateCake.jpg",
         text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
         },
         {
-        image: "/Jeepney.jpg",
+        image: "/PandesalForMenu.jpg",
         text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
         }
     ];
@@ -78,7 +78,7 @@ export default function MenuSection (){
             >
             
             <div className="relative w-full mx-auto p-8 ">
-                <div className="h-50 bg-transparent flex flex-col p-4 gap-3">
+                <div className="h-50 bg-transparent flex flex-col p-2 md:p-6 gap-3">
                     <div className="">
                       <h1 className="text-3xl md:text-6xl font-serif text-white">Freshly Baked for You</h1>
                     </div>
@@ -121,7 +121,7 @@ export default function MenuSection (){
                       <div
                         key={i}
                       >
-                        <div className="h-1/2 hover:scale-103 hover:rounded-2xl">
+                        <div className="h-1/2 hover:scale-103 ">
                             <div  className="shrink-0 w-70 h-60 bg-white bg-cover bg-center rounded-t-xl"
                               style={{ backgroundImage: `url(${element.image})` }}>
                             </div>
@@ -145,8 +145,9 @@ export default function MenuSection (){
                 <ChevronRightIcon className="w-10 h-10 stroke-3 " />
               </button>
 
+               <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button 
-                        className=" md:hidden block mt-3 ml-12  hover:bg-amber-700 hover:scale-105 outline-2 outline-white text-white w-50 h-12 rounded-4xl">
+                        className=" md:hidden block mt-8 ml-12  hover:bg-amber-700 hover:scale-105 outline-2 outline-white text-white w-50 h-12 rounded-4xl">
                           Explore All Bakes
               </button>
           </div>
