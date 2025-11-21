@@ -1,22 +1,17 @@
 import { useRef } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import OurStorySection from "../components/AboutPageComponents/OurStory";
+import MissionSection from "../components/AboutPageComponents/Mission";
+import VisionSection from "../components/AboutPageComponents/Vision";
 
 export default function AboutSection() {
 
 
     const sections = [
-      { id: 1, 
-        title: "Our Story", 
-        color: "bg-amber-300",
-        video: "./video/makingBread.mp4",
-        text:"This bakery began because of the hard work of a father.He started as a vendor in another bakery back in 1990 and managed to save enough capital and knowledge to start his own bakery.Since then, from the time he started raising a family and up to the point where his children finished their studies, this bakery has remained his source of livelihood to this day" 
-
-      },
-      { id: 2, title: "Mission", color: "bg-emerald-300" },
-      { id: 3, title: "Vision", color: "bg-pink-300" },
-      { id: 4, title: "Team", color: "bg-purple-300" },
-      { id: 5, title: "Values", color: "bg-yellow-300" },
-    ];
+  { id: 1, title: "Our Story", color: "bg-amber-300", component: OurStorySection },
+  { id: 2, title: "Mission", color: "bg-emerald-300", component: MissionSection },
+  { id: 3, title: "Vision", color: "bg-pink-300", component: VisionSection },
+];
 
     
     const scrollRef =  useRef(null)
@@ -66,16 +61,17 @@ export default function AboutSection() {
               ref={scrollRef}
               className="flex overflow-x-auto space-x-4 h-full w-full scroll-smooth p-4 hide-scrollbar"
             >
-                {sections.map((section) => (
-                  <div
-                    key={section.id}
-                    className={`shrink-0 w-full h-full ${section.color} rounded-lg flex items-center justify-center text-white text-xl font-bold relative`}
-                    
-                  >
-                   
-                    <div className="relative z-10">{section.title}</div>
-                  </div>
-                ))}
+               {sections.map((section) => {
+                    const Component = section.component; // get the component
+                    return (
+                      <div
+                        key={section.id}
+                        className={`shrink-0 w-full h-full ${section.color} rounded-lg flex items-center justify-center text-white text-xl font-bold relative`}
+                      >
+                        <Component />
+                      </div>
+                    );
+                })}
             </div>
         </section>
 

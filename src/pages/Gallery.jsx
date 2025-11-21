@@ -1,4 +1,4 @@
-import "./pagesAnimation/galleryAnimation.css";
+
 
 
 export default function GallerySection(){

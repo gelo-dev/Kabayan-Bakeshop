@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import ListOMenuSection from "../components/MenuPageComponents/listOfMenu";
+import { AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 
 export default function MenuSection (){
@@ -49,7 +52,7 @@ export default function MenuSection (){
         alert('this is test')
     }
 
-    
+  const [showListOfMenu , setShowListOfMenu]=useState(false)
   const [oldMenu, setOldMenu] = useState(menu);
 
  const heartedFeaturedMenu = (index) => {
@@ -89,10 +92,16 @@ export default function MenuSection (){
                   
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
-                        <button 
-                        className="hidden md:block hover:bg-amber-700 hover:scale-105 outline-2 outline-white text-white w-50 h-12 rounded-4xl">
-                          Explore All Bakes
-                        </button>
+                         <button
+                            onClick={() => setShowListOfMenu(true)}
+                            className="hidden md:block  hover:bg-amber-700 hover:scale-105 outline outline-white text-white px-6 py-3 rounded-3xl transition"
+                          >
+                            Explore All Bakes
+                          </button>
+
+                          <AnimatePresence>
+                            {showListOfMenu && <ListOMenuSection onClose={() => setShowListOfMenu(false)} />}
+                          </AnimatePresence>
                     </div>
                     
                 </div>
@@ -118,8 +127,8 @@ export default function MenuSection (){
                       <div
                         key={i}
                       >
-                        <div className="h-1/2 hover:scale-103 ">
-                            <div  className="shrink-0 w-70 h-60 bg-white bg-cover bg-center rounded-t-xl"
+                        <div className=" hover:scale-103 ">
+                            <div  className="shrink-0 h-45 w-65  md:w-70 md:h-60 bg-white bg-cover bg-center rounded-t-xl"
                               style={{ backgroundImage: `url(${element.image})` }}>
                                 <span
                                   key={i}
@@ -155,9 +164,11 @@ export default function MenuSection (){
               </button>
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
-              <button 
-                        className=" md:hidden block mt-8 ml-12  hover:bg-amber-700 hover:scale-105 outline-2 outline-white text-white w-50 h-12 rounded-4xl">
+              <button
+              onClick={() => setShowListOfMenu(true)}
+              className= {`${ showListOfMenu ? 'hidden' :'block'} md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
                           Explore All Bakes
+                        
               </button>
           </div>
             
