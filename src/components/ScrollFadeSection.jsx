@@ -24,6 +24,7 @@ export default function ScrollFadeSection({ children }) {
       ref={ref}
       className={`
         transition-all duration-1000 ease-in-out
+        scroll-smooth
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
         `}
     >

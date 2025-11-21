@@ -1,34 +1,47 @@
-import { useRef } from "react";
-import { ChevronLeftIcon , ChevronRightIcon} from "@heroicons/react/24/outline";
+import { useRef, useState } from "react";
+import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
+import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 
 
 export default function MenuSection (){
 
     const menu = [
         {
-        image: "/loafBreadForMenu.jpg",
-        text: `Fresh is our promise
-                -tale of love, honest ingredients, and the joy of real baking.`
+        image: "./imagesForMenu/loafBreadForMenu.jpg",
+        text: `Soft, fluffy, and freshly baked daily. Perfect for sandwiches, toast, or just enjoying plain.`,
+        name:"Pinoy Tasty",
+        liked : false
         },
         {
-        image: "/cookiesForMenu.jpg",
-        text: "Taste the tradition — where every loaf tells a story."
+        image: "./imagesForMenu/cookiesForMenu.jpg",
+        text: "Soft inside, lightly crisp outside, and made with real, premium ingredients.",
+        name:"Pinoy Cookies",
+        liked : false
         },
         {
-        image: "/pastryForMenu.jpg",
-        text: "Baked with heart — bringing warmth and sweetness to every home."
+        image: "./imagesForMenu/pastryForMenu.jpg",
+        text: "Locally baked, globally inspired. Yes, Pinoy bakery kami—but we make croissants that taste like you're in Paris.",
+        name:"Croissant",
+        liked : false
         },
          {
-        image: "/PandecocoForMenu.jpg",
-        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        image: "./imagesForMenu/PandecocoForMenu.jpg",
+        text: "Soft bread filled with sweet, creamy coconut. A true Filipino favorite.",
+        name:"Classic Pandecoco",
+        liked : false
         },
         {
-        image: "/chocolateCake.jpg",
-        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        image: "./imagesForMenu/chocolateCake.jpg",
+        text: "Our homemade cakes with smooth frosting and delicious layers, baked fresh daily.",
+        name:"Cakes",
+        liked : false
         },
         {
-        image: "/PandesalForMenu.jpg",
-        text: "Our bread is made with the warmth and dedication of Filipino hands—rooted in tradition, perfected with heart."
+        image: "./imagesForMenu/PandesalForMenu.jpg",
+        text: "Warm, soft rolls with a subtle sweetness—perfect with coffee, palaman, or eaten on its own.",
+        name:"Classicc Pandesal",
+        liked : false
+
         }
     ];
 
@@ -37,30 +50,20 @@ export default function MenuSection (){
     }
 
     
+  const [oldMenu, setOldMenu] = useState(menu);
+
+ const heartedFeaturedMenu = (index) => {
+    // Create a new array, toggle liked for clicked item only
+    const updatedMenu = oldMenu.map((item, i) =>
+      i === index ? { ...item, liked: !item.liked } : item
+    );
+    setOldMenu(updatedMenu);
+  };
+
+
 
   const scrollRef = useRef();
 
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-  // Mouse/touch drag handlers
-  const handleMouseDown = (e) => {
-    isDown = true;
-    startX = e.pageX || e.touches[0].pageX;
-    scrollLeft = scrollRef.current.scrollLeft;
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDown) return;
-    const x = e.pageX || e.touches[0].pageX;
-    const walk = (startX - x); // how far mouse moved
-    scrollRef.current.scrollLeft = scrollLeft + walk;
-  };
-
-  const handleMouseUp = () => {
-    isDown = false;
-  };
 
   const scrollLeftBtn = () => {
     scrollRef.current.scrollBy({ left: -500, behavior: "smooth" });
@@ -106,14 +109,8 @@ export default function MenuSection (){
               {/* Scrollable Container */}
               <div
                 ref={scrollRef}
-                className="overflow-x-hidden scroll-smooth cursor-grab"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onTouchStart={handleMouseDown}
-                onTouchMove={handleMouseMove}
-                onTouchEnd={handleMouseUp}
+                className="overflow-x-auto scroll-smooth cursor-grab  hide-scrollbar"
+                
               >
                 <div className="flex space-x-4 p-3">
                   
@@ -124,9 +121,21 @@ export default function MenuSection (){
                         <div className="h-1/2 hover:scale-103 ">
                             <div  className="shrink-0 w-70 h-60 bg-white bg-cover bg-center rounded-t-xl"
                               style={{ backgroundImage: `url(${element.image})` }}>
+                                <span
+                                  key={i}
+                                  onClick={() => heartedFeaturedMenu(i)}
+                                  className="cursor-pointer inline-flex items-center"
+                                >
+                                  {element.liked ? (
+                                    <HeartSolid className="w-6 h-6 text-red-500" />
+                                  ) : (
+                                    <HeartOutline className="w-6 h-6 text-gray-500" />
+                                  )}
+                                </span>
                             </div>
-                            <div className=" shrink-0 flex flex-col justify-between p-4 bg-white h-40 rounded-b-2xl items-center">
-                                <h1 className="font-light font-sans">{element.text}</h1>
+                            <div className=" shrink-0 flex flex-col justify-between p-4 md:p-3 bg-white h-45 rounded-b-2xl items-center">
+                              <h1 className="text-lg font-bold">{element.name}</h1>
+                                <h1 className="text-xs md:text-sm font-sans text-center">{element.text}</h1>
                                 <button className="bg-amber-300 w-40 h-10 rounded-4xl">Details</button>
                             </div>
                         </div>
