@@ -16,7 +16,9 @@ export default function GallerySection(){
 
                 {/* Top row: 2 wide boxes */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="h-75 bg-[url('./imagesForGallery/breadAndCam.jpg')] bg-cover bg-center  drop-shadow-xs drop-shadow-black hover:scale-102 ">
+                    <div
+                    style={{ backgroundImage: `url(./imagesForGallery/breadAndCam.jpg)` }}  
+                    className="h-75 bg-cover bg-center  drop-shadow-xs drop-shadow-black hover:scale-102 ">
 
                     </div>
 
@@ -34,13 +36,17 @@ export default function GallerySection(){
 
                 {/* Bottom row: 3 boxes on md+, 2 on sm, 1 on xs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                    <div className="h-70  bg-[url('./imagesForGallery/interiorStore.jpg')] bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102 ">
-                        
-
-
+                    <div 
+                    style={{ backgroundImage: `url(./imagesForGallery/interiorStore.jpg)` }} 
+                    className="h-70 bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102 ">                        
                     </div>
-                    <div className="h-70  bg-[url('./imagesForGallery/breadSharing.jpg')] bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
-                    <div className="h-70  bg-[url('./imagesForGallery/SandwichAndBucket.jpg')] bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
+
+                    <div
+                    style={{ backgroundImage: `url(./imagesForGallery/breadSharing.jpg)` }} 
+                    className="h-70  bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
+                    <div
+                    style={{ backgroundImage: `url(./imagesForGallery/SandwichAndBucket.jpg)` }}  
+                    className="h-70 bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
                 </div>
 
             </div>
