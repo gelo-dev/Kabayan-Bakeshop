@@ -1,6 +1,16 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function ListOMenuSection({ onClose }) {
+
+
+    const navItems = [
+    { name: "Home", page: "home" },
+    { name: "Menu", page: "menu" },
+    { name: "About", page: "about" }
+  ];
+
+  const [page, setPage] = useState("home");
   return (
     <motion.div
       initial={{ x: "-100%" }}
@@ -15,16 +25,35 @@ export default function ListOMenuSection({ onClose }) {
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 bg-black text-white px-4 py-2 rounded-xl"
+        className="absolute top-4 right-4 bg-black text-white px-4 py-2 rounded-xl z-10"
       >
         Close
       </button>
 
-      {/* Content */}
-      <div className="p-6 text-black">
-        <h1 className="text-3xl font-bold mb-4">All Bakes</h1>
-        <p>This is your fullscreen child component.</p>
-      </div>
+      <div>
+      <nav className="fixed left-0 top-0 h-full w-40 bg-white shadow-lg p-4 flex flex-col space-y-4">
+        {navItems.map((item) => (
+          <button
+            key={item.page}
+            onClick={() => setPage(item.page)}
+            className={`text-left p-2 rounded ${
+              page === item.page ? "bg-amber-300" : "hover:bg-amber-200"
+            }`}
+          >
+            {item.name}
+          </button>
+        ))}
+      </nav>
+
+      {/* <div className="mr-40 p-4">
+        {page === "home" && <Home />}
+        {page === "menu" && <Menu />}
+        {page === "about" && <About />}
+      </div> */}
+    </div>
+      
+
     </motion.div>
   );
 }
+// style={{ backgroundImage: `url(./bakery.jpg)`}}

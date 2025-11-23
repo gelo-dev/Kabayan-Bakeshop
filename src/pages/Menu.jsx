@@ -3,10 +3,10 @@ import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@
 import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import ListOMenuSection from "../components/MenuPageComponents/listOfMenu";
 import { AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 
-export default function MenuSection (){
+
+export default function MenuSection ({ sendToHeader  }){
 
     const menu = [
         {
@@ -48,8 +48,17 @@ export default function MenuSection (){
         }
     ];
 
-    const testButton = ()=>{
-        alert('this is test')
+    const openListOfMenu = () => {
+      setShowListOfMenu(prev => {
+        const newValue = !prev;
+        sendToHeader(newValue);
+        return newValue;
+      });
+    };
+
+    const closeMenu =() =>{
+      sendToHeader(false)
+      setShowListOfMenu(false)
     }
 
   const [showListOfMenu , setShowListOfMenu]=useState(false)
@@ -93,14 +102,14 @@ export default function MenuSection (){
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
                          <button
-                            onClick={() => setShowListOfMenu(true)}
+                            onClick={() => openListOfMenu()}
                             className="hidden md:block  hover:bg-amber-700 hover:scale-105 outline outline-white text-white px-6 py-3 rounded-3xl transition"
                           >
                             Explore All Bakes
                           </button>
 
                           <AnimatePresence>
-                            {showListOfMenu && <ListOMenuSection onClose={() => setShowListOfMenu(false)} />}
+                            {showListOfMenu && <ListOMenuSection onClose={() => closeMenu(false)} />}
                           </AnimatePresence>
                     </div>
                     
@@ -110,7 +119,7 @@ export default function MenuSection (){
                 {/* Left Button - hidden on small screens */}
               <button
                 onClick={scrollLeftBtn}
-                className="hidden md:flex absolute left-0 top-3/4 -translate-y-1/2 bg-transparent text-white z-50"
+                className="hidden md:flex absolute left-0 top-3/4 -translate-y-1/2 bg-transparent text-white "
               >
               < ChevronLeftIcon className="w-10 h-10 stroke-3 " />
               </button>
@@ -165,7 +174,7 @@ export default function MenuSection (){
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button
-              onClick={() => setShowListOfMenu(true)}
+              onClick={() => openListOfMenu()}
               className= {`${ showListOfMenu ? 'hidden' :'block'} md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
                           Explore All Bakes
                         

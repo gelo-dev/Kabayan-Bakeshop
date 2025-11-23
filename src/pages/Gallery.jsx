@@ -17,7 +17,7 @@ export default function GallerySection(){
                 {/* Top row: 2 wide boxes */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div
-                    style={{ backgroundImage: `url(./imagesForGallery/breadAndCam.jpg)` }}  
+                    style={{ backgroundImage: `url(./imagesForGallery/breadAndCamLow.jpg)` }}  
                     className="h-75 bg-cover bg-center  drop-shadow-xs drop-shadow-black hover:scale-102 ">
 
                     </div>
