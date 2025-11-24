@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
-import ListOMenuSection from "../components/MenuPageComponents/listOfMenu";
+import MenuListCategories from "../components/MenuPageComponents/MenuListCategories";
 import { AnimatePresence } from "framer-motion";
 
 
@@ -109,7 +109,7 @@ export default function MenuSection ({ sendToHeader  }){
                           </button>
 
                           <AnimatePresence>
-                            {showListOfMenu && <ListOMenuSection onClose={() => closeMenu(false)} />}
+                            {showListOfMenu && <MenuListCategories onClose={() => closeMenu(false)}  />}
                           </AnimatePresence>
                     </div>
                     
