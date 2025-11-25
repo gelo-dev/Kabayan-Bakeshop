@@ -105,7 +105,7 @@ export default function MenuSection ({ sendToHeader  }){
                             onClick={() => openListOfMenu()}
                             className="hidden md:block  hover:bg-amber-700 hover:scale-105 outline outline-white text-white px-6 py-3 rounded-3xl transition"
                           >
-                            Explore All Bakes
+                            Buy Fresh Goods
                           </button>
 
                           <AnimatePresence>
@@ -176,7 +176,7 @@ export default function MenuSection ({ sendToHeader  }){
               <button
               onClick={() => openListOfMenu()}
               className= {`${ showListOfMenu ? 'hidden' :'block'} md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
-                          Explore All Bakes
+                          Buy Fresh Goods
                         
               </button>
           </div>
