@@ -1,20 +1,27 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import BreadMenuSection from "./BreadMenu";
+import CookiesMenuSection from "./CookiesMenu";
+import CakesMenuSection from "./CakesMenu";
+import PastriesMenuSection from "./PastriesMenu";
+import SandwichesMenuSection from "./SandwichesMenu";
+import BeveragesMenuSection from "./BeveragesMenu";
 
 export default function MenuListCategories({ onClose }) {
 
 
-    const listOfCategories = [
-    { name: "Breads", page: "breads" },
-    { name: "Pastries", page: "pastries" },
-    { name: "Cakes", page: "cakes" },
-    { name: "Cookies", page: "cookies" },
-    { name: "Sandwiches", page: "Sandwiches" }, 
-    { name: "Beverages", page: "Beverages" }
+ const listOfCategories = [
+    { page: "Bread", name: "Bread", content: <BreadMenuSection /> },
+    { page: "Cookies", name: "Cookies", content: <CookiesMenuSection /> },
+    { page: "Cakes", name: "Cakes", content: <CakesMenuSection /> },
+    { page: "Pastries", name: "Pastries", content: <PastriesMenuSection /> },
+    { page: "Sandwiches", name: "Sandwiches", content: <SandwichesMenuSection /> },
+    { page: "Beverages", name: "Beverages", content: <BeveragesMenuSection /> },
   ];
 
-  const [page, setPage] = useState("home");
-  const activeCategory = listOfCategories.find((item) => item.page === page);
+
+  const [page, setPage] = useState("Bread");
+  const activeMenu = listOfCategories.find((item) => item.page === page);
 
 
   return (
@@ -45,11 +52,11 @@ export default function MenuListCategories({ onClose }) {
       
           <div className="grid grid-cols-3 h-screen gap-4 p-5">
             <div className=" flex flex-col items-center justify-center bg-transparent  col-span-2 gap-1 ">
-              <div className="bg-transparent font-serif h-15 mt-7 w-230 ">
-                  {<h1 className="text-5xl"> BREADS</h1>}
+              <div className="bg-transparent h-15 w-230 flex items-center justify-center text-4xl font-serif">
+                      <h1>{activeMenu ?.name}</h1>
               </div>
-               <div className="bg-amber-600 h-135 w-230 ">
-                  <h1> display the page here</h1>
+               <div className="bg-transparent h-135 w-230 ">
+                  {activeMenu?.content}
               </div>
             </div>
             
