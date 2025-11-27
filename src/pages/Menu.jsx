@@ -136,7 +136,7 @@ export default function MenuSection ({ sendToHeader  }){
                       <div
                         key={i}
                       >
-                        <div className=" hover:scale-103 ">
+                        <div className=" hover:scale-103 brightness-97 hover:brightness-105 ">
                             <div  className="shrink-0 h-45 w-65  md:w-70 md:h-60 bg-white bg-cover bg-center rounded-t-xl"
                               style={{ backgroundImage: `url(${element.image})` }}>
                                 <span
