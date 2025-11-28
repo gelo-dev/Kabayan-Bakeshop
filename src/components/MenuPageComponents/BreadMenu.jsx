@@ -3,10 +3,9 @@ import menuSampleList from "./sampleMenuArray"
 import chunkArray from "./chunkArray";
 import { ChevronLeftIcon , ChevronRightIcon ,InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 
-export default function BreadMenuSection(){
+export default function BreadMenuSectionDemo(){
     
     const pages = chunkArray(menuSampleList, menuSampleList.length);
-    const [index, setIndex] = useState(0);
     const [flippedCards, setFlippedCards] = useState({});
  
  
@@ -21,32 +20,25 @@ export default function BreadMenuSection(){
     
     
     return(
-        <section id="breads">
+        <section id="breadss" className="h-screen pt-15">
 
-              
-            <div className="relative w-full overflow-hidden">
-                    <div
-                        className="flex transition-transform duration-500"
-                        style={{ transform: `translateX(-${index * 100}%)` }}
-                    >
-                        
+            <div className="relative w-full h-screen overflow-hidden flex">
                         {pages.map((page, i) => (
                         <div key={i}
-                      
-                        className={`grid grid-cols-2 md:grid-cols-4  gap-4 min-w-full p-4`}>
+                        className={`grid grid-cols-1 md:grid-cols-4  gap-2 `}>
                             {page.map((item) => (
-                                <div key={item.id} className="relative w-full h-full">
+                                <div key={item.id} className="relative w-full h-full ">
                                     <div
                                     className={`transition-transform duration-500 preserve-3d ${
                                     flippedCards[item.id] ? "rotate-y-180" : ""
                                     }`}>
                                         <div
-                                            className="bg-transparent hover:scale-105 brightness-95 hover:brightness-105 flex flex-col backface-hidden">
+                                            className="w-full bg-transparent hover:scale-105 brightness-95 hover:brightness-105 flex flex-col backface-hidden">
                                             <div
                                             style={{ backgroundImage: `url(${item.image})` }} 
-                                            className=" bg-cover bg-center w-full h-40  rounded-t-3xl flex flex-col p-2 justify-between">
+                                            className=" bg-cover bg-center w-full h-40  rounded-t-2xl flex flex-col p-2 justify-between">
                                                 <InformationCircleIcon 
-                                                className="stroke-blue-700 stroke-1 h-7 cursor-pointer ml-45 "
+                                                className="stroke-blue-700 stroke-1 h-7 cursor-pointer ml-50 "
                                                 onClick={(e) => {
                                                     e.stopPropagation();  // Prevent click from affecting parent
                                                     toggleFlip(item.id); // Flip only this card
@@ -56,7 +48,7 @@ export default function BreadMenuSection(){
                                                     </div>
                                                 
                                             </div> 
-                                            <div className="bg-white h-30 rounded-b-3xl flex flex-col justify-between items-center p-1 gap-2 ">
+                                            <div className="bg-white h-40 rounded-b-2xl flex flex-col justify-between items-center p-1 gap-2 ">
                                                 <div>
                                                     <h1 className="text-l text-center">{item.name}</h1>
                                                 </div>
@@ -100,10 +92,14 @@ export default function BreadMenuSection(){
                             ))}
                         </div> 
                         ))}
-                    </div>
+
+                        <div className="bg-amber-300 w-1/2">
+                            <h1>TEST DIV</h1>
+                        </div>
+                    
 
                             
-                    </div> 
+            </div> 
             
                     
         </section>
