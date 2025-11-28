@@ -2,8 +2,7 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
-import MenuListCategories from "../components/MenuPageComponents/MenuListCategories";
-import { AnimatePresence } from "framer-motion";
+
 
 
 
@@ -49,34 +48,7 @@ export default function MenuSection ({ sendToHeader  }){
         }
     ];
 
-     const navigate = useNavigate();
-
-    const openListOfMenu = () => {
-      setShowListOfMenu(prev => {
-        const newValue = !prev;
-        sendToHeader(newValue);
-        return newValue;
-      });
-    };
-
-    const closeMenu =() =>{
-      sendToHeader(false)
-      setShowListOfMenu(false)
-    }
-
-  const [showListOfMenu , setShowListOfMenu]=useState(false)
-  const [oldMenu, setOldMenu] = useState(menu);
-
- const heartedFeaturedMenu = (index) => {
-    // Create a new array, toggle liked for clicked item only
-    const updatedMenu = oldMenu.map((item, i) =>
-      i === index ? { ...item, liked: !item.liked } : item
-    );
-    setOldMenu(updatedMenu);
-  };
-
-
-
+  const navigate = useNavigate();
   const scrollRef = useRef();
 
 
@@ -105,15 +77,12 @@ export default function MenuSection ({ sendToHeader  }){
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
                          <button
-                            onClick={() => openListOfMenu()}
+                            onClick={() => navigate("/list-of-menu")}
                             className="hidden md:block  hover:bg-amber-700 hover:scale-105 outline outline-white text-white px-6 py-3 rounded-3xl transition"
                           >
                             Buy Fresh Goods
                           </button>
 
-                          <AnimatePresence>
-                            {showListOfMenu && <MenuListCategories onClose={() => closeMenu(false)}  />}
-                          </AnimatePresence>
                     </div>
                     
                 </div>
@@ -177,8 +146,8 @@ export default function MenuSection ({ sendToHeader  }){
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button
-              onClick={() => navigate("/full-menu")}
-              className= {`${ showListOfMenu ? 'hidden' :'block'} md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
+              onClick={() => navigate("/list-of-menu")}
+              className= {` md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
                           Buy Fresh Goods
                         
               </button>

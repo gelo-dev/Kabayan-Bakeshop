@@ -5,13 +5,11 @@ import { ChevronLeftIcon , ChevronRightIcon ,InformationCircleIcon ,ShoppingCart
 
 export default function BreadMenuSection(){
     
-    const pages = chunkArray(menuSampleList, 8);
+    const pages = chunkArray(menuSampleList, menuSampleList.length);
     const [index, setIndex] = useState(0);
     const [flippedCards, setFlippedCards] = useState({});
  
-    const prevPage = () => setIndex((prev) => Math.max(prev - 1, 0));
-    const nextPage = () => setIndex((prev) => Math.min(prev + 1, pages.length - 1));
-    const smallScreenRows = Math.ceil(menuSampleList.length / 2);
+ 
     
     const toggleFlip = (id) => {
         setFlippedCards(prev => ({
@@ -23,14 +21,9 @@ export default function BreadMenuSection(){
     
     
     return(
-        <section id="menu">
+        <section id="breads">
 
-                <button 
-                    onClick={prevPage}
-                    className="absolute top-98 -translate-x-5  bg-transparent text-white z-10"
-                >
-                    <ChevronLeftIcon className="w-10 h-10 stroke-3 " />
-                </button>
+              
             <div className="relative w-full overflow-hidden">
                     <div
                         className="flex transition-transform duration-500"
@@ -39,8 +32,8 @@ export default function BreadMenuSection(){
                         
                         {pages.map((page, i) => (
                         <div key={i}
-                        style={{gridTemplateRows: `repeat(${smallScreenRows}, minmax(0, 1fr))`,}}
-                        className={`grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-4 min-w-full p-4`}>
+                      
+                        className={`grid grid-cols-2 md:grid-cols-4  gap-4 min-w-full p-4`}>
                             {page.map((item) => (
                                 <div key={item.id} className="relative w-full h-full">
                                     <div
@@ -109,16 +102,9 @@ export default function BreadMenuSection(){
                         ))}
                     </div>
 
-                    {/* Right Button */}
                             
                     </div> 
-              <button 
-                            onClick={nextPage}
-                            className="absolute right-0 mr-130 top-98 translate-y-.5 text-white z-10"
-                        >
-                            <ChevronRightIcon className="w-10 h-10 stroke-3 " />
-                        </button>
-                    
+            
                     
         </section>
     )

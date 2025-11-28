@@ -3,7 +3,7 @@ import './App.css';
 
 import { Routes, Route } from "react-router-dom";
 import Navitagion from  './components/header';
-import SmallScreenMenu from './pages/SmallScreenMenu';
+import ListOfMnenuSection from './components/MenuPageComponents/ListOfMenu';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Navitagion/>  } />
-        <Route path="/full-menu" element={<SmallScreenMenu />} />
+        <Route path="/list-of-menu" element={<ListOfMnenuSection />} />
       </Routes>
     </>
   )
