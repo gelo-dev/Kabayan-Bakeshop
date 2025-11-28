@@ -7,7 +7,7 @@ export default function BeveragesMenuSection(){
     }
     test()
     return(
-        <section id="beverages">
+        <section id="beverages" className="h-screen">
             <h1>this is bread</h1> 
         </section>
     )

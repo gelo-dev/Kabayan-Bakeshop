@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
 import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
 import MenuListCategories from "../components/MenuPageComponents/MenuListCategories";
@@ -47,6 +48,8 @@ export default function MenuSection ({ sendToHeader  }){
 
         }
     ];
+
+     const navigate = useNavigate();
 
     const openListOfMenu = () => {
       setShowListOfMenu(prev => {
@@ -174,7 +177,7 @@ export default function MenuSection ({ sendToHeader  }){
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button
-              onClick={() => openListOfMenu()}
+              onClick={() => navigate("/full-menu")}
               className= {`${ showListOfMenu ? 'hidden' :'block'} md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
                           Buy Fresh Goods
                         

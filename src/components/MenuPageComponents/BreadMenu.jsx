@@ -4,12 +4,14 @@ import chunkArray from "./chunkArray";
 import { ChevronLeftIcon , ChevronRightIcon ,InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 
 export default function BreadMenuSection(){
+    
     const pages = chunkArray(menuSampleList, 8);
     const [index, setIndex] = useState(0);
     const [flippedCards, setFlippedCards] = useState({});
  
     const prevPage = () => setIndex((prev) => Math.max(prev - 1, 0));
     const nextPage = () => setIndex((prev) => Math.min(prev + 1, pages.length - 1));
+    const smallScreenRows = Math.ceil(menuSampleList.length / 2);
     
     const toggleFlip = (id) => {
         setFlippedCards(prev => ({
@@ -17,7 +19,9 @@ export default function BreadMenuSection(){
             [id]: !prev[id]
         }));
     };
-        
+     
+    
+    
     return(
         <section id="menu">
 
@@ -32,8 +36,11 @@ export default function BreadMenuSection(){
                         className="flex transition-transform duration-500"
                         style={{ transform: `translateX(-${index * 100}%)` }}
                     >
+                        
                         {pages.map((page, i) => (
-                        <div key={i} className="grid grid-cols-4 grid-rows-2 gap-4 min-w-full p-4">
+                        <div key={i}
+                        style={{gridTemplateRows: `repeat(${smallScreenRows}, minmax(0, 1fr))`,}}
+                        className={`grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-4 min-w-full p-4`}>
                             {page.map((item) => (
                                 <div key={item.id} className="relative w-full h-full">
                                     <div

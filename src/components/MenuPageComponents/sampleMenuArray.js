@@ -89,14 +89,7 @@ const menuSampleList = [
         price:10,
         liked : false
         },
-         {
-        id:12,
-        image: "/imagesForMenu/pastryForMenu.jpg",
-        text: "Locally baked, globally inspired. Yes, Pinoy bakery kami—but we make croissants that taste like you're in Paris.",
-        name:"Croissant",
-        price:10,
-        liked : false
-        },
+         
         
     ];
 
