@@ -25,7 +25,11 @@ html {
 }
 
 /* flip card animation in menu */
-.preserve-3d {
+.perspective {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
   transform-style: preserve-3d;
 }
 
@@ -35,9 +39,4 @@ html {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
-}
-@media (max-width: 768px) { /* small screens */
-  .grid-rows-dynamic {
-    grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
-  }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import menuSampleList from "./sampleMenuArray"
 import chunkArray from "./chunkArray";
-import { ChevronLeftIcon , ChevronRightIcon ,InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
+import {InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 
 export default function BreadMenuSectionDemo(){
     
@@ -68,7 +68,7 @@ export default function BreadMenuSectionDemo(){
                                         </div> 
 
                                         {/* BACK CARDS */}
-                                        <div className="absolute inset-0 bg-white rounded-3xl p-4 rotate-y-180 backface-hidden flex flex-col justify-center items-center gap-2">
+                                        <div className="absolute inset-0 bg-white rounded-3xl p-4 rotate-y-180 backface-hidden flex flex-col justify-center items-center gap-2 w-full h-full">
                                             <h2 className="text-xl  mb-2">Product Details</h2>
                                             <h1 className="font-bold font-serif text-lg">{item.name}</h1>
                                             <p className="text-sm text-center">{item.text || "More info coming soon..."}</p>
