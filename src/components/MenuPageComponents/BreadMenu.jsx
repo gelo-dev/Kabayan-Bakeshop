@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import menuSampleList from "./sampleMenuArray"
 import {InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
+import { CartContext } from "../../pages/CartContext";
 
 
-export default function BreadMuneSection({setOrderedProduct}){
+
+export default function BreadMuneSection(){
 
     const [flippedCards, setFlippedCards] = useState({});
     
- const OrderItem = (item) => setOrderedProduct(prev => [...prev, item]);
+    const { setOrderedProduct } = useContext(CartContext);
+     const addItem = (item) => setOrderedProduct(prev => [...prev, item]);
+    const [selectedItem, setSelectedItem] = useState(null);
 
+     const handleConfirm = () => {
+        addItem(selectedItem);      // actually add the item to cart
+         setSelectedItem(null); // close modal
+    };
 
    //Function For Flipping Menu     
     const toggleFlip = (id) => {
@@ -39,38 +47,30 @@ export default function BreadMuneSection({setOrderedProduct}){
                             {/* IMAGE + ICON + PRICE */}
                             <div
                             style={{ backgroundImage: `url(${item.image})` }}
-                            className="bg-amber-400 w-full h-60 rounded-t-2xl bg-cover bg-center flex flex-col justify-center p-1"
+                            className="bg-amber-400 w-full h-60 rounded-t-2xl bg-cover bg-center flex flex-col p-1"
                             >
                                 <InformationCircleIcon
-                                    className="stroke-blue-700 stroke-1 h-[15%] mb-10 cursor-pointer ml-45"
+                                    className="stroke-blue-700 stroke-1 h-[15%]  cursor-pointer ml-45"
                                     onClick={(e) => {
                                     e.stopPropagation();
                                     toggleFlip(item.id);
                                     }}
                                 />
 
-                                <div className="flex justify-start mt-20 h-[13%]">
-                                    <h1 className="bg-red-400 px-2 py-0 rounded-full text-white w-15">
-                                    {"₱ " + item.price}
-                                    </h1>
-                                </div>
                             </div>
 
                             {/* NAME + BUTTONS */}
                             <div className="bg-gray-100 w-full h-40 rounded-b-2xl flex flex-col items-center gap-2">
-                                <span>{item.name}</span>
+                                <h1 className="text-lg"> {"₱ " + item.price}</h1>
+                                <span className="text-xl">{item.name}</span>
 
                                 <button
-                                onClick={()=> OrderItem(item)} 
+                                onClick={() => setSelectedItem(item)}
                                 className="bg-green-500 hover:bg-green-700 text-white font-bold px-5 py-1 rounded-full flex item-center gap-2 shadow-md transition">
                                     Order Now
                                     <ShoppingCartIcon className="w-5 h-5" />
                                 </button>
 
-                                <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-5 py-1 rounded-full flex item-center gap-2 shadow-md transition">
-                                    Add to Cart
-                                    <ShoppingCartIcon className="w-5 h-5" />
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -91,6 +91,35 @@ export default function BreadMuneSection({setOrderedProduct}){
                 </div>
                 </div>
             ))}
+
+                {selectedItem && (
+                        <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
+                            <div className="bg-white rounded-lg p-6 w-96">
+                                <h2 className="text-xl font-bold mb-2">Add to Your Order?</h2>
+                                <p className="mb-6">
+                                Do you want to add <b>{selectedItem.name}</b> to your order list and continue exploring our menu?    
+                                
+                                </p>
+                                <div className="flex justify-end gap-4">
+                                <button
+                                    onClick={() => setSelectedItem(null)}
+                                    className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={handleConfirm}
+                                    className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600"
+                                >
+                                    Confirm
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                )}
+
+
+
             </div>
 
                         

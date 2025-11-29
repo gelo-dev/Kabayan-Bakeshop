@@ -1,13 +1,6 @@
 
 import Icon from '@mdi/react';
-import {
-  mdiBreadSlice,
-  mdiCookie,
-  mdiCakeVariant,
-  mdiViewList,        // as “Pastries”
-  mdiBreadSliceOutline,    // as “Sandwiches”
-  mdiCup,             // as “Beverages”
-} from '@mdi/js';
+import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import BreadMenuSection from "./BreadMenu";
 import CookiesMenuSection from "./CookiesMenu";
@@ -15,15 +8,16 @@ import CakesMenuSection from "./CakesMenu";
 import PastriesMenuSection from "./PastriesMenu";
 import SandwichesMenuSection from "./SandwichesMenu";
 import BeveragesMenuSection from "./BeveragesMenu";
+import { CartContext } from '../../pages/CartContext';
 import BottomBar from "./BottomBar";
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 
 export default function ListOfMnenuSection({}) {
     
 
 const MenuArray = [
-  { name: 'Breads',      content: () => (<BreadMenuSection orderedProduct={orderedProduct} setOrderedProduct={setOrderedProduct}/>),  icon: mdiBreadSlice },
+  { name: 'Breads',      content: <BreadMenuSection/>,  icon: mdiBreadSlice },
   { name: 'Cookies',     content: <CookiesMenuSection />,    icon: mdiCookie },
   { name: 'Cakes',       content: <CakesMenuSection />,      icon: mdiCakeVariant },
   { name: 'Pastries',    content: <PastriesMenuSection />,   icon: mdiViewList },
@@ -31,9 +25,15 @@ const MenuArray = [
   { name: 'Beverages',   content: <BeveragesMenuSection />,  icon: mdiCup },
 ];
 
-
+const { orderedProduct } = useContext(CartContext);
 const [selectedMenu ,setSelectedMenu ]=useState(0)
-const [orderedProduct, setOrderedProduct] = useState([]);
+const [totalPrice, setTotalPrice] = useState(0);
+
+useEffect(() => {
+    const total = orderedProduct.reduce((acc, item) => acc + Number(item.price), 0);
+    setTotalPrice(total);
+  }, [orderedProduct]);
+
 
     return (
         <section className="scroll-smooth  md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
@@ -77,22 +77,38 @@ const [orderedProduct, setOrderedProduct] = useState([]);
                 <div className=' flex flex-col gap-2 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='text-4xl text-white'>{MenuArray[selectedMenu].name}</div>
                         <div className='w-full'>
-                            {MenuArray[selectedMenu].content()}
+                            {MenuArray[selectedMenu].content}
                         </div>
                        
                 </div> 
 
 
                 {/* Right Page Component */}
-                <div className='w-1/4 bg-transparent grid grid-rows-12 p-2'>
+                <div className='w-1/4 bg-transparent grid grid-rows-12 p-2 gap-1'>
                     <div className='bg-gray-100 rounded-t-2xl row-span-1 flex justify-center items-center'>
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
-                    <div className='bg-gray-300 row-span-6 '>
-                        <div></div>
+                    {orderedProduct.length > 0 && 
+                    <div className='bg-white row-span-6 overflow-y-auto '>
+                        <ul className='flex flex-col'>
+                            {orderedProduct.map((item, i) => (
+                            <li className='p-2 font-bold bg-linear-to-t from-green-400 to-green-300 h-15 outline-1 outline-amber-50'
+                            key={i}>{item.name} - ₱{item.price}</li>
+                            ))}
+                        </ul>
 
-                    </div>
-                    <div className='bg-gray-200 row-span-3 rounded-b-2xl '>
+                    </div>}
+                    <div className='bg-gray-100 row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
+                        <h1 className=''>{orderedProduct.length > 1 ? 'Total Items: ' : 'Total Item: '}
+                            <span className='font-bold text-lg'>{orderedProduct.length}</span>
+                        </h1>
+                        <div className=' flex flex-col items-center'>
+                            <h1 className='font-bold text-4xl'>{"₱ " +  totalPrice}</h1>
+                            <h6 className=''>Amount to Pay</h6>
+
+                        </div>
+                        <button className=' bg-green-500 px-15 py-3 rounded-2xl hover:bg-green-700 hover:shadow-xs hover:text-white '>Confirm Order</button>
+                        
 
                     </div>
                 </div>
