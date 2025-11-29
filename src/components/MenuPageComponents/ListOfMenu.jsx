@@ -9,7 +9,7 @@ import {
   mdiCup,             // as “Beverages”
 } from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import BreadMenuSection from "./BreadMenuTrial";
+import BreadMenuSection from "./BreadMenu";
 import CookiesMenuSection from "./CookiesMenu";
 import CakesMenuSection from "./CakesMenu";
 import PastriesMenuSection from "./PastriesMenu";
@@ -19,11 +19,11 @@ import BottomBar from "./BottomBar";
 import { useState } from 'react';
 
 
-export default function ListOfMnenuSection() {
+export default function ListOfMnenuSection({}) {
     
 
 const MenuArray = [
-  { name: 'Breads',      content: <BreadMenuSection />,      icon: mdiBreadSlice },
+  { name: 'Breads',      content: () => (<BreadMenuSection orderedProduct={orderedProduct} setOrderedProduct={setOrderedProduct}/>),  icon: mdiBreadSlice },
   { name: 'Cookies',     content: <CookiesMenuSection />,    icon: mdiCookie },
   { name: 'Cakes',       content: <CakesMenuSection />,      icon: mdiCakeVariant },
   { name: 'Pastries',    content: <PastriesMenuSection />,   icon: mdiViewList },
@@ -31,12 +31,14 @@ const MenuArray = [
   { name: 'Beverages',   content: <BeveragesMenuSection />,  icon: mdiCup },
 ];
 
+
 const [selectedMenu ,setSelectedMenu ]=useState(0)
+const [orderedProduct, setOrderedProduct] = useState([]);
 
     return (
         <section className="scroll-smooth  md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
 
-            <div className='flex gap-5 p-5  h-screen'>
+            <div className='flex gap-2 p-5  h-screen'>
 
                 {/* Left Page Component */}
                 <div className='w-1/4 bg-transparent grid grid-row-5 p-2 gap-1'>
@@ -75,21 +77,24 @@ const [selectedMenu ,setSelectedMenu ]=useState(0)
                 <div className=' flex flex-col gap-2 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='text-4xl text-white'>{MenuArray[selectedMenu].name}</div>
                         <div className='w-full'>
-                            {MenuArray[selectedMenu].content}
+                            {MenuArray[selectedMenu].content()}
                         </div>
                        
                 </div> 
 
 
                 {/* Right Page Component */}
-                <div className='w-1/4 bg-amber-300 grid grid-rows-6 p-2'>
+                <div className='w-1/4 bg-transparent grid grid-rows-12 p-2'>
                     <div className='bg-gray-100 rounded-t-2xl row-span-1 flex justify-center items-center'>
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
-                    <div className='bg-red-300 row-span-4 '>
-                        
+                    <div className='bg-gray-300 row-span-6 '>
+                        <div></div>
+
                     </div>
-                    <div className='bg-red-600 row-span-1 '></div>
+                    <div className='bg-gray-200 row-span-3 rounded-b-2xl '>
+
+                    </div>
                 </div>
             </div>
             <BottomBar/>
