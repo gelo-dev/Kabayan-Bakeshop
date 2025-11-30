@@ -2,32 +2,44 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import BreadMenuSection from "./BreadMenu";
-import CookiesMenuSection from "./CookiesMenu";
-import CakesMenuSection from "./CakesMenu";
-import PastriesMenuSection from "./PastriesMenu";
-import SandwichesMenuSection from "./SandwichesMenu";
-import BeveragesMenuSection from "./BeveragesMenu";
+import BreadMenuSection from "./ListOfProducts";
+import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
 import BottomBar from "./BottomBar";
 import { useContext, useEffect, useState } from 'react';
-
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function ListOfMnenuSection({}) {
     
 
 const MenuArray = [
-  { name: 'Breads',      content: <BreadMenuSection/>,  icon: mdiBreadSlice },
-  { name: 'Cookies',     content: <CookiesMenuSection />,    icon: mdiCookie },
-  { name: 'Cakes',       content: <CakesMenuSection />,      icon: mdiCakeVariant },
-  { name: 'Pastries',    content: <PastriesMenuSection />,   icon: mdiViewList },
-  { name: 'Sandwiches',  content: <SandwichesMenuSection />, icon: mdiBreadSliceOutline },
-  { name: 'Beverages',   content: <BeveragesMenuSection />,  icon: mdiCup },
+  { name: "Breads", category: "breads", icon: mdiBreadSlice },
+  { name: "Cookies", category: "cookies", icon: mdiCookie },
+  { name: "Cakes", category: "cakes", icon: mdiCakeVariant },
+  { name: "Pastries", category: "pastries", icon: mdiViewList },
+  { name: "Sandwiches", category: "sandwiches", icon: mdiBreadSliceOutline },
+  { name: "Beverages", category: "beverages", icon: mdiCup },
 ];
 
+const PageWrapper = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: -50 }}   // start 50px above
+    animate={{ opacity: 1, y: 0 }}    // slide into place
+    exit={{ opacity: 0, y: 50 }}      // exit by sliding down
+    transition={{ duration: 1 }}
+  >
+    {children}
+  </motion.div>
+);
+
 const { orderedProduct } = useContext(CartContext);
-const [selectedMenu ,setSelectedMenu ]=useState(0)
+const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
+
+const selectedCategory = MenuArray[selectedIndex].category;
+const categoryData = menuData[selectedCategory];
+
+
 
 useEffect(() => {
     const total = orderedProduct.reduce((acc, item) => acc + Number(item.price), 0);
@@ -59,7 +71,7 @@ useEffect(() => {
                         {MenuArray.map((item, index) => (
                             <button 
                             key={index}
-                            onClick={()=>setSelectedMenu(index)}
+                            onClick={()=>setSelectedIndex(index)}
                             className='w-full h-16 flex items-center justify-start bg-white hover:bg-amber-500 p-4 gap-5 hover:text-white hover:scale-102 hover:text-lg'
                             >
                             <Icon path={item.icon} size={1} className="text-black" />
@@ -75,9 +87,15 @@ useEffect(() => {
 
                 {/*Center Page Component  */}
                 <div className=' flex flex-col gap-2 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
-                        <div className='text-4xl text-white'>{MenuArray[selectedMenu].name}</div>
+                        <div className='text-4xl text-white'>{MenuArray[selectedIndex].name}</div>
                         <div className='w-full'>
-                            {MenuArray[selectedMenu].content}
+                            <AnimatePresence>
+                                <PageWrapper>
+                                          <BreadMenuSection category={categoryData} />
+                                </PageWrapper>
+                              
+                            </AnimatePresence>
+                            
                         </div>
                        
                 </div> 

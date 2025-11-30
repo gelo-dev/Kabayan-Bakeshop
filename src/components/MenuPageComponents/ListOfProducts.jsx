@@ -1,19 +1,18 @@
 import { useContext, useState } from "react";
-import menuSampleList from "./sampleMenuArray"
 import {InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 import { CartContext } from "../../pages/CartContext";
 
 
 
-export default function BreadMuneSection(){
-
+export default function BreadMuneSection({category  }){
+    if (!category) return null;
+   
     const [flippedCards, setFlippedCards] = useState({});
-    
     const { setOrderedProduct } = useContext(CartContext);
-     const addItem = (item) => setOrderedProduct(prev => [...prev, item]);
+    const addItem = (item) => setOrderedProduct(prev => [...prev, item]);
     const [selectedItem, setSelectedItem] = useState(null);
 
-     const handleConfirm = () => {
+    const handleConfirm = () => {
         addItem(selectedItem);      // actually add the item to cart
          setSelectedItem(null); // close modal
     };
@@ -31,7 +30,7 @@ export default function BreadMuneSection(){
         <section id="breads">
 
             <div className="grid grid-cols-3 gap-2">
-            {menuSampleList.map((item, index) => (
+            {category.map((item, index) => (
                 <div key={index} className="relative w-full h-80 perspective">
                 
                 {/* FLIP WRAPPER */}
