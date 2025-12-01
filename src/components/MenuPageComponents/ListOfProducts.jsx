@@ -66,7 +66,7 @@ export default function BreadMuneSection({category  }){
                                 <button
                                 onClick={() => setSelectedItem(item)}
                                 className="bg-green-500 hover:bg-green-700 text-white font-bold px-5 py-1 rounded-full flex item-center gap-2 shadow-md transition">
-                                    Order Now
+                                    Add to Your List
                                     <ShoppingCartIcon className="w-5 h-5" />
                                 </button>
 

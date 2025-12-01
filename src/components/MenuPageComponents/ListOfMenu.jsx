@@ -41,6 +41,14 @@ const categoryData = menuData[selectedCategory];
 
 
 
+
+const testItemPrice =(item)=>{
+    console.log(item.price);
+    
+}
+
+
+
 useEffect(() => {
     const total = orderedProduct.reduce((acc, item) => acc + Number(item.price), 0);
     setTotalPrice(total);
@@ -108,10 +116,29 @@ useEffect(() => {
                     </div>
                     {orderedProduct.length > 0 && 
                     <div className='bg-white row-span-6 overflow-y-auto '>
-                        <ul className='flex flex-col'>
+                        <ul className='flex flex-col outline-1'>
                             {orderedProduct.map((item, i) => (
-                            <li className='p-2 font-bold bg-linear-to-t from-green-400 to-green-300 h-15 outline-1 outline-amber-50'
-                            key={i}>{item.name} - ₱{item.price}</li>
+                            <li className='p-2 font-bold  h-15 mt-2 outline-1 outline-amber-50 justify-between items-center flex'
+                            key={i}>
+                                <span className='text-green-600 '>{item.name} - ₱{item.price}</span>
+                                <div className="flex items-center gap-1 bg-transparent ">
+                                    <button 
+                                        className="px-2 bg-red-500 text-white rounded"
+                                   
+                                    >
+                                        -
+                                    </button>
+
+                                        <input placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
+
+                                    <button 
+                                        className="px-2 bg-green-500 text-white rounded"
+                                        onClick={()=>testItemPrice(item)}
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </li>
                             ))}
                         </ul>
 
