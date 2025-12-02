@@ -5,6 +5,8 @@ import { Routes, Route, useLocation  } from "react-router-dom";
 import Navitagion from  './components/header';
 import ListOfMnenuSection from './components/MenuPageComponents/ListOfMenu';
 import { AnimatePresence, motion } from "framer-motion";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -24,7 +26,7 @@ function App() {
           } />
         </Routes>
       </AnimatePresence>
-      
+      <ToastContainer/>
     </>
   )
 }

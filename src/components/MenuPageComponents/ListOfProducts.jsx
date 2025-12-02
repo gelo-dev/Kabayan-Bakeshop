@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import {InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 import { CartContext } from "../../pages/CartContext";
+import { toast } from 'react-toastify';
 
 
 
@@ -9,12 +10,40 @@ export default function BreadMuneSection({category  }){
    
     const [flippedCards, setFlippedCards] = useState({});
     const { setOrderedProduct } = useContext(CartContext);
-    const addItem = (item) => setOrderedProduct(prev => [...prev, item]);
+  
     const [selectedItem, setSelectedItem] = useState(null);
 
+    const addItem = (item) => {
+        setOrderedProduct(prev => {
+            const exists = prev.some(p => p.id === item.id);
+            if (exists) {
+            toast.warning("Already on the ordered list!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            theme: "colored",
+            });
+            return prev; // do not add duplicate
+            }
+            toast.success("Item successfully added to your order!", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            theme: "colored",
+            });
+            return [...prev, item]; // add item if not exists
+        });
+    };
+
     const handleConfirm = () => {
-        addItem(selectedItem);      // actually add the item to cart
-         setSelectedItem(null); // close modal
+
+
+        addItem(selectedItem);    
+         setSelectedItem(null); 
     };
 
    //Function For Flipping Menu     
@@ -107,7 +136,7 @@ export default function BreadMuneSection({category  }){
                                     Cancel
                                 </button>
                                 <button
-                                    onClick={handleConfirm}
+                                    onClick={()=>handleConfirm()}
                                     className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600"
                                 >
                                     Confirm

@@ -2,6 +2,7 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { PlusIcon , MinusIcon } from '@heroicons/react/24/outline'
 import BreadMenuSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
@@ -36,23 +37,30 @@ const { orderedProduct } = useContext(CartContext);
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
 
+
+
 const selectedCategory = MenuArray[selectedIndex].category;
 const categoryData = menuData[selectedCategory];
 
 
+const increaseQty = (item) => {
+ console.log(item,'item');
+ console.log(orderedProduct,'this is the order');
+ 
+};
 
 
-const testItemPrice =(item)=>{
-    console.log(item.price);
-    
-}
+
 
 
 
 useEffect(() => {
-    const total = orderedProduct.reduce((acc, item) => acc + Number(item.price), 0);
-    setTotalPrice(total);
-  }, [orderedProduct]);
+  const total = orderedProduct.reduce((acc, item) =>
+    acc + Number(item.price) * item.quantity
+  , 0);
+
+  setTotalPrice(total);
+}, [orderedProduct]);
 
 
     return (
@@ -123,19 +131,19 @@ useEffect(() => {
                                 <span className='text-green-600 '>{item.name} - ₱{item.price}</span>
                                 <div className="flex items-center gap-1 bg-transparent ">
                                     <button 
-                                        className="px-2 bg-red-500 text-white rounded"
+                                        className="text-red-600 hover:outline-1 "
                                    
                                     >
-                                        -
+                                        <MinusIcon className="h-6 w-6"/>
                                     </button>
 
                                         <input placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
 
                                     <button 
-                                        className="px-2 bg-green-500 text-white rounded"
-                                        onClick={()=>testItemPrice(item)}
+                                        className=" text-gray-500 hover:outline-1"
+                                        onClick={()=>increaseQty(item)}
                                     >
-                                        +
+                                       <PlusIcon className="h-6 w-6"/>
                                     </button>
                                 </div>
                             </li>
