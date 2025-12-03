@@ -5,6 +5,7 @@ import Gallery from '../pages/Gallery'
 import Menu from '../pages/Menu'
 import Layout from './layoutBackground'
 import ScrollFadeSection from './ScrollFadeSection'
+import Footer from './footer'
 import { useState } from 'react'
 
 
@@ -54,7 +55,9 @@ export default function ScrollPage() {
 
                     {!menuState && <ScrollFadeSection>
                         <Contact />
-                    </ScrollFadeSection> }     
+                    </ScrollFadeSection> }  
+
+                    <Footer/>   
                 </Layout> 
             
             

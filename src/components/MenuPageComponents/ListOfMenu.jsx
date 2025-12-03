@@ -33,9 +33,11 @@ const PageWrapper = ({ children }) => (
   </motion.div>
 );
 
-const { orderedProduct } = useContext(CartContext);
+const { orderedProduct ,increaseQty :addQuantity , decreaseQty : decQuantity}  = useContext(CartContext);
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
+
+
 
 
 
@@ -43,11 +45,8 @@ const selectedCategory = MenuArray[selectedIndex].category;
 const categoryData = menuData[selectedCategory];
 
 
-const increaseQty = (item) => {
- console.log(item,'item');
- console.log(orderedProduct,'this is the order');
- 
-};
+;
+
 
 
 
@@ -102,11 +101,11 @@ useEffect(() => {
 
 
                 {/*Center Page Component  */}
-                <div className=' flex flex-col gap-2 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
-                        <div className='text-4xl text-white'>{MenuArray[selectedIndex].name}</div>
+                <div className=' flex flex-col gap-6 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
+                        <div className='text-4xl text-white flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
                         <div className='w-full'>
                             <AnimatePresence>
-                                <PageWrapper>
+                                <PageWrapper >
                                           <BreadMenuSection category={categoryData} />
                                 </PageWrapper>
                               
@@ -134,14 +133,16 @@ useEffect(() => {
                                         className="text-red-600 hover:outline-1 "
                                    
                                     >
-                                        <MinusIcon className="h-6 w-6"/>
+                                        <MinusIcon
+                                        onClick={()=>decQuantity(item)} 
+                                        className="h-6 w-6"/>
                                     </button>
 
                                         <input placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
 
                                     <button 
                                         className=" text-gray-500 hover:outline-1"
-                                        onClick={()=>increaseQty(item)}
+                                        onClick={()=>addQuantity(item.id)}
                                     >
                                        <PlusIcon className="h-6 w-6"/>
                                     </button>

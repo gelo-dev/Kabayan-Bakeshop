@@ -40,8 +40,6 @@ export default function BreadMuneSection({category  }){
     };
 
     const handleConfirm = () => {
-
-
         addItem(selectedItem);    
          setSelectedItem(null); 
     };
