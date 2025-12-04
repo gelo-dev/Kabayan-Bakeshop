@@ -40,3 +40,23 @@ html {
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+
+/* Custom tooltips */
+.red-tooltip {
+  background-color: #ff514b !important; /* gray-800 */
+  color: #fff !important;
+  padding: 6px 10px !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+}
+
+.green-tooltip {
+  background-color: #29d520 !important; /* gray-800 */
+  color: #fff !important;
+  padding: 6px 10px !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+}

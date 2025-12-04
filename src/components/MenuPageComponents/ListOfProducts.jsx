@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 
 
-export default function BreadMuneSection({category  }){
+export default function ListOfProductsSection({category ,categoryName }){
     if (!category) return null;
    
     const [flippedCards, setFlippedCards] = useState({});
@@ -14,8 +14,11 @@ export default function BreadMuneSection({category  }){
     const [selectedItem, setSelectedItem] = useState(null);
 
     const addItem = (item) => {
+    
+        const itemWithCategory = { ...item, category: categoryName };
+
         setOrderedProduct(prev => {
-            const exists = prev.some(p => p.id === item.id);
+            const exists = prev.some(p => p.id === item.id && p.category === categoryName);
             if (exists) {
             toast.warning("Already on the ordered list!", {
             position: "top-center",
@@ -35,7 +38,7 @@ export default function BreadMuneSection({category  }){
             pauseOnHover: false,
             theme: "colored",
             });
-            return [...prev, item]; // add item if not exists
+            return [...prev, itemWithCategory]; // add item if not exists
         });
     };
 
@@ -118,6 +121,8 @@ export default function BreadMuneSection({category  }){
                 </div>
             ))}
 
+            
+
                 {selectedItem && (
                         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
                             <div className="bg-white rounded-lg p-6 w-96">
@@ -144,6 +149,8 @@ export default function BreadMuneSection({category  }){
                         </div>
                 )}
 
+
+                     
 
 
             </div>

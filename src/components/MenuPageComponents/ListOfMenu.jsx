@@ -2,13 +2,15 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon } from '@heroicons/react/24/outline'
-import BreadMenuSection from "./ListOfProducts";
+import { PlusIcon , MinusIcon ,TrashIcon  } from '@heroicons/react/24/outline'
+import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
 import BottomBar from "./BottomBar";
 import { useContext, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 
 export default function ListOfMnenuSection({}) {
     
@@ -106,7 +108,7 @@ useEffect(() => {
                         <div className='w-full'>
                             <AnimatePresence>
                                 <PageWrapper >
-                                          <BreadMenuSection category={categoryData} />
+                                          <ListOfProductsSection category={categoryData} categoryName = {selectedCategory} />
                                 </PageWrapper>
                               
                             </AnimatePresence>
@@ -114,7 +116,7 @@ useEffect(() => {
                         </div>
                        
                 </div> 
-
+ 
 
                 {/* Right Page Component */}
                 <div className='w-1/4 bg-transparent grid grid-rows-12 p-2 gap-1'>
@@ -124,28 +126,68 @@ useEffect(() => {
                     {orderedProduct.length > 0 && 
                     <div className='bg-white row-span-6 overflow-y-auto '>
                         <ul className='flex flex-col outline-1'>
+                            <div className='bg-transparent'>
+                                <table className='w-full text-sm  '>
+                                    <thead>
+                                        <tr>
+                                            <th  className="px-2 py-1 "></th>
+                                            <th className="px-2 py-1 "></th>
+                                            <th className="px-4 py-2 ">Item Name</th>
+                                            
+                                            <th className="px-4 py-2 ">Price</th>
+                                            <th className="px-4 py-2 ">Qty</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                             {orderedProduct.map((item, i) => (
                             <li className='p-2 font-bold  h-15 mt-2 outline-1 outline-amber-50 justify-between items-center flex'
                             key={i}>
-                                <span className='text-green-600 '>{item.name} - ₱{item.price}</span>
-                                <div className="flex items-center gap-1 bg-transparent ">
-                                    <button 
-                                        className="text-red-600 hover:outline-1 "
-                                   
-                                    >
-                                        <MinusIcon
-                                        onClick={()=>decQuantity(item)} 
-                                        className="h-6 w-6"/>
-                                    </button>
+                                    
+                                    <div className='hover:bg-gray-200 h-8 w-8 flex items-center justify-center rounded-full text-red-400'>
+                                        <TrashIcon
+                                        data-tooltip-id="remove-tooltip" 
+                                        data-tooltip-content={`Remove ${ item.name } from order?`} 
+                                        className="hover:scale-110 h-5 w-5"/> 
+                                        <Tooltip 
+                                        id="remove-tooltip"
+                                        place="top"
+                                        className="red-tooltip"
+                                        />
+                                    </div> 
+                                    <span>{item.name}</span><span className='text-green-600 text-sm'> ₱{item.price}</span>
+                                <div className="flex items-center gap-1 bg-transparent ">                                  
+                                        {item.quantity > 1 && (
+                                            <>
+                                                <MinusIcon
+                                                data-tooltip-id="minus-tooltip"
+                                                data-tooltip-content="-1 "
+                                                onClick={() => decQuantity(item)}
+                                                className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                                />
 
-                                        <input placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
+                                                {/* Tooltip only rendered once per page or component */}
+                                                <Tooltip
+                                                id="minus-tooltip"
+                                                place="top"
+                                                className="red-tooltip "
+                                                />
+                                            </>
+                                            )}                                   
+                                        <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
 
-                                    <button 
-                                        className=" text-gray-500 hover:outline-1"
-                                        onClick={()=>addQuantity(item.id)}
-                                    >
-                                       <PlusIcon className="h-6 w-6"/>
-                                    </button>
+                                
+                                            <PlusIcon
+                                            data-tooltip-id="add-tooltip"
+                                            data-tooltip-content="+1 "
+                                            onClick={()=>addQuantity(item)} 
+                                            className="h-6 w-6 font-bold text-green-500 hover:border"/>
+                                            <Tooltip
+                                            id="add-tooltip"
+                                            place="top"
+                                            className="green-tooltip"
+                                            />
+                                    
                                 </div>
                             </li>
                             ))}
