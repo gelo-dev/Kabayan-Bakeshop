@@ -57,9 +57,9 @@ export default function ListOfProductsSection({category ,categoryName }){
 
 
     return(
-        <section id="breads">
+        <section id="products">
 
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2  gap-x-2 gap-y-0 md:gap-y-4">
             {category.map((item, index) => (
                 <div key={index} className="relative w-full h-80 perspective">
                 
@@ -70,13 +70,13 @@ export default function ListOfProductsSection({category ,categoryName }){
                     }`}
                 >
                     {/* FRONT SIDE */}
-                    <div className="absolute w-full h-full backface-hidden">
+                    <div className="absolute w-full h-75 md:h-full backface-hidden">
                         <div className="bg-amber-200 w-full h-full rounded-2xl flex flex-col items-center">
 
                             {/* IMAGE + ICON + PRICE */}
                             <div
                             style={{ backgroundImage: `url(${item.image})` }}
-                            className="bg-amber-400 w-full h-60 rounded-t-2xl bg-cover bg-center flex flex-col p-1"
+                            className="bg-size-[170px_170px]  bg-amber-400 w-full h-60 rounded-t-2xl md:bg-cover bg-center flex flex-col p-1"
                             >
                                 <InformationCircleIcon
                                     className="stroke-blue-700 stroke-1 h-[15%]  cursor-pointer ml-45"
@@ -90,15 +90,23 @@ export default function ListOfProductsSection({category ,categoryName }){
 
                             {/* NAME + BUTTONS */}
                             <div className="bg-gray-100 w-full h-40 rounded-b-2xl flex flex-col items-center gap-2">
-                                <h1 className="text-lg"> {"₱ " + item.price}</h1>
-                                <span className="text-lg">{item.name}</span>
+                                <h1 className=" text-lg"> {"₱ " + item.price}</h1>
+                                <span className="text-md md:text-lg">{item.name}</span>
 
                                 <button
                                 onClick={() => setSelectedItem(item)}
-                                className="bg-green-500 hover:bg-green-700 text-white font-bold px-5 py-1 rounded-full flex item-center gap-2 shadow-md transition">
+                                className="hidden bg-green-500 hover:bg-green-700 text-white font-bold px-5 py-1 rounded-full md:flex item-center gap-2 shadow-md transition">
                                     Add to Your List
                                     <ShoppingCartIcon className="w-5 h-5" />
                                 </button>
+
+                                {/* Small screen Btn */}
+                                    <button
+                                    onClick={() => setSelectedItem(item)} 
+                                    className=" flex flex-row-reverse gap-1 items-center justify-center text-sm md:hidden w-30 h-8 rounded-3xl bg-green-500 text-white">
+                                        Order Now
+                                        <ShoppingCartIcon className="w-4 h-5" />
+                                    </button>
 
                             </div>
                         </div>
@@ -122,10 +130,10 @@ export default function ListOfProductsSection({category ,categoryName }){
             ))}
 
             
-
+{/* ANCHOR Dialog Box for adding order */}
                 {selectedItem && (
                         <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-                            <div className="bg-white rounded-lg p-6 w-96">
+                            <div className="bg-white rounded-lg p-4 md:p-6 w-80 md:w-96">
                                 <h2 className="text-xl font-bold mb-2">Add to Your Order?</h2>
                                 <p className="mb-6">
                                 Do you want to add <b>{selectedItem.name}</b> to your order list and continue exploring our menu?    

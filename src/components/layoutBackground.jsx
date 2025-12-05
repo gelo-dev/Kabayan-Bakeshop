@@ -4,7 +4,7 @@ export default function Layout({ children }) {
       className="
         relative 
         min-h-screen
-        bg-amber-400 
+        bg-amber-700 
         md:bg-[url('/bakery.jpg')] 
         bg-cover 
         bg-center 

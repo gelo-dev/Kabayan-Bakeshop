@@ -2,16 +2,16 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon  } from '@heroicons/react/24/outline'
+import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, } from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
-import BottomBar from "./BottomBar";
 import { useContext, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import { useNavigate } from 'react-router-dom';
+import Home from "../../pages/Home"
 
 export default function ListOfMnenuSection({}) {
     
@@ -67,11 +67,11 @@ useEffect(() => {
 
 
     return (
-        <section className="scroll-smooth  md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
-
+        <section className="scroll-smooth bg-amber-700 md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
+            <Home/>
             <div className='flex gap-2 p-5  h-screen'>
 {/*ANCHOR Left Page Component */}
-                <div className='w-1/5 bg-transparent grid grid-row-5 p-2 gap-1'>
+                <div className='w-1/5 bg-transparent hidden md:grid grid-row-5 p-2 gap-1'>
                     <div className="bg-transparent row-span-1 p-2 flex items-center">
                         <div className="relative w-full">
                             <input
@@ -110,8 +110,9 @@ useEffect(() => {
                 </div> 
 
 {/* ANCHOR Center Page Component  */}
-                <div className=' flex flex-col gap-6 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
-                        <div className='text-4xl text-white flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
+                <div className=' flex flex-col gap-6 w-full md:w-1/2  md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
+                        <div className='hidden md:text-4xl text-white md:flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
+                   
                         <div className='w-full'>
                             <AnimatePresence>
                                 <PageWrapper >
@@ -126,7 +127,7 @@ useEffect(() => {
  
 
 {/* ANCHOR Right Page Component */}
-                <div className='w-1/3 bg-transparent grid grid-rows-12 p-2 gap-1'>
+                <div className='w-1/3 bg-transparent hidden md:grid grid-rows-12 p-2 gap-1'>
                     <div className='bg-gray-100 rounded-t-2xl row-span-1 flex justify-center items-center'>
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
@@ -194,6 +195,7 @@ useEffect(() => {
                                         </tr>
                                     ))}
                                 </table>
+                                
                     </div>}
                     <div className='bg-gray-100 row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
                         <h1 className=''>{orderedProduct.length > 1 ? 'Total Items: ' : 'Total Item: '}
@@ -204,11 +206,11 @@ useEffect(() => {
                             <h6 className=''>Amount to Pay</h6>
 
                         </div>
-                        <button
+                       {orderedProduct.length > 0 && <button
                             onClick={() => setShowDialog(true)} 
                             className=' bg-green-500 px-15 py-3 rounded-2xl hover:bg-green-700 hover:shadow-xs hover:text-white '>
                                 Confirm Order
-                        </button>
+                        </button>}
                         
 
                     </div>
@@ -253,27 +255,59 @@ useEffect(() => {
                             </tr>
                         ))}
                         </tbody>
-                       
+                    
                         
                     </table>
-                     <div className='flex justify-between w-full bg-transparent p-2 items-center '>
+                
+                    <div className='flex justify-between w-full bg-transparent p-2 items-center '>
                         <div></div>
                         <div className='flex gap-5 text-green-600 '>
-                              <span className=''>Total Amount to Pay :</span>
+                            <span className=''>Total Amount to Pay :</span>
                             <span className='mr-5 font-bold underline underline-offset-4'>{"₱ " +  totalPrice.toLocaleString()}</span>
                         </div>
-                          
+                        
                         </div>
 
-                    <div className="text-right mt-4">
-                        
+                    <div className="text-right mt-1 flex  items-center justify-center">
+                            <button
+                            className="w-full bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-2xl shadow-lg transition-all duration-300 tracking-wide flex items-center justify-center gap-2"
+                            >
+                            Proceed to Checkout
+                            <ShoppingCartIcon className="h-6 w-6" />
+                            </button>
+
                     </div>
 
                     </div>
                 </div>
                 )}
 
-            <BottomBar/>
+
+{/* ANCHOR BOTTOM BAR FOR SMALL SCREEN */}
+        <div className="fixed bottom-0 left-0 h-15 w-full bg-white shadow-inner border-t flex justify-around items-center p-2 z-50 md:hidden">
+      
+            {/* Home Button */}
+            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                <HomeIcon
+                onClick={() => navigate("/")}  
+                className="h-6 w-6" />
+                <span className="text-xs">Home</span>
+            </button>
+
+            {/* Cart Button */}
+            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                <ShoppingCartIcon
+                 onClick={() => setShowDialog(true)}  
+                className="h-6 w-6" />
+                <span className="text-xs">Cart</span>
+            </button>
+
+            {/* Profile Button */}
+            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                <UserIcon className="h-6 w-6" />
+                <span className="text-xs">Profile</span>
+            </button>
+            </div>
             
         </section>
     );
