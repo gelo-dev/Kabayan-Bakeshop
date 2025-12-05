@@ -40,7 +40,7 @@ const PageWrapper = ({ children }) => (
     initial={{ opacity: 0, y: -50 }}   // start 50px above
     animate={{ opacity: 1, y: 0 }}    // slide into place
     exit={{ opacity: 0, y: 50 }}      // exit by sliding down
-    transition={{ duration: 1 }}
+    transition={{ duration: 0.5 }}
   >
     {children}
   </motion.div>

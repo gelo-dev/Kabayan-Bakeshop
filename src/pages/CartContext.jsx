@@ -7,8 +7,7 @@ export function CartProvider({ children }) {
   const [orderedProduct, setOrderedProduct] = useState([]);
 
 
-   const increaseQty = (items) => {
-    console.log(items);
+  const increaseQty = (items) => {
     
     setOrderedProduct(prev =>
       prev.map(item =>
@@ -20,7 +19,6 @@ export function CartProvider({ children }) {
   };
 
   const decreaseQty = (items) => {
-   
       setOrderedProduct(prev =>
       prev.map(item =>
         item.id === items.id && item.category === items.category
@@ -31,8 +29,14 @@ export function CartProvider({ children }) {
     
   };
 
+  const deleteItem = (items) => {
+  setOrderedProduct(prev =>
+    prev.filter(item => !(item.id === items.id && item.category === items.category))
+  );
+};
+
   return (
-    <CartContext.Provider value={{ orderedProduct, setOrderedProduct,increaseQty , decreaseQty}}>
+    <CartContext.Provider value={{ orderedProduct, setOrderedProduct,increaseQty , decreaseQty , deleteItem}}>
       {children}
     </CartContext.Provider>
   );

@@ -2,7 +2,7 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon ,TrashIcon  } from '@heroicons/react/24/outline'
+import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon  } from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
@@ -11,6 +11,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function ListOfMnenuSection({}) {
     
@@ -34,10 +35,11 @@ const PageWrapper = ({ children }) => (
     {children}
   </motion.div>
 );
-
-const { orderedProduct ,increaseQty :addQuantity , decreaseQty : decQuantity}  = useContext(CartContext);
+const navigate = useNavigate()
+const { orderedProduct ,increaseQty :addQuantity , decreaseQty : decQuantity , deleteItem}  = useContext(CartContext);
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
+const [showDialog, setShowDialog] = useState(false);
 
 
 
@@ -68,9 +70,8 @@ useEffect(() => {
         <section className="scroll-smooth  md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
 
             <div className='flex gap-2 p-5  h-screen'>
-
-                {/* Left Page Component */}
-                <div className='w-1/4 bg-transparent grid grid-row-5 p-2 gap-1'>
+{/*ANCHOR Left Page Component */}
+                <div className='w-1/5 bg-transparent grid grid-row-5 p-2 gap-1'>
                     <div className="bg-transparent row-span-1 p-2 flex items-center">
                         <div className="relative w-full">
                             <input
@@ -98,11 +99,17 @@ useEffect(() => {
                         </div>
                     </div>
 
-                    <div className=' bg-blue-600 row-span-3 '></div>
+                    <div className=' bg-transparent row-span-3 flex items-center justify-center '>
+                        <button
+                        onClick={() => navigate("/")} 
+                        className='outline-2 hover:bg-white text-white hover:text-black outline-white rounded-full h-15 w-15 flex justify-center items-center'>
+                            <HomeIcon className="h-6 w-6  cursor-pointer" />
+                        </button>
+                            
+                    </div>
                 </div> 
 
-
-                {/*Center Page Component  */}
+{/* ANCHOR Center Page Component  */}
                 <div className=' flex flex-col gap-6 w-1/2 bg-transparent p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='text-4xl text-white flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
                         <div className='w-full'>
@@ -118,97 +125,154 @@ useEffect(() => {
                 </div> 
  
 
-                {/* Right Page Component */}
-                <div className='w-1/4 bg-transparent grid grid-rows-12 p-2 gap-1'>
+{/* ANCHOR Right Page Component */}
+                <div className='w-1/3 bg-transparent grid grid-rows-12 p-2 gap-1'>
                     <div className='bg-gray-100 rounded-t-2xl row-span-1 flex justify-center items-center'>
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
                     {orderedProduct.length > 0 && 
-                    <div className='bg-white row-span-6 overflow-y-auto '>
-                        <ul className='flex flex-col outline-1'>
-                            <div className='bg-transparent'>
-                                <table className='w-full text-sm  '>
-                                    <thead>
+                    <div className='bg-white row-span-6 overflow-y-auto '> 
+{/* ANCHOR LIST OF ORDER TABLE -  */}
+                                <table className='w-full text-sm text-center border '>
+                                    <thead className='border-b'>
                                         <tr>
-                                            <th  className="px-2 py-1 "></th>
-                                            <th className="px-2 py-1 "></th>
-                                            <th className="px-4 py-2 ">Item Name</th>
-                                            
-                                            <th className="px-4 py-2 ">Price</th>
-                                            <th className="px-4 py-2 ">Qty</th>
+                                            <th className="px-2 py-1"></th>
+                                            <th className="px-4 py-2">Item Name</th>
+                                            <th className="px-4 py-2">Price</th>
+                                            <th className="px-4 py-2">Quantity</th>
+                                            <th className="px-4 py-2">Total</th>
                                         </tr>
                                     </thead>
-                                </table>
-                            </div>
-                            {orderedProduct.map((item, i) => (
-                            <li className='p-2 font-bold  h-15 mt-2 outline-1 outline-amber-50 justify-between items-center flex'
-                            key={i}>
-                                    
-                                    <div className='hover:bg-gray-200 h-8 w-8 flex items-center justify-center rounded-full text-red-400'>
-                                        <TrashIcon
-                                        data-tooltip-id="remove-tooltip" 
-                                        data-tooltip-content={`Remove ${ item.name } from order?`} 
-                                        className="hover:scale-110 h-5 w-5"/> 
-                                        <Tooltip 
-                                        id="remove-tooltip"
-                                        place="top"
-                                        className="red-tooltip"
-                                        />
-                                    </div> 
-                                    <span>{item.name}</span><span className='text-green-600 text-sm'> ₱{item.price}</span>
-                                <div className="flex items-center gap-1 bg-transparent ">                                  
-                                        {item.quantity > 1 && (
-                                            <>
-                                                <MinusIcon
-                                                data-tooltip-id="minus-tooltip"
-                                                data-tooltip-content="-1 "
-                                                onClick={() => decQuantity(item)}
-                                                className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                    {orderedProduct.map((item, index) => (
+                                        <tr key={index} className="border-b">
+                                            <td className="px-3 py-1">
+                                                <TrashIcon
+                                                    onClick={() => deleteItem(item)}
+                                                    data-tooltip-id="remove-tooltip" 
+                                                    data-tooltip-content={`Remove ${ item.name } from order.`} 
+                                                    className=" h-5 w-5"/> 
+                                                <Tooltip 
+                                                    id="remove-tooltip"
+                                                    place="top"
+                                                    className="red-tooltip"
                                                 />
+                                            </td>
+                                                                                
+                                            <td className="px-4 py-2 font-semibold">{item.name}</td>                                           
+                                            <td className="px-4 py-2">₱{item.price}</td>                                         
+                                            <td className="px-4 py-2 col-span-2 flex">                                                
+                                                {item.quantity > 1 && (
+                                                        <>
+                                                            <MinusIcon
+                                                            data-tooltip-id="minus-tooltip"
+                                                            data-tooltip-content="-1 "
+                                                            onClick={() => decQuantity(item)}
+                                                            className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                                            />
 
-                                                {/* Tooltip only rendered once per page or component */}
+                                                            {/* Tooltip only rendered once per page or component */}
+                                                            <Tooltip
+                                                            id="minus-tooltip"
+                                                            place="top"
+                                                            className="red-tooltip "
+                                                            />
+                                                        </>
+                                                )}                                   
+                                                <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center font-bold'></input>                                
+                                                <PlusIcon
+                                                    data-tooltip-id="add-tooltip"
+                                                    data-tooltip-content="+1 "
+                                                    onClick={()=>addQuantity(item)} 
+                                                    className="h-6 w-6 font-bold text-green-500 hover:border"/>
                                                 <Tooltip
-                                                id="minus-tooltip"
-                                                place="top"
-                                                className="red-tooltip "
-                                                />
-                                            </>
-                                            )}                                   
-                                        <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center'></input>
-
-                                
-                                            <PlusIcon
-                                            data-tooltip-id="add-tooltip"
-                                            data-tooltip-content="+1 "
-                                            onClick={()=>addQuantity(item)} 
-                                            className="h-6 w-6 font-bold text-green-500 hover:border"/>
-                                            <Tooltip
-                                            id="add-tooltip"
-                                            place="top"
-                                            className="green-tooltip"
-                                            />
-                                    
-                                </div>
-                            </li>
-                            ))}
-                        </ul>
-
+                                                    id="add-tooltip"
+                                                    place="top"
+                                                    className="green-tooltip"
+                                                />                                                
+                                            </td>
+                                            <td className="px-4 py-2 font-bold">₱{item.price * item.quantity}</td>
+                                        </tr>
+                                    ))}
+                                </table>
                     </div>}
                     <div className='bg-gray-100 row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
                         <h1 className=''>{orderedProduct.length > 1 ? 'Total Items: ' : 'Total Item: '}
                             <span className='font-bold text-lg'>{orderedProduct.length}</span>
                         </h1>
                         <div className=' flex flex-col items-center'>
-                            <h1 className='font-bold text-4xl'>{"₱ " +  totalPrice}</h1>
+                            <h1 className='font-bold text-4xl '>{"₱ " +  totalPrice.toLocaleString()}</h1>
                             <h6 className=''>Amount to Pay</h6>
 
                         </div>
-                        <button className=' bg-green-500 px-15 py-3 rounded-2xl hover:bg-green-700 hover:shadow-xs hover:text-white '>Confirm Order</button>
+                        <button
+                            onClick={() => setShowDialog(true)} 
+                            className=' bg-green-500 px-15 py-3 rounded-2xl hover:bg-green-700 hover:shadow-xs hover:text-white '>
+                                Confirm Order
+                        </button>
                         
 
                     </div>
                 </div>
             </div>
+
+
+
+{/* ANCHOR ORDER SUMMARY */}
+            {showDialog && (
+                <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-xl">
+                        <div className='flex justify-between mb-4'>   
+                            <h2 className="text-xl font-bold  text-center">Order Summary</h2>
+                            <button
+                                onClick={() => setShowDialog(false)}
+                                className="  text-red-600 rounded hover:shadow hover:bg-gray-100 hover:text-red-700"
+                                >
+                                Close
+                                </button>    
+                        </div>
+                    
+                    <table className="w-full text-sm text-center border">
+                        <thead>
+                        <tr className="bg-gray-100">
+                            <th className="p-2 border">Item</th>
+                            <th className="p-2 border">Price</th>
+                            <th className="p-2 border">Qty</th>
+                            <th className="p-2 border">Total</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {orderedProduct.map((item, i) => (
+                            <tr key={i} className="border-b">
+                            <td className="p-2 border">{item.name}</td>
+                            <td className="p-2 border">₱{item.price}</td>
+                            <td className="p-2 border">{item.quantity}</td>
+                            <td className="p-2 border font-semibold ">
+                                ₱{item.price * item.quantity}
+                            </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                       
+                        
+                    </table>
+                     <div className='flex justify-between w-full bg-transparent p-2 items-center '>
+                        <div></div>
+                        <div className='flex gap-5 text-green-600 '>
+                              <span className=''>Total Amount to Pay :</span>
+                            <span className='mr-5 font-bold underline underline-offset-4'>{"₱ " +  totalPrice.toLocaleString()}</span>
+                        </div>
+                          
+                        </div>
+
+                    <div className="text-right mt-4">
+                        
+                    </div>
+
+                    </div>
+                </div>
+                )}
+
             <BottomBar/>
             
         </section>

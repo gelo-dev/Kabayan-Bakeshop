@@ -91,7 +91,7 @@ export default function ListOfProductsSection({category ,categoryName }){
                             {/* NAME + BUTTONS */}
                             <div className="bg-gray-100 w-full h-40 rounded-b-2xl flex flex-col items-center gap-2">
                                 <h1 className="text-lg"> {"₱ " + item.price}</h1>
-                                <span className="text-xl">{item.name}</span>
+                                <span className="text-lg">{item.name}</span>
 
                                 <button
                                 onClick={() => setSelectedItem(item)}
@@ -107,7 +107,7 @@ export default function ListOfProductsSection({category ,categoryName }){
                     {/*BACK SIDE */}
                     <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center">
                     
-                        <h1 className="text-lg font-bold mb-2">{item.name}</h1>
+                        <h1 className="text-lg font-bold mb-2 ">{item.name}</h1>
                         <p className="text-sm mb-4">{item.description || "No description available."}</p>
 
                         <button

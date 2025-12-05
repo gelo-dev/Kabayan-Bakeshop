@@ -23,7 +23,7 @@ const menuData = {
   cakes: [
     { id: 1, image: "./imagesForMenu/chocolateCake.jpg", text: "Soft, fluffy, and freshly baked daily.", name: "Chocolate Cake", price: 10, quantity : 1,   liked: false },
     { id: 2, image: "/imagesForMenu/cookiesForMenu.jpg", text: "Soft inside, lightly crisp outside.", name: "Vanilla Cake", price: 20, quantity : 1,   liked: false },
-    { id: 3, image: "/imagesForMenu/pastryForMenu.jpg", text: "Locally baked, globally inspired.", name: "Ube Cake", price: 50, liked: false },
+    { id: 3, image: "/imagesForMenu/pastryForMenu.jpg", text: "Locally baked, globally inspired.", name: "Ube Cake", price: 50, quantity : 1, liked: false },
     { id: 4, image: "/imagesForMenu/PandecocoForMenu.jpg", text: "Soft bread filled with sweet, creamy coconut.", name: "Coconut Cake", price: 30, quantity : 1,   liked: false },
     { id: 5, image: "./imagesForMenu/chocolateCake.jpg", text: "Our homemade cakes with smooth frosting.", name: "Red Velvet Cake", price: 50, quantity : 1,   liked: false },
     { id: 6, image: "/imagesForMenu/pastryForMenu.jpg", text: "Creamy layered delight.", name: "Caramel Cake", price: 45, quantity : 1,   liked: false },
