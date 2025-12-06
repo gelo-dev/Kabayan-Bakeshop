@@ -2,7 +2,7 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, } from '@heroicons/react/24/outline'
+import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, ChevronDoubleUpIcon ,ChevronDoubleDownIcon} from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
@@ -40,6 +40,8 @@ const { orderedProduct ,increaseQty :addQuantity , decreaseQty : decQuantity , d
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
 const [showDialog, setShowDialog] = useState(false);
+const [showBottomBar, setShowBottomBar] = useState(false);
+
 
 
 
@@ -68,8 +70,8 @@ useEffect(() => {
 
     return (
         <section className="scroll-smooth bg-amber-700 md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
-            <Home/>
-            <div className='flex gap-2 p-5  h-screen'>
+       
+            <div className='flex gap-2 p-1 md:p-5 h-screen'>
 {/*ANCHOR Left Page Component */}
                 <div className='w-1/5 bg-transparent hidden md:grid grid-row-5 p-2 gap-1'>
                     <div className="bg-transparent row-span-1 p-2 flex items-center">
@@ -110,9 +112,9 @@ useEffect(() => {
                 </div> 
 
 {/* ANCHOR Center Page Component  */}
-                <div className=' flex flex-col gap-6 w-full md:w-1/2  md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
+                <div className=' flex flex-col gap-3 w-full md:w-1/2  md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='hidden md:text-4xl text-white md:flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
-                   
+                        
                         <div className='w-full'>
                             <AnimatePresence>
                                 <PageWrapper >
@@ -137,7 +139,7 @@ useEffect(() => {
                                 <table className='w-full text-sm text-center border '>
                                     <thead className='border-b'>
                                         <tr>
-                                            <th className="px-2 py-1"></th>
+                                            <th className="px-2 py-1 "></th>
                                             <th className="px-4 py-2">Item Name</th>
                                             <th className="px-4 py-2">Price</th>
                                             <th className="px-4 py-2">Quantity</th>
@@ -220,94 +222,131 @@ useEffect(() => {
 
 
 {/* ANCHOR ORDER SUMMARY */}
-            {showDialog && (
-                <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-xl">
-                        <div className='flex justify-between mb-4'>   
-                            <h2 className="text-xl font-bold  text-center">Order Summary</h2>
-                            <button
-                                onClick={() => setShowDialog(false)}
-                                className="  text-red-600 rounded hover:shadow hover:bg-gray-100 hover:text-red-700"
-                                >
-                                Close
-                                </button>    
-                        </div>
-                    
-                    <table className="w-full text-sm text-center border">
-                        <thead>
-                        <tr className="bg-gray-100">
-                            <th className="p-2 border">Item</th>
-                            <th className="p-2 border">Price</th>
-                            <th className="p-2 border">Qty</th>
-                            <th className="p-2 border">Total</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        {orderedProduct.map((item, i) => (
-                            <tr key={i} className="border-b">
-                            <td className="p-2 border">{item.name}</td>
-                            <td className="p-2 border">₱{item.price}</td>
-                            <td className="p-2 border">{item.quantity}</td>
-                            <td className="p-2 border font-semibold ">
-                                ₱{item.price * item.quantity}
-                            </td>
+                {showDialog && (
+                    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-xl">
+                            <div className='flex justify-between mb-4'>   
+                                <h2 className="text-xl font-bold  text-center">Order Summary</h2>
+                                <button
+                                    onClick={() => setShowDialog(false)}
+                                    className="  text-red-600 rounded hover:shadow hover:bg-gray-100 hover:text-red-700"
+                                    >
+                                    Close
+                                    </button>    
+                            </div>
+                        
+                        <table className="w-full text-sm text-center border">
+                            <thead>
+                            <tr className="bg-gray-100">
+                                
+                                <th className="p-2 border">Item</th>
+                                <th className="p-2 border">Price</th>
+                                <th className="p-2 border">Qty</th>
+                                <th className="p-2 border">Total</th>
                             </tr>
-                        ))}
-                        </tbody>
+                            </thead>
+
+                            <tbody>
+                            {orderedProduct.map((item, i) => (
+                                <tr key={i} className="border-b">
+                                    <td className="p-2 border">{item.name}</td>
+                                    <td className="p-2 border">₱{item.price}</td>
+                                    <td className="p-2 border">{item.quantity}</td>
+                                    <td className="p-2 border font-semibold ">
+                                        ₱{item.price * item.quantity}
+                                    </td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        
+                            
+                        </table>
                     
-                        
-                    </table>
-                
-                    <div className='flex justify-between w-full bg-transparent p-2 items-center '>
-                        <div></div>
-                        <div className='flex gap-5 text-green-600 '>
-                            <span className=''>Total Amount to Pay :</span>
-                            <span className='mr-5 font-bold underline underline-offset-4'>{"₱ " +  totalPrice.toLocaleString()}</span>
-                        </div>
-                        
+                        <div className='flex justify-between w-full bg-transparent p-2 items-center '>
+                            <div></div>
+                            <div className='flex gap-5 text-green-600 '>
+                                <span className=''>Total Amount to Pay :</span>
+                                <span className='mr-5 font-bold underline underline-offset-4'>{"₱ " +  totalPrice.toLocaleString()}</span>
+                            </div>
+                            
+                            </div>
+
+                        <div className="text-right mt-1 flex  items-center justify-center">
+                                <button
+                                className="w-full bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-2xl shadow-lg transition-all duration-300 tracking-wide flex items-center justify-center gap-2"
+                                >
+                                Proceed to Checkout
+                                <ShoppingCartIcon className="h-6 w-6" />
+                                </button>
+
                         </div>
 
-                    <div className="text-right mt-1 flex  items-center justify-center">
-                            <button
-                            className="w-full bg-linear-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold py-3 rounded-2xl shadow-lg transition-all duration-300 tracking-wide flex items-center justify-center gap-2"
+                        </div>
+                    </div>
+                    )}
+
+
+
+{/* TOP FOR SMALL SCREEN */}
+                {!showDialog &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-b-sm shadow-black flex flex-col gap-2 p-2">
+    
+                    {/* Horizontal menu buttons */}
+                    <div className="flex gap-2 overflow-x-auto hide-horizontal-scrollbar">
+                        {MenuArray.map((item, index) => (
+                            <button 
+                                key={index}
+                                onClick={() => setSelectedIndex(index)}
+                               className="bg-gray-200 flex h-10 items-center px-3 rounded-md shadow-sm whitespace-nowrap min-w-max"
+
                             >
-                            Proceed to Checkout
-                            <ShoppingCartIcon className="h-6 w-6" />
+                                <Icon path={item.icon} size={1} className="text-black" />
+                                <span >{item.name}</span>
                             </button>
-
+                        ))}
                     </div>
 
+                    {/* Selected name */}
+                    <div className="flex items-center justify-center text-xl font-serif  py-1">
+                        <span>{MenuArray[selectedIndex].name}</span>
                     </div>
-                </div>
-                )}
 
+                </div>)}
+    
 
 {/* ANCHOR BOTTOM BAR FOR SMALL SCREEN */}
-        <div className="fixed bottom-0 left-0 h-15 w-full bg-white shadow-inner border-t flex justify-around items-center p-2 z-50 md:hidden">
-      
-            {/* Home Button */}
-            <button className="flex flex-col items-center text-gray-700 hover:text-black">
-                <HomeIcon
-                onClick={() => navigate("/")}  
-                className="h-6 w-6" />
-                <span className="text-xs">Home</span>
-            </button>
+                {!showDialog &&(<div className="fixed bottom-0 left-0 w-full z-50 md:hidden flex flex-col items-center">
+                        {/* Chevron handle */}
+                        <div className="bg-white rounded-t-full drop-shadow-t-sm  p-2  flex justify-center items-center cursor-pointer"
+                            onClick={() => setShowBottomBar(!showBottomBar)}>
+                            {showBottomBar ? (
+                            <ChevronDoubleDownIcon className="h-6 w-6 text-black" />
+                            ) : (
+                            <ChevronDoubleUpIcon className="h-6 w-6 text-black " />
+                            )}
+                        </div>
 
-            {/* Cart Button */}
-            <button className="flex flex-col items-center text-gray-700 hover:text-black">
-                <ShoppingCartIcon
-                 onClick={() => setShowDialog(true)}  
-                className="h-6 w-6" />
-                <span className="text-xs">Cart</span>
-            </button>
+                        {/* Full bottom bar content */}
+                        {showBottomBar && (
+                            <div className="bg-white shadow-inner border-t w-full flex justify-around items-center p-2">
+                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                                <HomeIcon onClick={() => navigate("/")} className="h-6 w-6" />
+                                <span className="text-xs">Home</span>
+                            </button>
 
-            {/* Profile Button */}
-            <button className="flex flex-col items-center text-gray-700 hover:text-black">
-                <UserIcon className="h-6 w-6" />
-                <span className="text-xs">Profile</span>
-            </button>
-            </div>
+                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                                <ShoppingCartIcon onClick={() => setShowDialog(true)} className="h-6 w-6" />
+                                <span className="text-xs">Order</span>
+                            </button>
+
+                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                                <UserIcon className="h-6 w-6" />
+                                <span className="text-xs">Profile</span>
+                            </button>
+                            </div>
+                        )}
+
+                </div>)}
+
             
         </section>
     );

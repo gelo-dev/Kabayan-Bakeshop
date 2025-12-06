@@ -57,7 +57,7 @@ export default function ListOfProductsSection({category ,categoryName }){
 
 
     return(
-        <section id="products">
+        <section id="products" className="mt-28 md:mt-0">
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2  gap-x-2 gap-y-0 md:gap-y-4">
             {category.map((item, index) => (
@@ -79,7 +79,7 @@ export default function ListOfProductsSection({category ,categoryName }){
                             className="bg-size-[170px_170px]  bg-amber-400 w-full h-60 rounded-t-2xl md:bg-cover bg-center flex flex-col p-1"
                             >
                                 <InformationCircleIcon
-                                    className="stroke-blue-700 stroke-1 h-[15%]  cursor-pointer ml-45"
+                                    className="stroke-blue-700 stroke-1 h-[15%]  cursor-pointer ml-30 md:ml-45"
                                     onClick={(e) => {
                                     e.stopPropagation();
                                     toggleFlip(item.id);
@@ -113,7 +113,7 @@ export default function ListOfProductsSection({category ,categoryName }){
                     </div>
 
                     {/*BACK SIDE */}
-                    <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center">
+                    <div className="absolute w-full h-75 md:h-full backface-hidden rotate-y-180 bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center">
                     
                         <h1 className="text-lg font-bold mb-2 ">{item.name}</h1>
                         <p className="text-sm mb-4">{item.description || "No description available."}</p>
