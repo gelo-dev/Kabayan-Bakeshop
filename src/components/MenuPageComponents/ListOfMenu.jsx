@@ -69,7 +69,7 @@ useEffect(() => {
 
 
     return (
-        <section className="scroll-smooth bg-amber-700 md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
+        <section className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
        
             <div className='flex gap-2 p-1 md:p-5 h-screen'>
 {/*ANCHOR Left Page Component */}
@@ -112,10 +112,10 @@ useEffect(() => {
                 </div> 
 
 {/* ANCHOR Center Page Component  */}
-                <div className=' flex flex-col gap-3 w-full md:w-1/2  md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
+                <div className=' flex flex-col gap-3 md:gap-3 w-full md:w-1/2  bg-gray-100 md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='hidden md:text-4xl text-white md:flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
                         
-                        <div className='w-full'>
+                        <div className='w-full bg-gray-100 md:bg-transparent'>
                             <AnimatePresence>
                                 <PageWrapper >
                                           <ListOfProductsSection category={categoryData} categoryName = {selectedCategory} />
@@ -285,29 +285,40 @@ useEffect(() => {
                     </div>
                     )}
 
+{/* ANCHOR ORDER SUMMARY FOR SMALL SCREEN */}
 
+                    {/* TO BE CONTINUED */}
 
-{/* TOP FOR SMALL SCREEN */}
-                {!showDialog &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-b-sm shadow-black flex flex-col gap-2 p-2">
-    
+{/* TOP BAR FOR SMALL SCREEN */}
+                {!showDialog &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-col gap-2 p-2">
+
+                        <div className="relative w-full">
+                            <MagnifyingGlassIcon className="h-5 w-5 text-amber-700 absolute left-3 top-1/2 -translate-y-1/2" />
+
+                            <input
+                            type="text"
+                            placeholder="Search..."
+                            className="w-full bg-gray-100 rounded-xl pl-10 pr-3 py-2 outline-none text-amber-700"
+                            />
+                        </div>
                     {/* Horizontal menu buttons */}
-                    <div className="flex gap-2 overflow-x-auto hide-horizontal-scrollbar">
+                    <div className="flex gap-4 overflow-x-auto hide-horizontal-scrollbar h-12 p-1">
                         {MenuArray.map((item, index) => (
                             <button 
                                 key={index}
                                 onClick={() => setSelectedIndex(index)}
-                               className="bg-gray-200 flex h-10 items-center px-3 rounded-md shadow-sm whitespace-nowrap min-w-max"
+                               className="bg-gray-100 flex h-10 items-center px-3 rounded-md  whitespace-nowrap min-w-max drop-shadow-md outline-1 outline-gray-200"
 
                             >
-                                <Icon path={item.icon} size={1} className="text-black" />
-                                <span >{item.name}</span>
+                                <Icon path={item.icon} size={1} className="text-amber-700" />
+                                <span className=''>{item.name}</span>
                             </button>
                         ))}
                     </div>
 
                     {/* Selected name */}
                     <div className="flex items-center justify-center text-xl font-serif  py-1">
-                        <span>{MenuArray[selectedIndex].name}</span>
+                        <span className='text-amber-700 font-bold'>{MenuArray[selectedIndex].name}</span>
                     </div>
 
                 </div>)}
@@ -316,29 +327,29 @@ useEffect(() => {
 {/* ANCHOR BOTTOM BAR FOR SMALL SCREEN */}
                 {!showDialog &&(<div className="fixed bottom-0 left-0 w-full z-50 md:hidden flex flex-col items-center">
                         {/* Chevron handle */}
-                        <div className="bg-white rounded-t-full drop-shadow-t-sm  p-2  flex justify-center items-center cursor-pointer"
+                        <div className={`${showBottomBar ?  "bg-amber-700": "bg-gray-300"} rounded-t-full  p-2  flex justify-center items-center cursor-pointer`}
                             onClick={() => setShowBottomBar(!showBottomBar)}>
                             {showBottomBar ? (
-                            <ChevronDoubleDownIcon className="h-6 w-6 text-black" />
+                            <ChevronDoubleDownIcon className="h-6 w-6 text-white" />
                             ) : (
-                            <ChevronDoubleUpIcon className="h-6 w-6 text-black " />
+                            <ChevronDoubleUpIcon className="h-6 w-6 text-white " />
                             )}
                         </div>
 
                         {/* Full bottom bar content */}
                         {showBottomBar && (
-                            <div className="bg-white shadow-inner border-t w-full flex justify-around items-center p-2">
-                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                            <div className="bg-amber-700 shadow-inner  w-full flex justify-around items-center p-2 ">
+                            <button className="flex flex-col items-center text-white">
                                 <HomeIcon onClick={() => navigate("/")} className="h-6 w-6" />
                                 <span className="text-xs">Home</span>
                             </button>
 
-                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                            <button className="flex flex-col items-center text-white">
                                 <ShoppingCartIcon onClick={() => setShowDialog(true)} className="h-6 w-6" />
                                 <span className="text-xs">Order</span>
                             </button>
 
-                            <button className="flex flex-col items-center text-gray-700 hover:text-black">
+                            <button className="flex flex-col items-center text-white">
                                 <UserIcon className="h-6 w-6" />
                                 <span className="text-xs">Profile</span>
                             </button>

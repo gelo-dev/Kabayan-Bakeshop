@@ -57,9 +57,9 @@ export default function ListOfProductsSection({category ,categoryName }){
 
 
     return(
-        <section id="products" className="mt-28 md:mt-0">
+        <section id="products" className="mt-40 md:mt-0  gap-y-0">
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2  gap-x-2 gap-y-0 md:gap-y-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2  md:gap-y-4">
             {category.map((item, index) => (
                 <div key={index} className="relative w-full h-80 perspective">
                 
@@ -70,13 +70,13 @@ export default function ListOfProductsSection({category ,categoryName }){
                     }`}
                 >
                     {/* FRONT SIDE */}
-                    <div className="absolute w-full h-75 md:h-full backface-hidden">
-                        <div className="bg-amber-200 w-full h-full rounded-2xl flex flex-col items-center">
+                    <div className="absolute w-full h-70 drop-shadow-lg outline outline-gray-300 rounded-2xl md:h-full backface-hidden  ">
+                        <div className="bg-amber-700 w-full h-70 md:h-full rounded-2xl flex flex-col items-center">
 
                             {/* IMAGE + ICON + PRICE */}
                             <div
                             style={{ backgroundImage: `url(${item.image})` }}
-                            className="bg-size-[170px_170px]  bg-amber-400 w-full h-60 rounded-t-2xl md:bg-cover bg-center flex flex-col p-1"
+                            className="bg-size-[170px_170px]   w-full h-45 md:h-60 rounded-t-2xl md:bg-cover bg-center flex flex-col p-1"
                             >
                                 <InformationCircleIcon
                                     className="stroke-blue-700 stroke-1 h-[15%]  cursor-pointer ml-30 md:ml-45"
@@ -89,9 +89,9 @@ export default function ListOfProductsSection({category ,categoryName }){
                             </div>
 
                             {/* NAME + BUTTONS */}
-                            <div className="bg-gray-100 w-full h-40 rounded-b-2xl flex flex-col items-center gap-2">
+                            <div className="bg-gray-100 w-full h-35 md:h-40 rounded-b-2xl flex flex-col justify-center items-center gap-2">
                                 <h1 className=" text-lg"> {"₱ " + item.price}</h1>
-                                <span className="text-md md:text-lg">{item.name}</span>
+                                <span className="text-sm md:text-lg ">{item.name}</span>
 
                                 <button
                                 onClick={() => setSelectedItem(item)}
