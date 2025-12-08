@@ -12,6 +12,7 @@ import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import { useNavigate } from 'react-router-dom';
 import Home from "../../pages/Home"
+import { li } from 'framer-motion/client';
 
 export default function ListOfMnenuSection({}) {
     
@@ -40,6 +41,7 @@ const { orderedProduct ,increaseQty :addQuantity , decreaseQty : decQuantity , d
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [totalPrice, setTotalPrice] = useState(0);
 const [showDialog, setShowDialog] = useState(false);
+const [showOrderSmallScreen, setShowOrderSmallScreen] = useState(false)
 const [showBottomBar, setShowBottomBar] = useState(false);
 
 
@@ -283,14 +285,100 @@ useEffect(() => {
 
                         </div>
                     </div>
+      
+
+
                     )}
+ 
 
 {/* ANCHOR ORDER SUMMARY FOR SMALL SCREEN */}
+                    {showOrderSmallScreen &&(
+                        <div className='fixed inset-0 bg-black/70 flex items-center justify-center z-51'>
+                            <div className='flex gap-3 p-2 flex-col h-full bg-white w-100 text-black '>
+                                <div className='bg-amber-500 h-15'>
+                                    TEST TO BE CONTINUED
+                                </div>
+                                    <div className=' h-150 overflow-y-auto flex flex-col gap-3 p-2'>
+                                        {orderedProduct.map((item,index)=>(
+                                        <div 
+                                        key={index}
+                                        className='flex  bg-gray-200 outline outline-amber-700 h-20 p-1 drop-shadow-md rounded-xl ' >
+                                            <div className='flex items-center justify-center w-1/4 rounded-xl p-1'>
+                                                <div
+                                                 style={{ backgroundImage: `url(${item.image})` }} 
+                                                className='bg-amber-100 outline outline-gray-300 h-17 w-full rounded-xl bg-center bg-cover'></div>
+                                            </div>
+                                            <div className='flex flex-col  w-1/2 rounded-r-xl'>
+                                                <div className='bg-transparent'>
+                                                    <span className='font-sans text-amber-700'>{item.name}</span>
+                                                </div>
+                                                <div className='bg-transparent flex gap-2'>
+                                                    <div className='bg-transparent '>
+                                                        <span className='text-md flex flex-col items-center justify-center'>{"₱"+ item.price}
+                                                            <span className='text-xs'>Item Price</span>
+                                                        </span>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div className=' flex flex-col items-center justify-center bg-transparent'>
+                                                    
+                                                        <div className='flex'>
+                                                            {item.quantity > 1 &&( <> <MinusIcon
+                                                            data-tooltip-id="minus-tooltip"
+                                                            data-tooltip-content="-1 "
+                                                            onClick={() => decQuantity(item)}
+                                                            className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                                            />
+
+                                                            {/* Tooltip only rendered once per page or component */}
+                                                            <Tooltip
+                                                            id="minus-tooltip"
+                                                            place="top"
+                                                            className="red-tooltip "
+                                                            />
+                                                            </>)}
+                                                    
+                                                                                    
+                                                            <input disabled placeholder={item.quantity}  className='w-10 bg-white rounded-lg text-center font-bold'></input>                                
+                                                            <PlusIcon
+                                                                data-tooltip-id="add-tooltip"
+                                                                data-tooltip-content="+1 "
+                                                                onClick={()=>addQuantity(item)} 
+                                                                className="h-6 w-6 font-bold text-green-500 hover:border"/>
+                                                            <Tooltip
+                                                                id="add-tooltip"
+                                                                place="top"
+                                                                className="green-tooltip"
+                                                            /> 
+                                                        </div>
+                                                        <span className='text-xs'>Qty</span>
+                                                            
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div className='bg-gray-300 w-1/4 rounded-2xl flex flex-col items-center justify-center'>
+                                                        <span className='font-bold text-green-700 text-xl' >₱{item.price * item.quantity}</span>
+                                                        <span className='text-xs'>Total Price</span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    </div>  
+                                    
+                                    <div className='bg-amber-500 h-25'>
+                                    TEST TO BE CONTINUED
+                                    </div>
+                            
+                            </div>
+                            
+                            
+                        </div>
+                    )}
 
                     {/* TO BE CONTINUED */}
 
 {/* TOP BAR FOR SMALL SCREEN */}
-                {!showDialog &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-col gap-2 p-2">
+                {!showOrderSmallScreen &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-col gap-2 p-2">
 
                         <div className="relative w-full">
                             <MagnifyingGlassIcon className="h-5 w-5 text-amber-700 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -307,7 +395,7 @@ useEffect(() => {
                             <button 
                                 key={index}
                                 onClick={() => setSelectedIndex(index)}
-                               className="bg-gray-100 flex h-10 items-center px-3 rounded-md  whitespace-nowrap min-w-max drop-shadow-md outline-1 outline-gray-200"
+                               className="bg-gray-100 flex h-10 items-center px-3 rounded-md  whitespace-nowrap min-w-max drop-shadow-sm outline-1 outline-gray-200"
 
                             >
                                 <Icon path={item.icon} size={1} className="text-amber-700" />
@@ -325,7 +413,7 @@ useEffect(() => {
     
 
 {/* ANCHOR BOTTOM BAR FOR SMALL SCREEN */}
-                {!showDialog &&(<div className="fixed bottom-0 left-0 w-full z-50 md:hidden flex flex-col items-center">
+                {!showOrderSmallScreen &&(<div className="fixed bottom-0 left-0 w-full z-50 md:hidden flex flex-col items-center">
                         {/* Chevron handle */}
                         <div className={`${showBottomBar ?  "bg-amber-700": "bg-gray-300"} rounded-t-full  p-2  flex justify-center items-center cursor-pointer`}
                             onClick={() => setShowBottomBar(!showBottomBar)}>
@@ -345,7 +433,7 @@ useEffect(() => {
                             </button>
 
                             <button className="flex flex-col items-center text-white">
-                                <ShoppingCartIcon onClick={() => setShowDialog(true)} className="h-6 w-6" />
+                                <ShoppingCartIcon onClick={() => setShowOrderSmallScreen(true)} className="h-6 w-6" />
                                 <span className="text-xs">Order</span>
                             </button>
 

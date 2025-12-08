@@ -53,20 +53,30 @@ html {
 
 
 /* Custom tooltips */
-.red-tooltip {
-  background-color: #ff514b !important; /* gray-800 */
-  color: #fff !important;
-  padding: 6px 10px !important;
-  border-radius: 4px !important;
-  font-size: 10px !important;
- 
-}
-
+.red-tooltip,
 .green-tooltip {
-  background-color: #29d520 !important; /* gray-800 */
+  background-color: #ff514b !important;
   color: #fff !important;
   padding: 6px 10px !important;
   border-radius: 4px !important;
   font-size: 10px !important;
   
+}
+
+.green-tooltip {
+  background-color: #29d520 !important;
+
+}
+
+/* REMOVE BACKGROUND ON SMALL SCREENS */
+@media (max-width: 640px) {
+  .red-tooltip {
+    background-color: transparent !important;
+    color: #ff514b !important; /* red text */
+  }
+
+  .green-tooltip {
+    background-color: transparent !important;
+    color: #29d520 !important; /* green text */
+  }
 }
