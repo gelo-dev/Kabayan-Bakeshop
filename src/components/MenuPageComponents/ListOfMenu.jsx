@@ -154,8 +154,21 @@ useEffect(() => {
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
                     {orderedProduct.length > 0 && 
-                    <div className='bg-white row-span-6 overflow-y-auto '> 
+                    <div className='flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto '> 
 {/* ANCHOR LIST OF ORDER TABLE -  */}
+                        <ul>
+                            {orderedProduct.map((item, index)=>(
+                                <li className='flex flex-col mb-2' key={index}>
+                                    <div className='flex gap-2 h-25 bg-amber-300'>
+                                        <div className='bg-amber-200'>1</div>
+                                        <div className='bg-amber-400'>2</div>
+                                        <div className='bg-amber-500'>3</div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+
+
                                 <table className='w-full text-sm text-center border '>
                                     <thead className='border-b'>
                                         <tr>
@@ -166,56 +179,59 @@ useEffect(() => {
                                             <th className="px-4 py-2">Total</th>
                                         </tr>
                                     </thead>
-                                    {orderedProduct.map((item, index) => (
-                                        <tr key={index} className="border-b">
-                                            <td className="px-3 py-1">
-                                                <TrashIcon
-                                                    onClick={() => deleteItem(item)}
-                                                    data-tooltip-id="remove-tooltip" 
-                                                    data-tooltip-content={`Remove ${ item.name } from order.`} 
-                                                    className=" h-5 w-5"/> 
-                                                <Tooltip 
-                                                    id="remove-tooltip"
-                                                    place="top"
-                                                    className="red-tooltip"
-                                                />
-                                            </td>
-                                                                                
-                                            <td className="px-4 py-2 font-semibold">{item.name}</td>                                           
-                                            <td className="px-4 py-2">₱{item.price}</td>                                         
-                                            <td className="px-4 py-2 col-span-2 flex">                                                
-                                                {item.quantity > 1 && (
-                                                        <>
-                                                            <MinusIcon
-                                                            data-tooltip-id="minus-tooltip"
-                                                            data-tooltip-content="-1 "
-                                                            onClick={() => decQuantity(item)}
-                                                            className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
-                                                            />
+                                    <tbody>
+                                        {orderedProduct.map((item, index) => (
+                                            <tr key={index} className="border-b">
+                                                <td className="px-3 py-1">
+                                                    <TrashIcon
+                                                        onClick={() => deleteItem(item)}
+                                                        data-tooltip-id="remove-tooltip" 
+                                                        data-tooltip-content={`Remove ${ item.name } from order.`} 
+                                                        className=" h-5 w-5"/> 
+                                                    <Tooltip 
+                                                        id="remove-tooltip"
+                                                        place="top"
+                                                        className="red-tooltip"
+                                                    />
+                                                </td>
+                                                                                    
+                                                <td className="px-4 py-2 font-semibold">{item.name}</td>                                           
+                                                <td className="px-4 py-2">₱{item.price}</td>                                         
+                                                <td className="px-4 py-2 col-span-2 flex">                                                
+                                                    {item.quantity > 1 && (
+                                                            <>
+                                                                <MinusIcon
+                                                                data-tooltip-id="minus-tooltip"
+                                                                data-tooltip-content="-1 "
+                                                                onClick={() => decQuantity(item)}
+                                                                className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                                                />
 
-                                                            {/* Tooltip only rendered once per page or component */}
-                                                            <Tooltip
-                                                            id="minus-tooltip"
-                                                            place="top"
-                                                            className="red-tooltip "
-                                                            />
-                                                        </>
-                                                )}                                   
-                                                <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center font-bold'></input>                                
-                                                <PlusIcon
-                                                    data-tooltip-id="add-tooltip"
-                                                    data-tooltip-content="+1 "
-                                                    onClick={()=>addQuantity(item)} 
-                                                    className="h-6 w-6 font-bold text-green-500 hover:border"/>
-                                                <Tooltip
-                                                    id="add-tooltip"
-                                                    place="top"
-                                                    className="green-tooltip"
-                                                />                                                
-                                            </td>
-                                            <td className="px-4 py-2 font-bold">₱{item.price * item.quantity}</td>
-                                        </tr>
-                                    ))}
+                                                                {/* Tooltip only rendered once per page or component */}
+                                                                <Tooltip
+                                                                id="minus-tooltip"
+                                                                place="top"
+                                                                className="red-tooltip "
+                                                                />
+                                                            </>
+                                                    )}                                   
+                                                    <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center font-bold'></input>                                
+                                                    <PlusIcon
+                                                        data-tooltip-id="add-tooltip"
+                                                        data-tooltip-content="+1 "
+                                                        onClick={()=>addQuantity(item)} 
+                                                        className="h-6 w-6 font-bold text-green-500 hover:border"/>
+                                                    <Tooltip
+                                                        id="add-tooltip"
+                                                        place="top"
+                                                        className="green-tooltip"
+                                                    />                                                
+                                                </td>
+                                                <td className="px-4 py-2 font-bold">₱{item.price * item.quantity}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                
                                 </table>
                                 
                     </div>}
