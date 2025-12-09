@@ -55,7 +55,7 @@ html {
 /* Custom tooltips */
 .red-tooltip,
 .green-tooltip {
-  background-color: #ff514b !important;
+ 
   color: #fff !important;
   padding: 6px 10px !important;
   border-radius: 4px !important;
@@ -63,10 +63,7 @@ html {
   
 }
 
-.green-tooltip {
-  background-color: #29d520 !important;
 
-}
 
 /* REMOVE BACKGROUND ON SMALL SCREENS */
 @media (max-width: 640px) {

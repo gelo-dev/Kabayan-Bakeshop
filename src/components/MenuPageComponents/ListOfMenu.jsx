@@ -2,7 +2,7 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, ChevronDoubleUpIcon ,ChevronDoubleDownIcon} from '@heroicons/react/24/outline'
+import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, ChevronDoubleUpIcon ,ChevronDoubleDownIcon ,ChevronLeftIcon} from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
@@ -11,8 +11,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import { useNavigate } from 'react-router-dom';
-import Home from "../../pages/Home"
-import { li } from 'framer-motion/client';
+import { useSwipeable } from "react-swipeable";
+import {
+  SwipeableList,
+  SwipeableListItem,
+  LeadingActions,
+  TrailingActions,
+  SwipeAction
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
+
 
 export default function ListOfMnenuSection({}) {
     
@@ -53,9 +61,18 @@ const selectedCategory = MenuArray[selectedIndex].category;
 const categoryData = menuData[selectedCategory];
 
 
-;
-
-
+const handlers = useSwipeable({
+        onSwipedLeft: () => {
+        setSelectedIndex((prev) =>
+            prev < MenuArray.length - 1 ? prev + 1 : prev
+        );
+        },
+        onSwipedRight: () => {
+            setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
+            },
+            trackTouch: true,
+            trackMouse: false,
+});
 
 
 
@@ -71,7 +88,8 @@ useEffect(() => {
 
 
     return (
-        <section className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
+        <section
+         className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
        
             <div className='flex gap-2 p-1 md:p-5 h-screen'>
 {/*ANCHOR Left Page Component */}
@@ -117,7 +135,7 @@ useEffect(() => {
                 <div className=' flex flex-col gap-3 md:gap-3 w-full md:w-1/2  bg-gray-100 md:bg-transparent p-2  md:p-5 h-full overflow-y-auto hide-scrollbar'>
                         <div className='hidden md:text-4xl text-white md:flex items-center justify-center'>{MenuArray[selectedIndex].name}</div>
                         
-                        <div className='w-full bg-gray-100 md:bg-transparent'>
+                        <div {...handlers} className='w-full bg-gray-100 md:bg-transparent'>
                             <AnimatePresence>
                                 <PageWrapper >
                                           <ListOfProductsSection category={categoryData} categoryName = {selectedCategory} />
@@ -293,89 +311,163 @@ useEffect(() => {
 
 {/* ANCHOR ORDER SUMMARY FOR SMALL SCREEN */}
                     {showOrderSmallScreen &&(
-                        <div className='fixed inset-0 bg-black/70 flex items-center justify-center z-51'>
-                            <div className='flex gap-3 p-2 flex-col h-full bg-white w-100 text-black '>
-                                <div className='bg-amber-500 h-15'>
-                                    TEST TO BE CONTINUED
+                        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 md:hidden">
+                            <div className="md:hidden flex flex-col gap-3 p-3 h-full bg-white w-full max-w-md text-black rounded-2xl overflow-hidden">
+
+                            
+                                <div className=" rounded-t-2xl ">
+                                    <div className="h-14 flex items-center px-3 gap-2 bg-amber-700 rounded-t-2xl">
+                                        <ChevronLeftIcon
+                                        onClick={() => setShowOrderSmallScreen(false)}
+                                        className="h-6 w-6 stroke-2 text-white cursor-pointer"
+                                        />
+                                        <span className="text-white font-medium">Back to Menu</span>
+                                    </div>
+
+                                    <div className="h-16 flex flex-col items-center justify-center gap-2  ">
+                                        <div className='flex gap-2'>
+                                            <ShoppingCartIcon className="h-7 w-7 text-amber-700" />
+                                            <span className="text-2xl font-serif text-amber-700">Your Order</span>
+                                        </div>
+                                        {orderedProduct.length > 0 &&(<span className='text-xs text-amber-700'> Swipe left to remove order.</span>)}
+                                    </div>
                                 </div>
-                                    <div className=' h-150 overflow-y-auto flex flex-col gap-3 p-2'>
-                                        {orderedProduct.map((item,index)=>(
-                                        <div 
+
+                            
+                                <SwipeableList>
+                                    {orderedProduct.map((item, index) => (
+                                        <SwipeableListItem                                            
                                         key={index}
-                                        className='flex  bg-gray-200 outline outline-amber-700 h-20 p-1 drop-shadow-md rounded-xl ' >
-                                            <div className='flex items-center justify-center w-1/4 rounded-xl p-1'>
-                                                <div
-                                                 style={{ backgroundImage: `url(${item.image})` }} 
-                                                className='bg-amber-100 outline outline-gray-300 h-17 w-full rounded-xl bg-center bg-cover'></div>
+                                        className="mb-2"
+                                        trailingActions={
+                                            <TrailingActions>
+                                            <SwipeAction
+                                                destructive={true}
+                                                onClick={() => deleteItem(item)}  // auto delete on swipe
+                                            />
+                                            </TrailingActions>
+                                        }
+                                        >
+                                    
+                                        <div className="flex bg-white border border-amber-700 h-20 p-2 shadow-md rounded-xl w-full ">
+
+                                            
+                                            <div className="flex items-center justify-center w-1/4 p-1">
+                                            <div
+                                                style={{ backgroundImage: `url(${item.image})` }}
+                                                className="bg-gray-200 border border-gray-300 h-16 w-full rounded-xl bg-center bg-cover"
+                                            />
                                             </div>
-                                            <div className='flex flex-col  w-1/2 rounded-r-xl'>
-                                                <div className='bg-transparent'>
-                                                    <span className='font-sans text-amber-700'>{item.name}</span>
-                                                </div>
-                                                <div className='bg-transparent flex gap-2'>
-                                                    <div className='bg-transparent '>
-                                                        <span className='text-md flex flex-col items-center justify-center'>{"₱"+ item.price}
-                                                            <span className='text-xs'>Item Price</span>
-                                                        </span>
-                                                        
-                                                        
+
+                                            
+                                            <div className="flex flex-col w-1/2 justify-between px-2">
+                                                <span className="font-semibold text-xs text-amber-700">{item.name}</span>
+
+                                                <div className="flex items-center gap-3">
+
+                                                    <div className="text-md flex flex-col items-center font-medium">
+                                                        ₱{item.price}
+                                                        <span className="text-xs text-gray-500">Price</span>
                                                     </div>
-                                                    <div className=' flex flex-col items-center justify-center bg-transparent'>
-                                                    
-                                                        <div className='flex'>
-                                                            {item.quantity > 1 &&( <> <MinusIcon
-                                                            data-tooltip-id="minus-tooltip"
-                                                            data-tooltip-content="-1 "
-                                                            onClick={() => decQuantity(item)}
-                                                            className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+
+                                                    <div className="flex flex-col items-center">
+                                                        <div className="flex items-center">
+                                                            {item.quantity > 1 && (
+                                                            <>
+                                                                <MinusIcon
+                                                                data-tooltip-id="minus-tooltip"
+                                                                data-tooltip-content="-1"
+                                                                onClick={() => decQuantity(item)}
+                                                                className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
+                                                                />
+                                                                <Tooltip id="minus-tooltip" place="top" className="red-tooltip" />
+                                                            </>
+                                                            )}
+
+                                                            <input
+                                                            disabled
+                                                            placeholder={item.quantity}
+                                                            className="w-10 bg-white rounded-lg text-center font-bold border"
                                                             />
 
-                                                            {/* Tooltip only rendered once per page or component */}
-                                                            <Tooltip
-                                                            id="minus-tooltip"
-                                                            place="top"
-                                                            className="red-tooltip "
-                                                            />
-                                                            </>)}
-                                                    
-                                                                                    
-                                                            <input disabled placeholder={item.quantity}  className='w-10 bg-white rounded-lg text-center font-bold'></input>                                
                                                             <PlusIcon
-                                                                data-tooltip-id="add-tooltip"
-                                                                data-tooltip-content="+1 "
-                                                                onClick={()=>addQuantity(item)} 
-                                                                className="h-6 w-6 font-bold text-green-500 hover:border"/>
-                                                            <Tooltip
-                                                                id="add-tooltip"
-                                                                place="top"
-                                                                className="green-tooltip"
-                                                            /> 
+                                                            data-tooltip-id="add-tooltip"
+                                                            data-tooltip-content="+1"
+                                                            onClick={() => addQuantity(item)}
+                                                            className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
+                                                            />
+                                                            <Tooltip id="add-tooltip" place="top" className="green-tooltip" />
                                                         </div>
-                                                        <span className='text-xs'>Qty</span>
-                                                            
+                                                        <span className="text-xs text-gray-500">Qty</span>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
-                                            <div className='bg-gray-300 w-1/4 rounded-2xl flex flex-col items-center justify-center'>
-                                                        <span className='font-bold text-green-700 text-xl' >₱{item.price * item.quantity}</span>
-                                                        <span className='text-xs'>Total Price</span>
+
+                                            
+                                            <div className="bg-gray-200 w-1/4 rounded-xl flex flex-col items-center justify-center">
+                                                <span className="font-bold text-green-700 text-lg">
+                                                    ₱{(item.price * item.quantity).toLocaleString()}
+                                                </span>
+                                                <span className="text-xs text-gray-600">Total</span>
                                             </div>
                                         </div>
+                                        </SwipeableListItem>
                                     ))}
-                                    </div>  
-                                    
-                                    <div className='bg-amber-500 h-25'>
-                                    TEST TO BE CONTINUED
+                                </SwipeableList>
+
+
+                                <div className="bg-white rounded-b-2xl flex flex-col p-3 gap-4 shadow-inner">
+                                <div className="flex justify-center gap-10">
+                                    <div className="flex flex-col items-center">
+                                    <span className="font-bold text-3xl">{orderedProduct.length}</span>
+                                    <h1 className="text-sm text-amber-700">
+                                        {orderedProduct.length > 1 ? "Total Items" : "Total Item"}
+                                    </h1>
                                     </div>
-                            
+
+                                    <div className="flex flex-col items-center">
+                                    <h1 className="font-bold text-4xl text-green-700">
+                                        ₱ {totalPrice.toLocaleString()}
+                                    </h1>
+                                    <h6 className="text-sm text-amber-700">Amount to Pay</h6>
+                                    </div>
+                                </div>
+
+                                {/* CHECKOUT BUTTON */}
+                                <div className="flex items-center justify-center">
+                                    <button
+                                    className="
+                                        bg-green-600 
+                                        hover:bg-green-700 
+                                        active:bg-green-800
+                                        text-white 
+                                        font-semibold 
+                                        px-6 
+                                        py-3 
+                                        rounded-xl
+                                        shadow-md 
+                                        hover:shadow-lg 
+                                        active:shadow-sm
+                                        flex 
+                                        items-center 
+                                        gap-2
+                                        transition-all
+                                        duration-200
+                                        w-full
+                                        justify-center
+                                    "
+                                    >
+                                    <ShoppingCartIcon className="w-5 h-5" />
+                                    Checkout
+                                    </button>
+                                </div>
+                                </div>
                             </div>
-                            
-                            
                         </div>
+
                     )}
 
-                    {/* TO BE CONTINUED */}
+
 
 {/* TOP BAR FOR SMALL SCREEN */}
                 {!showOrderSmallScreen &&(<div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-col gap-2 p-2">
@@ -395,7 +487,14 @@ useEffect(() => {
                             <button 
                                 key={index}
                                 onClick={() => setSelectedIndex(index)}
-                               className="bg-gray-100 flex h-10 items-center px-3 rounded-md  whitespace-nowrap min-w-max drop-shadow-sm outline-1 outline-gray-200"
+                               className={`flex h-10 items-center px-3 rounded-md whitespace-nowrap min-w-max
+                                drop-shadow-sm outline
+                                ${
+                                selectedIndex === index
+                                    ? " outline-amber-600"
+                                    : "bg-gray-100 text-black outline-gray-200"
+                                }
+                            `}
 
                             >
                                 <Icon path={item.icon} size={1} className="text-amber-700" />

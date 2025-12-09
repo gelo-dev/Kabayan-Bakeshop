@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 
 
+
+
 export default function ListOfProductsSection({category ,categoryName }){
     if (!category) return null;
    
@@ -41,6 +43,8 @@ export default function ListOfProductsSection({category ,categoryName }){
             return [...prev, itemWithCategory]; // add item if not exists
         });
     };
+
+    
 
     const handleConfirm = () => {
         addItem(selectedItem);    
