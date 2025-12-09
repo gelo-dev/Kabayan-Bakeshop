@@ -154,85 +154,86 @@ useEffect(() => {
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
                     {orderedProduct.length > 0 && 
-                    <div className='flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto '> 
+                    <div className='hidden md:flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto '> 
 {/* ANCHOR LIST OF ORDER TABLE -  */}
                         <ul>
                             {orderedProduct.map((item, index)=>(
-                                <li className='flex flex-col mb-2' key={index}>
-                                    <div className='flex gap-2 h-25 bg-amber-300'>
-                                        <div className='bg-amber-200'>1</div>
-                                        <div className='bg-amber-400'>2</div>
-                                        <div className='bg-amber-500'>3</div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-
-
-                                <table className='w-full text-sm text-center border '>
-                                    <thead className='border-b'>
-                                        <tr>
-                                            <th className="px-2 py-1 "></th>
-                                            <th className="px-4 py-2">Item Name</th>
-                                            <th className="px-4 py-2">Price</th>
-                                            <th className="px-4 py-2">Quantity</th>
-                                            <th className="px-4 py-2">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {orderedProduct.map((item, index) => (
-                                            <tr key={index} className="border-b">
-                                                <td className="px-3 py-1">
-                                                    <TrashIcon
+                                <li className=' flex flex-col mb-3' key={index}>
+                                    <div className='flex gap-2 h-25 bg-gray-300 rounded-2xl p-2 drop-shadow-xl'>
+                                        <div
+                                        style={{ backgroundImage: `url(${item.image})` }} 
+                                        className='bg-amber-200 w-1/4 rounded-2xl bg-cover bg-center drop-shadow-md'>
+                                            
+                                        </div>
+                                        <div className=' flex flex-col gap-1 bg-transparent w-1/2 p-1 justify-end'>
+                                            <div className='flex gap-3 items-center'>
+                                               <span className="text-md text-amber-700 font-bold">
+                                                    {item.name} 
+                                                </span>
+                                                <TrashIcon
                                                         onClick={() => deleteItem(item)}
                                                         data-tooltip-id="remove-tooltip" 
                                                         data-tooltip-content={`Remove ${ item.name } from order.`} 
-                                                        className=" h-5 w-5"/> 
+                                                        className=" h-4 w-4 text-red-700 "/> 
                                                     <Tooltip 
                                                         id="remove-tooltip"
                                                         place="top"
                                                         className="red-tooltip"
                                                     />
-                                                </td>
-                                                                                    
-                                                <td className="px-4 py-2 font-semibold">{item.name}</td>                                           
-                                                <td className="px-4 py-2">₱{item.price}</td>                                         
-                                                <td className="px-4 py-2 col-span-2 flex">                                                
-                                                    {item.quantity > 1 && (
+                                            </div>
+                                            <div className='flex items-center  w-3/4 justify-between'>
+                                                <div className='flex flex-col items-center justify-center'>
+                                                      <span className='text-xl'>{ "₱"+ item.price}</span>  
+                                                      <span className='text-xs'>Price</span>  
+                                                </div>
+                                                
+                                                <div className='flex flex-col items-center justify-center'>
+                                                    
+                                                    <div className='flex '>
+                                                        {item.quantity > 1 && (
                                                             <>
                                                                 <MinusIcon
                                                                 data-tooltip-id="minus-tooltip"
-                                                                data-tooltip-content="-1 "
+                                                                data-tooltip-content="-1"
                                                                 onClick={() => decQuantity(item)}
-                                                                className="h-6 w-6 text-red-400 font-bold cursor-pointer hover:border rounded"
+                                                                className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
                                                                 />
-
-                                                                {/* Tooltip only rendered once per page or component */}
-                                                                <Tooltip
-                                                                id="minus-tooltip"
-                                                                place="top"
-                                                                className="red-tooltip "
-                                                                />
+                                                                <Tooltip id="minus-tooltip" place="top" className="red-tooltip" />
                                                             </>
-                                                    )}                                   
-                                                    <input disabled placeholder={item.quantity}  className='w-10 bg-amber-50 text-center font-bold'></input>                                
-                                                    <PlusIcon
-                                                        data-tooltip-id="add-tooltip"
-                                                        data-tooltip-content="+1 "
-                                                        onClick={()=>addQuantity(item)} 
-                                                        className="h-6 w-6 font-bold text-green-500 hover:border"/>
-                                                    <Tooltip
-                                                        id="add-tooltip"
-                                                        place="top"
-                                                        className="green-tooltip"
-                                                    />                                                
-                                                </td>
-                                                <td className="px-4 py-2 font-bold">₱{item.price * item.quantity}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                
-                                </table>
+                                                            )}
+
+                                                            <input
+                                                            disabled
+                                                            placeholder={item.quantity}
+                                                            className="w-10  rounded-lg text-center font-bold outline "
+                                                            />
+
+                                                            <PlusIcon
+                                                            data-tooltip-id="add-tooltip"
+                                                            data-tooltip-content="+1"
+                                                            onClick={() => addQuantity(item)}
+                                                            className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
+                                                            />
+                                                            <Tooltip id="add-tooltip" place="top" className="green-tooltip" />
+                                                    </div>
+                                                    
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div className='flex items-center justify-center   bg-gray-400 w-1/4 rounded-2xl'>
+                                            <div className='flex rounded-t-2xl'>
+                                                 <span className="font-bold text-green-700 text-2xl">
+                                                    ₱{(item.price * item.quantity).toLocaleString()}
+                                                </span>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
                                 
                     </div>}
                     <div className='bg-gray-100 row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
