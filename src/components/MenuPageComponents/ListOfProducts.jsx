@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 
 
 
+
 export default function ListOfProductsSection({category ,categoryName }){
     if (!category) return null;
    
@@ -61,7 +62,9 @@ export default function ListOfProductsSection({category ,categoryName }){
 
 
     return(
+        
         <section id="products" className="mt-40 md:mt-0  gap-y-0">
+               
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2  md:gap-y-4">
             {category.map((item, index) => (

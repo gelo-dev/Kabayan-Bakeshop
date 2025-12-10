@@ -2,7 +2,16 @@
 import Icon from '@mdi/react';
 import {mdiBreadSlice,mdiCookie,mdiCakeVariant, mdiViewList, mdiBreadSliceOutline, mdiCup,} from '@mdi/js';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import { PlusIcon , MinusIcon ,TrashIcon , HomeIcon ,ShoppingCartIcon , UserIcon, ChevronDoubleUpIcon ,ChevronDoubleDownIcon ,ChevronLeftIcon} from '@heroicons/react/24/outline'
+import { PlusIcon ,
+        MinusIcon ,
+        TrashIcon , 
+        HomeIcon ,
+        ShoppingCartIcon , 
+        UserIcon, 
+        ChevronDoubleUpIcon ,
+        ChevronDoubleDownIcon ,
+        ChevronLeftIcon
+        } from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
@@ -13,14 +22,14 @@ import 'react-tooltip/dist/react-tooltip.css';
 import { useNavigate } from 'react-router-dom';
 import { useSwipeable } from "react-swipeable";
 import {
-  SwipeableList,
-  SwipeableListItem,
-  LeadingActions,
-  TrailingActions,
-  SwipeAction
-} from "react-swipeable-list";
+        SwipeableList,
+        SwipeableListItem,
+        TrailingActions,
+        SwipeAction
+        } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 
+import ListOfProductsHeaderSection from "./ListOfProductHeader";
 
 export default function ListOfMnenuSection({}) {
     
@@ -90,6 +99,7 @@ useEffect(() => {
     return (
         <section
          className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
+            <ListOfProductsHeaderSection/>
        
             <div className='flex gap-2 p-1 md:p-5 h-screen'>
 {/*ANCHOR Left Page Component */}
@@ -138,15 +148,15 @@ useEffect(() => {
                         <div {...handlers} className='w-full bg-gray-100 md:bg-transparent'>
                             <AnimatePresence>
                                 <PageWrapper >
-                                          <ListOfProductsSection category={categoryData} categoryName = {selectedCategory} />
+                                        <ListOfProductsSection category={categoryData} categoryName = {selectedCategory} />
                                 </PageWrapper>
-                              
+                            
                             </AnimatePresence>
                             
                         </div>
-                       
+                    
                 </div> 
- 
+
 
 {/* ANCHOR Right Page Component */}
                 <div className='w-1/3 bg-transparent hidden md:grid grid-rows-12 p-2 gap-1'>
@@ -167,7 +177,7 @@ useEffect(() => {
                                         </div>
                                         <div className=' flex flex-col gap-1 bg-transparent w-1/2 p-1 justify-end'>
                                             <div className='flex gap-3 items-center'>
-                                               <span className="text-md text-amber-700 font-bold">
+                                                <span className="text-md text-amber-700 font-bold">
                                                     {item.name} 
                                                 </span>
                                                 <TrashIcon
@@ -183,38 +193,46 @@ useEffect(() => {
                                             </div>
                                             <div className='flex items-center  w-3/4 justify-between'>
                                                 <div className='flex flex-col items-center justify-center'>
-                                                      <span className='text-xl'>{ "₱"+ item.price}</span>  
-                                                      <span className='text-xs'>Price</span>  
+                                                    <span className='text-xl'>{ "₱"+ item.price}</span>  
+                                                    <span className='text-xs'>Price</span>  
                                                 </div>
                                                 
                                                 <div className='flex flex-col items-center justify-center'>
                                                     
-                                                    <div className='flex '>
-                                                        {item.quantity > 1 && (
-                                                            <>
-                                                                <MinusIcon
-                                                                data-tooltip-id="minus-tooltip"
-                                                                data-tooltip-content="-1"
-                                                                onClick={() => decQuantity(item)}
-                                                                className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
-                                                                />
-                                                                <Tooltip id="minus-tooltip" place="top" className="red-tooltip" />
-                                                            </>
-                                                            )}
+                                                    <div className='flex items-center justify-center '>
+                                                    
+                                                        
+                                                            <MinusIcon
+                                                            data-tooltip-id="minus-tooltip"
+                                                            data-tooltip-content="-1"
+                                                                onClick={() => {
+                                                            if (item.quantity <= 1) return; // disable click
+                                                            decQuantity(item);
+                                                            }}
+                                                            className={`h-6 w-6 p-1 rounded 
+                                                            ${item.quantity <= 1 ? "opacity-30 cursor-not-allowed pointer-events-none" : "cursor-pointer hover:bg-gray-200 text-red-500"}
+                                                            `}
+                                                            />
+                                                            <Tooltip id="minus-tooltip" place="top" className="red-tooltip" />
+                                                    
+                                                        
 
                                                             <input
                                                             disabled
                                                             placeholder={item.quantity}
-                                                            className="w-10  rounded-lg text-center font-bold outline "
+                                                            className="w-10  rounded-lg text-center font-bold bg-white "
                                                             />
 
                                                             <PlusIcon
                                                             data-tooltip-id="add-tooltip"
                                                             data-tooltip-content="+1"
                                                             onClick={() => addQuantity(item)}
-                                                            className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded"
+                                                            className="h-6 w-6 cursor-pointer hover:bg-gray-200 p-1 rounded hover:text-green-600"
                                                             />
                                                             <Tooltip id="add-tooltip" place="top" className="green-tooltip" />
+                                                    </div>
+                                                    <div className='flex  items-center justify-center'>
+                                                        <span className='text-xs'>Qty</span>
                                                     </div>
                                                     
                                                     
@@ -223,10 +241,11 @@ useEffect(() => {
                                             
                                         </div>
                                         <div className='flex items-center justify-center   bg-gray-400 w-1/4 rounded-2xl'>
-                                            <div className='flex rounded-t-2xl'>
-                                                 <span className="font-bold text-green-700 text-2xl">
+                                            <div className='flex flex-col items-center justify-center rounded-t-2xl'>
+                                                <span className="font-bold text-green-700 text-2xl">
                                                     ₱{(item.price * item.quantity).toLocaleString()}
                                                 </span>
+                                                <span className='text-xs'>Total</span>
                                             </div>
                                             
                                         </div>
@@ -245,7 +264,7 @@ useEffect(() => {
                             <h6 className=''>Amount to Pay</h6>
 
                         </div>
-                       {orderedProduct.length > 0 && <button
+                        {orderedProduct.length > 0 && <button
                             onClick={() => setShowDialog(true)} 
                             className=' bg-green-500 px-15 py-3 rounded-2xl hover:bg-green-700 hover:shadow-xs hover:text-white '>
                                 Confirm Order
