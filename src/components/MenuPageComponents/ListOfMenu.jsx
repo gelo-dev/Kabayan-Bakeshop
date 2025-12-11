@@ -29,7 +29,7 @@ import {
         } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 
-import ListOfProductsHeaderSection from "./ListOfProductHeader";
+
 
 export default function ListOfMnenuSection({}) {
     
@@ -99,7 +99,7 @@ useEffect(() => {
     return (
         <section
          className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
-            <ListOfProductsHeaderSection/>
+         
        
             <div className='flex gap-2 p-1 md:p-5 h-screen'>
 {/*ANCHOR Left Page Component */}
@@ -164,12 +164,12 @@ useEffect(() => {
                         <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
                     </div>
                     {orderedProduct.length > 0 && 
-                    <div className='hidden md:flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto '> 
+                    <div className='hidden md:flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto hide-scrollbar '> 
 {/* ANCHOR LIST OF ORDER TABLE -  */}
                         <ul>
                             {orderedProduct.map((item, index)=>(
-                                <li className=' flex flex-col mb-3' key={index}>
-                                    <div className='flex gap-2 h-25 bg-gray-300 rounded-2xl p-2 drop-shadow-xl'>
+                                <li className=' flex flex-col mb-3 hover:scale-102 rounded-2xl hover:outline-2' key={index}>
+                                    <div className='flex gap-2 h-25 bg-gray-300 rounded-2xl p-2'>
                                         <div
                                         style={{ backgroundImage: `url(${item.image})` }} 
                                         className='bg-amber-200 w-1/4 rounded-2xl bg-cover bg-center drop-shadow-md'>
@@ -177,7 +177,7 @@ useEffect(() => {
                                         </div>
                                         <div className=' flex flex-col gap-1 bg-transparent w-1/2 p-1 justify-end'>
                                             <div className='flex gap-3 items-center'>
-                                                <span className="text-md text-amber-700 font-bold">
+                                                <span className="text-sm text-amber-700 font-bold">
                                                     {item.name} 
                                                 </span>
                                                 <TrashIcon
@@ -453,50 +453,50 @@ useEffect(() => {
 
 
                                 <div className="bg-white rounded-b-2xl flex flex-col p-3 gap-4 shadow-inner">
-                                <div className="flex justify-center gap-10">
-                                    <div className="flex flex-col items-center">
-                                    <span className="font-bold text-3xl">{orderedProduct.length}</span>
-                                    <h1 className="text-sm text-amber-700">
-                                        {orderedProduct.length > 1 ? "Total Items" : "Total Item"}
-                                    </h1>
+                                    <div className="flex justify-center gap-10">
+                                        <div className="flex flex-col items-center">
+                                            <span className="font-bold text-3xl">{orderedProduct.length}</span>
+                                            <h1 className="text-sm text-amber-700">
+                                                {orderedProduct.length > 1 ? "Total Items" : "Total Item"}
+                                            </h1>
+                                        </div>
+
+                                        <div className="flex flex-col items-center">
+                                            <h1 className="font-bold text-4xl text-green-700">
+                                                ₱ {totalPrice.toLocaleString()}
+                                            </h1>
+                                            <h6 className="text-sm text-amber-700">Amount to Pay</h6>
+                                        </div>
                                     </div>
 
-                                    <div className="flex flex-col items-center">
-                                    <h1 className="font-bold text-4xl text-green-700">
-                                        ₱ {totalPrice.toLocaleString()}
-                                    </h1>
-                                    <h6 className="text-sm text-amber-700">Amount to Pay</h6>
+                                    {/* CHECKOUT BUTTON */}
+                                    <div className="flex items-center justify-center">
+                                        <button
+                                        className="
+                                            bg-green-600 
+                                            hover:bg-green-700 
+                                            active:bg-green-800
+                                            text-white 
+                                            font-semibold 
+                                            px-6 
+                                            py-3 
+                                            rounded-xl
+                                            shadow-md 
+                                            hover:shadow-lg 
+                                            active:shadow-sm
+                                            flex 
+                                            items-center 
+                                            gap-2
+                                            transition-all
+                                            duration-200
+                                            w-full
+                                            justify-center
+                                        "
+                                        >
+                                        <ShoppingCartIcon className="w-5 h-5" />
+                                        Checkout
+                                        </button>
                                     </div>
-                                </div>
-
-                                {/* CHECKOUT BUTTON */}
-                                <div className="flex items-center justify-center">
-                                    <button
-                                    className="
-                                        bg-green-600 
-                                        hover:bg-green-700 
-                                        active:bg-green-800
-                                        text-white 
-                                        font-semibold 
-                                        px-6 
-                                        py-3 
-                                        rounded-xl
-                                        shadow-md 
-                                        hover:shadow-lg 
-                                        active:shadow-sm
-                                        flex 
-                                        items-center 
-                                        gap-2
-                                        transition-all
-                                        duration-200
-                                        w-full
-                                        justify-center
-                                    "
-                                    >
-                                    <ShoppingCartIcon className="w-5 h-5" />
-                                    Checkout
-                                    </button>
-                                </div>
                                 </div>
                             </div>
                         </div>

@@ -54,10 +54,15 @@ export default function ListOfProductsSection({category ,categoryName }){
 
    //Function For Flipping Menu     
     const toggleFlip = (id) => {
-            setFlippedCards(prev => ({
-                ...prev,
-                [id]: !prev[id]
-            }));
+             setFlippedCards(prev => {
+        // If the clicked card is already flipped, close it
+        if (prev[id]) {
+            return { [id]: false };
+        } else {
+            // Flip only the clicked card, close all others
+            return { [id]: true };
+        }
+    });
         };
 
 
@@ -66,13 +71,13 @@ export default function ListOfProductsSection({category ,categoryName }){
         <section id="products" className="mt-40 md:mt-0  gap-y-0">
                
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2  md:gap-y-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-2  md:gap-y-3 md:gap-3">
             {category.map((item, index) => (
                 <div key={index} className="relative w-full h-80 perspective">
                 
                 {/* FLIP WRAPPER */}
                 <div
-                    className={`relative w-full h-full duration-500 transform-style-preserve-3d ${
+                    className={`relative w-full h-full duration-500 transform-style-preserve-3d hover:scale-102 rounded-2xl hover:outline-4 hover:outline-emerald-500 ${
                     flippedCards[item.id] ? "rotate-y-180" : ""
                     }`}
                 >
@@ -163,10 +168,6 @@ export default function ListOfProductsSection({category ,categoryName }){
                             </div>
                         </div>
                 )}
-
-
-                     
-
 
             </div>
 
