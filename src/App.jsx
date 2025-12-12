@@ -4,9 +4,12 @@ import './App.css';
 import { Routes, Route, useLocation  } from "react-router-dom";
 import Navitagion from  './components/header';
 import ListOfMnenuSection from './components/MenuPageComponents/ListOfMenu';
+import GalleryShowcaseSection from './components/GalleryPageComponents/gallerySection';
 import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer } from 'react-toastify';
+import Layout from './components/layoutBackground';
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollToTop from './components/scrollToTop';
 
 
 
@@ -16,13 +19,28 @@ function App() {
     <>
       
       <AnimatePresence mode="wait">
+        <ScrollToTop />
         <Routes location={location} key={location.pathname}>
+
           <Route path="/" element={<Navitagion/>  } />
+          
           <Route path="/list-of-menu"
           element={
-          <PageWrapper>
-            <ListOfMnenuSection />
-          </PageWrapper>
+            <PageWrapper>
+              <ListOfMnenuSection />
+            </PageWrapper>
+          } />
+
+
+          
+          <Route path="/gallery-section"
+          element={
+            <Layout>
+                <PageWrapper>
+                  <GalleryShowcaseSection />
+                </PageWrapper>
+            </Layout>
+            
           } />
         </Routes>
       </AnimatePresence>
@@ -37,7 +55,7 @@ function App() {
 
 const PageWrapper = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: -50 }}   // start 50px above
+    initial={{ opacity: 0, y: 0 }}   // start 50px above
     animate={{ opacity: 1, y: 0 }}    // slide into place
     exit={{ opacity: 0, y: 50 }}      // exit by sliding down
     transition={{ duration: 0.5 }}

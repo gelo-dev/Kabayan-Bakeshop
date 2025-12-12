@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeftIcon , ChevronRightIcon ,HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
-import {  HeartIcon as HeartSolid } from "@heroicons/react/24/solid";
+import { ChevronLeftIcon , ChevronRightIcon ,StarIcon  } from "@heroicons/react/24/outline";
+import {  StarIcon as StarSolid  } from "@heroicons/react/24/solid";
 
 
 
@@ -13,37 +13,37 @@ export default function MenuSection ({ sendToHeader  }){
         image: "./imagesForMenu/loafBreadForMenu.jpg",
         text: `Soft, fluffy, and freshly baked daily. Perfect for sandwiches, toast, or just enjoying plain.`,
         name:"Pinoy Tasty",
-        liked : false
+        rating : 5
         },
         {
         image: "./imagesForMenu/cookiesForMenu.jpg",
         text: "Soft inside, lightly crisp outside, and made with real, premium ingredients.",
         name:"Pinoy Cookies",
-        liked : false
+        rating : 5
         },
         {
         image: "./imagesForMenu/pastryForMenu.jpg",
         text: "Locally baked, globally inspired. Yes, Pinoy bakery kami—but we make croissants that taste like you're in Paris.",
         name:"Croissant",
-        liked : false
+        rating : 4
         },
          {
         image: "./imagesForMenu/PandecocoForMenu.jpg",
         text: "Soft bread filled with sweet, creamy coconut. A true Filipino favorite.",
         name:"Classic Pandecoco",
-        liked : false
+        rating : 4
         },
         {
         image: "./imagesForMenu/chocolateCake.jpg",
         text: "Our homemade cakes with smooth frosting and delicious layers, baked fresh daily.",
         name:"Cakes",
-        liked : false
+        rating : 5
         },
         {
         image: "./imagesForMenu/PandesalForMenu.jpg",
         text: "Warm, soft rolls with a subtle sweetness—perfect with coffee, palaman, or eaten on its own.",
         name:"Classicc Pandesal",
-        liked : false
+        rating : 4
 
         }
     ];
@@ -77,11 +77,21 @@ export default function MenuSection ({ sendToHeader  }){
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
                          <button
-                            onClick={() => navigate("/list-of-menu")}
-                            className="hidden md:block  hover:bg-amber-700 hover:scale-105 outline outline-white text-white px-6 py-3 rounded-3xl transition"
-                          >
-                            Buy Fresh Goods
-                          </button>
+                          onClick={() => navigate("/list-of-menu")}
+                          className="
+                            hidden md:inline-flex items-center justify-center
+                           hover:bg-amber-500
+                            text-white font-semibold text-lg
+                            px-6 py-3 rounded-full
+                            outline hover:shadow-lg
+                            transition duration-300 ease-in-out
+                            transform hover:scale-105
+                            focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2
+                          "
+                        >
+                          Buy Fresh Goods
+                        </button>
+
 
                     </div>
                     
@@ -102,31 +112,29 @@ export default function MenuSection ({ sendToHeader  }){
                 className="overflow-x-auto scroll-smooth cursor-grab  hide-scrollbar"
                 
               >
-                <div className="flex space-x-4 p-3">
+                <div className="flex space-x-9 md:space-x-7 p-3">
                   
                     {menu.concat(menu).map((element, i) => (
                       <div
                         key={i}
                       >
                         <div className=" hover:scale-103 brightness-97 hover:brightness-105 ">
-                            <div  className="shrink-0 h-45 w-65  md:w-70 md:h-60 bg-white bg-cover bg-center rounded-t-xl"
+                            <div  className="shrink-0 h-45 w-65  md:w-70 md:h-60 bg-white md:bg-contain md:bg-no-repeat bg-center bg-cover rounded-tl-4xl rounded-br-4xl"
                               style={{ backgroundImage: `url(${element.image})` }}>
-                                <span
-                                  key={i}
-                                  onClick={() => heartedFeaturedMenu(i)}
-                                  className="cursor-pointer inline-flex items-center"
-                                >
-                                  {element.liked ? (
-                                    <HeartSolid className="w-6 h-6 text-red-500" />
-                                  ) : (
-                                    <HeartOutline className="w-6 h-6 text-gray-500" />
-                                  )}
-                                </span>
+                                
                             </div>
-                            <div className=" shrink-0 flex flex-col justify-between p-4 md:p-3 bg-white h-45 rounded-b-2xl items-center">
-                              <h1 className="text-lg font-bold">{element.name}</h1>
-                                <h1 className="text-xs md:text-sm font-sans text-center">{element.text}</h1>
-                                <button className="bg-amber-300 w-40 h-10 rounded-4xl">Details</button>
+                            <div className=" shrink-0 flex flex-col justify-between p-4 md:p-3 bg-transparent text-white h-45 items-start">
+                              <h1 className="text-lg md:text-xl font-bold">{element.name}</h1>
+                                <h1 className="text-sm font-sans">{element.text}</h1>
+                                <div className="flex gap-1">
+                                  {[1, 2, 3, 4, 5].map((num) =>
+                                    num <= element.rating ? (
+                                      <StarIcon key={num} className="h-5 w-5 text-amber-300 fill-amber-300" />
+                                    ) : (
+                                      <StarIcon key={num} className="h-5 w-5 text-white" />
+                                    )
+                                  )}
+                              </div>
                             </div>
                         </div>
                             

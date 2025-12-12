@@ -45,15 +45,18 @@ export default function ScrollPage() {
                         <Menu sendToHeader={handleMenuState} />
                     </ScrollFadeSection>
 
-                   {!menuState && <ScrollFadeSection>
+                   {!menuState && 
+                   <ScrollFadeSection>
                         <Gallery />
                     </ScrollFadeSection> }    
 
-                    {!menuState && <ScrollFadeSection>
+                    {!menuState && 
+                    <ScrollFadeSection>
                         <About />
                     </ScrollFadeSection>}    
 
-                    {!menuState && <ScrollFadeSection>
+                    {!menuState && 
+                    <ScrollFadeSection>
                         <Contact />
                     </ScrollFadeSection> }  
 

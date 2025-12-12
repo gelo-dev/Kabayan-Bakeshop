@@ -1,57 +1,71 @@
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from 'react-router-dom';
 
+export default function GallerySection() {
 
+const navigate = useNavigate()    
 
-export default function GallerySection(){
-
-   
-
-
-    return(
-        <section
+    return (
+            <section
             id="gallery"
-            className="min-h-screen w-full flex justify-center relative pt-20 pb-10" 
-            
+            className="min-h-screen w-full flex justify-center relative pt-5 pb-10"
             >
-            <div className="w-[90%] max-w-9xl">
+                <div className="w-[90%] max-w-7xl mx-auto">
 
-                {/* Top row: 2 wide boxes */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div
-                    style={{ backgroundImage: `url(./imagesForGallery/breadAndCamLow.jpg)` }}  
-                    className="h-75 bg-cover bg-center  drop-shadow-xs drop-shadow-black hover:scale-102 ">
+                
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
 
-                    </div>
+                
+                        <div
+                            style={{ backgroundImage: `url(./imagesForGallery/breadAndCamLow.jpg)` }}
+                            className="h-[260px] sm:h-80 md:h-[380px] bg-cover bg-center rounded-xl 
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
+                        ></div>
 
-                    <div className="h-75 bg-transparent flex flex-col-reverse gap-4">
                         
-                        <p className="text-white text-lg max-w-md">
-                            A curated gallery of our best-selling pastries, cookies, and breads — each one capturing the joyful moments of every event and the warm smiles of the customers who inspire us every day.
-                        </p>
-                        <h1 className="text-4xl font-bold text-white leading-tight">
+                        <div className="flex flex-col justify-end gap-4">
+                            <button
+                            onClick={() => navigate("/gallery-section")} 
+                            className="flex items-center w-80 gap-2 outline outline-white hover:bg-amber-500 text-white px-4 py-2 rounded-xl">
+                                Explore Sweet Moments
+                                <ArrowRightIcon className="h-5 w-5" />
+                                </button>
+                            <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight">
                             Sweet Moments Captured
-                        </h1>
+                            </h1>
 
-                    </div>
-                </div>
-
-                {/* Bottom row: 3 boxes on md+, 2 on sm, 1 on xs */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                    <div 
-                    style={{ backgroundImage: `url(./imagesForGallery/interiorStore.jpg)` }} 
-                    className="h-70 bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102 ">                        
+                            <p className="text-white text-sm md:text-lg max-w-md">
+                            A curated gallery of our best-selling pastries, cookies, and breads —
+                            each one capturing the joyful moments of every event and the warm smiles
+                            of the customers who inspire us every day.
+                            </p>
+                        </div>
                     </div>
 
-                    <div
-                    style={{ backgroundImage: `url(./imagesForGallery/breadSharing.jpg)` }} 
-                    className="h-70  bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
-                    <div
-                    style={{ backgroundImage: `url(./imagesForGallery/SandwichAndBucket.jpg)` }}  
-                    className="h-70 bg-cover bg-center drop-shadow-xs drop-shadow-black hover:scale-102"></div>
+                    {/* === BOTTOM ROW === */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+                        <div
+                            style={{ backgroundImage: `url(./imagesForGallery/interiorStore.jpg)` }}
+                            className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
+                        ></div>
+
+                        <div
+                            style={{ backgroundImage: `url(./imagesForGallery/breadSharing.jpg)` }}
+                            className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
+                        ></div>
+
+                        <div
+                            style={{ backgroundImage: `url(./imagesForGallery/SandwichAndBucket.jpg)` }}
+                            className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
+                        ></div>
+
+                    </div>
+
                 </div>
-
-            </div>
-        </section>
-
+            </section>
     );
 }
-
