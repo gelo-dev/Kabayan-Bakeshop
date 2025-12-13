@@ -60,8 +60,9 @@ const navigate = useNavigate();
                             <span className="text-white font-bold text-lg flex justify-center mt-10">{item.name}</span>
                             <a href={`#${item.id}`}>
                                 <button className="absolute top-1/2 left-1/2 w-50 transform -translate-x-1/2 -translate-y-1/2
-                                                outline text-white px-4 py-2 rounded-full
-                                                opacity-0 hover:opacity-100 transition-opacity duration-300 z-10">
+                                                outline-1 text-white px-4 py-2 rounded-full
+                                                opacity-0 hover:opacity-100 transition-opacity duration-300 z-10
+                                                ">
                                     View
                                 </button>
                             </a>
@@ -76,7 +77,7 @@ const navigate = useNavigate();
 
                 <Layout>
                     <StoreSection/>
-                <EventSection/>
+                    <EventSection/>
                 </Layout>  
                 
             </section>

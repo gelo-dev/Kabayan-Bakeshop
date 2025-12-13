@@ -15,7 +15,7 @@ import { PlusIcon ,
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from './sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState ,useRef } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
@@ -31,7 +31,7 @@ import "react-swipeable-list/dist/styles.css";
 
 
 
-export default function ListOfMnenuSection({}) {
+export default function ProcessOrderSection({}) {
     
 
 const MenuArray = [
@@ -61,6 +61,26 @@ const [showDialog, setShowDialog] = useState(false);
 const [showOrderSmallScreen, setShowOrderSmallScreen] = useState(false)
 const [showBottomBar, setShowBottomBar] = useState(false);
 
+useEffect(() => {
+const container = containerRef.current;
+const button = buttonRefs.current[selectedIndex];
+
+    if (!container || !button) return;
+
+    const containerWidth = container.offsetWidth;
+    const buttonWidth = button.offsetWidth;
+
+    const scrollLeft =
+    button.offsetLeft - containerWidth / 2 + buttonWidth / 2;
+
+    container.scrollTo({
+    left: scrollLeft,
+    behavior: "smooth",
+});
+}, [selectedIndex]);
+
+const containerRef = useRef(null);
+const buttonRefs = useRef([]);
 
 
 
@@ -371,9 +391,9 @@ useEffect(() => {
 
                             
                                 <SwipeableList>
-                                    {orderedProduct.map((item, index) => (
+                                    {orderedProduct.map((item) => (
                                         <SwipeableListItem                                            
-                                        key={index}
+                                        key={`${item.id}-${item.category}`}
                                         className="mb-2"
                                         trailingActions={
                                             <TrailingActions>
@@ -518,12 +538,15 @@ useEffect(() => {
                             />
                         </div>
                     {/* Horizontal menu buttons */}
-                    <div className="flex gap-4 overflow-x-auto hide-horizontal-scrollbar h-12 p-1">
+                    <div
+                    ref={containerRef} 
+                    className="flex gap-4 overflow-x-auto hide-horizontal-scrollbar h-12 p-1">
                         {MenuArray.map((item, index) => (
                             <button 
                                 key={index}
+                                ref={(el) => (buttonRefs.current[index] = el)}
                                 onClick={() => setSelectedIndex(index)}
-                               className={`flex h-10 items-center px-3 rounded-md whitespace-nowrap min-w-max
+                                className={`flex h-10 items-center px-3 rounded-md whitespace-nowrap min-w-max
                                 drop-shadow-sm outline
                                 ${
                                 selectedIndex === index

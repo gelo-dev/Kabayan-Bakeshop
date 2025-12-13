@@ -77,7 +77,7 @@ export default function MenuSection ({ sendToHeader  }){
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
                          <button
-                          onClick={() => navigate("/list-of-menu")}
+                          onClick={() => navigate("/menu")}
                           className="
                             hidden md:inline-flex items-center justify-center
                            hover:bg-amber-500

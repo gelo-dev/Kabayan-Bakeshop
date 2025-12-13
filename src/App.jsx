@@ -3,7 +3,7 @@ import './App.css';
 
 import { Routes, Route, useLocation  } from "react-router-dom";
 import Navitagion from  './components/header';
-import ListOfMnenuSection from './components/MenuPageComponents/ListOfMenu';
+import MenuFrontPageSection from './components/MenuPageComponents/MenuFrontSection';
 import GalleryShowcaseSection from './components/GalleryPageComponents/gallerySection';
 import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer } from 'react-toastify';
@@ -24,10 +24,10 @@ function App() {
 
           <Route path="/" element={<Navitagion/>  } />
           
-          <Route path="/list-of-menu"
+          <Route path="/menu"
           element={
             <PageWrapper>
-              <ListOfMnenuSection />
+              <MenuFrontPageSection />
             </PageWrapper>
           } />
 

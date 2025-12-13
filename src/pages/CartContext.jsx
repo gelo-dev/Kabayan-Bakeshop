@@ -33,6 +33,7 @@ export function CartProvider({ children }) {
   setOrderedProduct(prev =>
     prev.filter(item => !(item.id === items.id && item.category === items.category))
   );
+  
 };
 
   return (
