@@ -154,7 +154,7 @@ export default function MenuSection ({ sendToHeader  }){
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button
-              onClick={() => navigate("/list-of-menu")}
+              onClick={() => navigate("/menu")}
               className= {` md:hidden block mt-6 ml-10  hover:bg-amber-700 outline-2 outline-white text-white w-50 h-10 rounded-4xl`}>
                           Buy Fresh Goods
                         
