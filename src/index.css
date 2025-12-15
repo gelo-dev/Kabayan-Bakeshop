@@ -64,8 +64,6 @@ html {
 }
 
 
-
-/* REMOVE BACKGROUND ON SMALL SCREENS */
 @media (max-width: 640px) {
   .red-tooltip {
     background-color: transparent !important;

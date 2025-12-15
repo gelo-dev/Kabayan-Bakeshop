@@ -3,28 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import Layout from "../layoutBackground";
 import StoreSection from "./storeSection";
 import EventSection from "./eventSection";
+import CapturedMomentSection from "./capturedMoments";
 
 
 export default function GalleryShowcaseSection(){
 const sectionCategories = [
     {
-    id:"store",
-    name : "Store",
+    id:"capture",
+    name : "Captured Moments",
     imageBg : './imagesForGallery/breadAndCamLow.jpg'
     },
     {
-    id:"event",
-    name : "Events",
+    id:"store",
+    name : "Store",
     imageBg : './imagesForGallery/interiorStore.jpg'
     },
     {
     id:"#",
-    name : "Captured Moments",
+    name : "Happy Guests",
     imageBg : './imagesForGallery/breadSharing.jpg'
     },
     {
     id:"#",
-    name : "Happy Guests",
+    name : "Events",
     imageBg : './imagesForGallery/SandwichAndBucket.jpg'
     },
 ]    
@@ -76,6 +77,7 @@ const navigate = useNavigate();
                 </div>
 
                 <Layout>
+                    <CapturedMomentSection/>
                     <StoreSection/>
                     <EventSection/>
                 </Layout>  

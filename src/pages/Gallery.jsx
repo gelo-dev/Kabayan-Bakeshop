@@ -8,7 +8,7 @@ const navigate = useNavigate()
     return (
             <section
             id="gallery"
-            className="min-h-screen w-full flex justify-center relative pt-5 pb-10"
+            className="min-h-screen w-full flex justify-center relative pt-10 md:pt-5 pb-10"
             >
                 <div className="w-[90%] max-w-7xl mx-auto">
 
@@ -19,8 +19,8 @@ const navigate = useNavigate()
                         <div
                             style={{ backgroundImage: `url(./imagesForGallery/breadAndCamLow.jpg)` }}
                             className="h-[260px] sm:h-80 md:h-[380px] bg-cover bg-center rounded-xl 
-                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
-                        ></div>
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300 flex items-end p-4"
+                        ><span className="text-2xl text-white font-bold">Captured Moments</span></div>
 
                         
                         <div className="flex flex-col justify-end gap-4">
@@ -48,20 +48,26 @@ const navigate = useNavigate()
                         <div
                             style={{ backgroundImage: `url(./imagesForGallery/interiorStore.jpg)` }}
                             className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
-                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
-                        ></div>
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300 flex items-end p-4"
+                        ><span className="text-2xl text-white font-bold">Store</span>
+
+                        </div>
 
                         <div
                             style={{ backgroundImage: `url(./imagesForGallery/breadSharing.jpg)` }}
                             className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
-                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
-                        ></div>
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300 flex items-end p-4"
+                        ><span className="text-2xl text-white font-bold">Happy Guests</span>
+
+                        </div>
 
                         <div
                             style={{ backgroundImage: `url(./imagesForGallery/SandwichAndBucket.jpg)` }}
                             className="h-[220px] sm:h-[260px] md:h-[300px] bg-cover bg-center rounded-xl
-                                    shadow-md hover:scale-[1.02] transition-transform duration-300"
-                        ></div>
+                                    shadow-md hover:scale-[1.02] transition-transform duration-300 flex items-end p-4"
+                        ><span className="text-2xl text-white font-bold">Events</span>
+                            
+                        </div>
 
                     </div>
 
