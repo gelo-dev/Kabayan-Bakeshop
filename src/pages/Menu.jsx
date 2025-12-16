@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeftIcon , ChevronRightIcon ,StarIcon  } from "@heroicons/react/24/outline";
-import {  StarIcon as StarSolid  } from "@heroicons/react/24/solid";
+
 
 
 

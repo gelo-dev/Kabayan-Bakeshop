@@ -10,10 +10,11 @@ import { PlusIcon ,
         UserIcon, 
         ChevronDoubleUpIcon ,
         ChevronDoubleDownIcon ,
-        ChevronLeftIcon
+        ChevronLeftIcon,
+        ChevronRightIcon
         } from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
-import menuData from './sampleMenuArray';
+import menuData from '../../JavaScript/sampleMenuArray';
 import { CartContext } from '../../pages/CartContext';
 import { useContext, useEffect, useState ,useRef } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,6 +30,8 @@ import {
         } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 
+
+import menuRecommendations from '../../JavaScript/customerReccomendations';
 
 
 export default function ProcessOrderSection({}) {
@@ -293,6 +296,24 @@ useEffect(() => {
 
                     </div>
                 </div>
+            </div>
+
+{/* ANCHOR Customer Recommendations portion */}
+            <div className="md:flex items-center h-80 bg-transparent sm:block hidden p-5 overflow-x-auto w-full scroll-smooth gap-2">
+                {menuRecommendations.map((item,index)=>(
+                    <div
+                    key={index} 
+                    className='bg-amber-500 w-80 h-45 rounded-2xl'>
+                                <div>
+                                    <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-semibold drop-shadow-md">
+                                        AG
+                                        </div>
+                                    <span className=" text-white font-bold font-serif">Angelo Garcia</span>
+                                </div>
+                                
+                    </div>
+                ))}
+                            
             </div>
 
 

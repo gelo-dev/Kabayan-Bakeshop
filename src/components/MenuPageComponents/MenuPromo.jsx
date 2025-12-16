@@ -1,4 +1,4 @@
-import ProcessOrderSection from "./ProcessOrder"
+
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -6,7 +6,9 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 
 
-export default function MenuFrontPageSection(){
+
+
+export default function MenuPromoPageSection(){
 const navigate = useNavigate();
 
 const promos = [
@@ -46,9 +48,9 @@ const text = "Promo!";
 
         return(
             <section  id="font-menu-page" className="scroll-smooth">
- 
+                
                 <div className="relative h-screen overflow-hidden hidden sm:block ">
-                  
+                
                     <div
                         className="absolute inset-0 bg-cover bg-center clip-left grid grid-cols-2"
                         style={{ backgroundImage: "url('./pizzaDough.jpg')" }}
@@ -122,7 +124,7 @@ const text = "Promo!";
 
 
                 
-                    <ProcessOrderSection />
+        
             
             
             
