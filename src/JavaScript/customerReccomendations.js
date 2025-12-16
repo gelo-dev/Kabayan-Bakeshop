@@ -56,7 +56,7 @@
     {
         name: "Miguel Santos",
         suggestion: "Peanut Butter Cookie",
-        comment: "Crunchy on the outside, soft inside, with just the right peanut butter taste.",
+        comment: "Crunchy on the outside,soft inside, with just the right peanut butter taste.",
         rating: 4,
     },
     ];

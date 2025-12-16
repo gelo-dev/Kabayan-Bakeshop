@@ -11,7 +11,8 @@ import { PlusIcon ,
         ChevronDoubleUpIcon ,
         ChevronDoubleDownIcon ,
         ChevronLeftIcon,
-        ChevronRightIcon
+        ChevronRightIcon,
+        HeartIcon 
         } from '@heroicons/react/24/outline'
 import ListOfProductsSection from "./ListOfProducts";
 import menuData from '../../JavaScript/sampleMenuArray';
@@ -64,6 +65,17 @@ const [showDialog, setShowDialog] = useState(false);
 const [showOrderSmallScreen, setShowOrderSmallScreen] = useState(false)
 const [showBottomBar, setShowBottomBar] = useState(false);
 
+const getInitials= (name) =>{
+    if (!name) return "";
+    const words = name.trim().split(" ");
+    // Take first letter of first and last word
+    const initials =
+        words.length === 1
+        ? words[0][0]
+        : words[0][0] + words[words.length - 1][0];
+    return initials.toUpperCase();
+}
+
 useEffect(() => {
 const container = containerRef.current;
 const button = buttonRefs.current[selectedIndex];
@@ -84,7 +96,15 @@ const button = buttonRefs.current[selectedIndex];
 
 const containerRef = useRef(null);
 const buttonRefs = useRef([]);
+  const scrollRef = useRef(null);
 
+  const scrollLeft = () => {
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
 
 
 
@@ -121,7 +141,7 @@ useEffect(() => {
 
     return (
         <section
-         className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center  ">
+         className="scroll-smooth bg-white md:bg-[url('/bakeryDim.jpg')] bg-cover bg-center ">
          
        
             <div className='flex gap-2 p-1 md:p-5 h-screen'>
@@ -299,21 +319,59 @@ useEffect(() => {
             </div>
 
 {/* ANCHOR Customer Recommendations portion */}
-            <div className="md:flex items-center h-80 bg-transparent sm:block hidden p-5 overflow-x-auto w-full scroll-smooth gap-2">
-                {menuRecommendations.map((item,index)=>(
+                        
+            <div className="md:flex flex-col items-center h-80 bg-transparent sm:block hidden p-5  gap-2 relative">
+                             <div>
+                                <span className='text-4xl text-white'>Reviews & Ratings</span>
+                            </div>  
+                <button
+                    onClick={scrollLeft}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full z-10 shadow">
+                    <ChevronLeftIcon className="w-6 h-6 text-gray-800" />
+                </button>
+                <button
+                    onClick={scrollRight}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full z-10 shadow">
+                    <ChevronRightIcon className="w-6 h-6 text-gray-800" />
+                </button>
+                <div
+                ref={scrollRef}
+                className="md:flex items-center h-80 bg-transparent sm:block hidden p-5 overflow-x-auto w-full scroll-smooth gap-2 hide-horizontal-scrollbar">
+                    {menuRecommendations.map((item, index) => (
                     <div
-                    key={index} 
-                    className='bg-amber-500 w-80 h-45 rounded-2xl'>
-                                <div>
-                                    <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-semibold drop-shadow-md">
-                                        AG
-                                        </div>
-                                    <span className=" text-white font-bold font-serif">Angelo Garcia</span>
-                                </div>
-                                
+                    key={index}
+                    className="bg-white h-45 rounded-2xl shrink-0 p-4">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center  font-semibold drop-shadow-md">
+                                {getInitials(item.name)}
+                            </div>
+                            <span className="text-amber-900 font-bold font-serif">
+                                {item.name}
+                            </span>
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex items-center justify-center'>
+                                <span className='font-serif font-bold text-amber-700'>{item.suggestion}</span>
+                            </div>
+                            <div className='flex flex-col items-center justify-center'>
+                                <span className='text-md  text-center'>{'"'+ item.comment +'"'}</span>
+                            </div>
+                            <div className="flex items-center justify-center gap-1 h-1/4">
+                                  {[1, 2, 3, 4, 5].map((num) =>
+                                    num <= item.rating ? (
+                                      <HeartIcon  key={num} className="h-5 w-5 text-red-600 fill-red-600" />
+                                    ) : (
+                                      <HeartIcon  key={num} className="h-5 w-5 text-red-600" />
+                                    )
+                                  )}
+                              </div>
+                        </div>
+                        
+
+                        
                     </div>
-                ))}
-                            
+                    ))}
+                </div>              
             </div>
 
 
