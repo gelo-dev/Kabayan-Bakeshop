@@ -5,6 +5,7 @@ import Layout from "../layoutBackground";
 import StoreSection from "./storeSection";
 import EventSection from "./eventSection";
 import CapturedMomentSection from "./capturedMoments";
+import MobileNavBar from "./navigationSmallScreen";
 
 
 export default function GalleryShowcaseSection(){
@@ -31,7 +32,10 @@ const navigate = useNavigate();
 
         return(
             <section className="h-screen scroll-smooth " >
+                  <MobileNavBar/>
+
                 <div className="hidden md:flex flex-col gap-6 items-center justify-center bg-transparent p-4 h-1/2 ">
+                
                     <div className="flex flex-col text-white md:items-center">
                         <span className="text-4xl font-sans" >Kabayan's Bakery</span>
                         <span className=" text-9xl font-serif">GALLERY</span>
@@ -73,36 +77,21 @@ const navigate = useNavigate();
                     ))}
                 </div>
 
-         
-              {/* ANCHOR TOP BAR FOR SMALL SCREEN */}
-                    <div className="md:hidden  fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-col gap-2 p-2">
-                        <div className="flex overflow-x-auto no-scrollbar px-4 py-3 gap-4">
-                            {sectionCategories.map((item, index) => (
-                            <a
-                                key={index}
-                                href={item.id !== "#" ? `#${item.id}` : "#"}
-                                className="shrink-0 text-sm font-medium text-gray-700 px-4 py-2 rounded-full bg-gray-100 hover:bg-amber-200 transition"
-                            >
-                                {item.name}
-                            </a>
-                            ))}
-                        </div>
-                    </div>
-
-
                             <Layout>
+                              
                                 <ScrollFadeSection>                    
                                     <EventSection/>
                                 </ScrollFadeSection>
+                            </Layout>
 
-                                <ScrollFadeSection>
+                                {/* <ScrollFadeSection>
                                     <StoreSection/>
                                 </ScrollFadeSection>
                                 
                                 <ScrollFadeSection>
                                     <CapturedMomentSection/>  
-                                </ScrollFadeSection>  
-                            </Layout>
+                                </ScrollFadeSection>   */}
+                         
                 
             
         
