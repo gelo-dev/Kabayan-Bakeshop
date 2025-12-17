@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import Layout from './components/layoutBackground';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './components/scrollToTop';
+import RatingsSections from './components/MenuPageComponents/ratings';
 
 
 
@@ -17,31 +18,37 @@ function App() {
    const location = useLocation(); 
   return (
     <>
-      
+      <ScrollToTop />
       <AnimatePresence mode="wait">
-        <ScrollToTop />
+      
         <Routes location={location} key={location.pathname}>
 
-          <Route path="/" element={<Navitagion/>  } />
-          
-          <Route path="/menu"
-          element={
-            <PageWrapper>
-              <MenuPageDisplay />
-            </PageWrapper>
-          } />
-
-
-          
-          <Route path="/gallery-section"
-          element={
-            <Layout>
+              <Route path="/" element={<Navitagion/>  } />
+              
+              <Route path="/menu"
+              element={
                 <PageWrapper>
-                  <GalleryShowcaseSection />
+                  <MenuPageDisplay />
                 </PageWrapper>
-            </Layout>
-            
-          } />
+              } />
+
+
+          
+              <Route path="/gallery-section"
+              element={
+                <Layout>
+                    <PageWrapper>
+                      <GalleryShowcaseSection />
+                    </PageWrapper>
+                </Layout>
+                
+              } />
+
+              <Route path="/ratings" element={
+                  <RatingsSections/>
+                }>
+
+              </Route>
         </Routes>
       </AnimatePresence>
     

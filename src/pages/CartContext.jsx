@@ -1,10 +1,10 @@
 import { createContext, useState } from "react";
-import { toast } from 'react-toastify';
 
 export const CartContext = createContext(); // create context
 
 export function CartProvider({ children }) {
   const [orderedProduct, setOrderedProduct] = useState([]);
+   const [showOrderSmallScreen, setShowOrderSmallScreen] = useState(false);
 
 
   const increaseQty = (items) => {
@@ -37,7 +37,14 @@ export function CartProvider({ children }) {
 };
 
   return (
-    <CartContext.Provider value={{ orderedProduct, setOrderedProduct,increaseQty , decreaseQty , deleteItem}}>
+    <CartContext.Provider value={{ 
+        showOrderSmallScreen,
+        setShowOrderSmallScreen,
+        orderedProduct, 
+        setOrderedProduct,
+        increaseQty , 
+        decreaseQty , 
+        deleteItem}}>
       {children}
     </CartContext.Provider>
   );
