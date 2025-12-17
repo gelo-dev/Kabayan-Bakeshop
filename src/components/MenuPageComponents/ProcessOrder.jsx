@@ -29,7 +29,7 @@ import {
         SwipeAction
         } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
-import RatingsSections from './ratings';
+import RatingsSections from './Ratings';
 import SmallScreenBottomBarSection from '../bottomBarSmallScreen';
 
 

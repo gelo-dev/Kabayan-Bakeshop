@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import Layout from './components/layoutBackground';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './components/scrollToTop';
-import RatingsSections from './components/MenuPageComponents/ratings';
+import RatingsSections from './components/MenuPageComponents/Ratings';
 
 
 

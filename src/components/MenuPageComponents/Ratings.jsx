@@ -6,7 +6,7 @@ import {
         HeartIcon 
         } from '@heroicons/react/24/outline'
 import { PlusIcon } from "@heroicons/react/24/solid";        
-import { useContext, useEffect, useState ,useRef } from 'react';
+import { useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';       
 
