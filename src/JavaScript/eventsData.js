@@ -14,7 +14,7 @@ const eventsData = [
     description: "Enjoy hot pandesal straight from the oven, perfect for your morning coffee.",
     date: "Every Saturday",
     month: "Every Month",
-    day: "Sat",
+    day: "Saturday",
     time: "6:00 AM – 9:00 AM",
     location: "All Kabayans Bakeshop Branches",
     image: "./imagesForGallery/Events/pandesal-morning.jpg",

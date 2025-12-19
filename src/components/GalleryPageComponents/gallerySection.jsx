@@ -32,8 +32,33 @@ const navigate = useNavigate();
 
         return(
             <section className="h-screen scroll-smooth " >
-                  <MobileNavBar/>
+                <MobileNavBar/>
+                    <div className=" hidden md:flex md:flex-row  gap-4 p-4 items-center justify-center h-1/2 ">
+                        {sectionCategories.map((item, index)=>(
+                            <div
+                            style={{ backgroundImage: `url(${item.imageBg})` }} 
+                            className="relative w-1/4 h-full rounded-4xl overflow-hidden bg-cover bg-center"
+                            key={index}><span className="text-white font-bold text-lg flex justify-center mt-10">{item.name}</span>
 
+                            <div className="absolute inset-0 rounded-4xl transition-all duration-300
+                                            hover:backdrop-blur-sm">
+                                <span className="text-white font-bold text-lg flex justify-center mt-10">{item.name}</span>
+                                <a href={`#${item.id}`}>
+                                    <button className="absolute top-1/2 left-1/2 w-50 transform -translate-x-1/2 -translate-y-1/2
+                                                    outline-1 text-white px-4 py-2 rounded-full
+                                                    opacity-0 hover:opacity-100 transition-opacity duration-300 z-10
+                                                    ">
+                                        View
+                                    </button>
+                                </a>
+                                    
+                            </div>
+
+                                
+
+                            </div>
+                        ))}
+                    </div>
                 <div className="hidden md:flex flex-col gap-6 items-center justify-center bg-transparent p-4 h-1/2 ">
                 
                     <div className="flex flex-col text-white md:items-center">
@@ -50,35 +75,9 @@ const navigate = useNavigate();
                         </button>
                     </div>                
                 </div>
-                <div className=" hidden md:flex md:flex-row  gap-4 p-4 items-center justify-center h-1/2 ">
-                    {sectionCategories.map((item, index)=>(
-                        <div
-                        style={{ backgroundImage: `url(${item.imageBg})` }} 
-                        className="relative w-1/4 h-full rounded-4xl overflow-hidden bg-cover bg-center"
-                        key={index}><span className="text-white font-bold text-lg flex justify-center mt-10">{item.name}</span>
-
-                        <div className="absolute inset-0 rounded-4xl transition-all duration-300
-                                        hover:backdrop-blur-sm">
-                            <span className="text-white font-bold text-lg flex justify-center mt-10">{item.name}</span>
-                            <a href={`#${item.id}`}>
-                                <button className="absolute top-1/2 left-1/2 w-50 transform -translate-x-1/2 -translate-y-1/2
-                                                outline-1 text-white px-4 py-2 rounded-full
-                                                opacity-0 hover:opacity-100 transition-opacity duration-300 z-10
-                                                ">
-                                    View
-                                </button>
-                            </a>
-                                
-                        </div>
-
-                            
-
-                        </div>
-                    ))}
-                </div>
+            
 
                             <Layout>
-                              
                                 <ScrollFadeSection>                    
                                     <EventSection/>
                                 </ScrollFadeSection>
