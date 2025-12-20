@@ -4,6 +4,7 @@ import { useState , useEffect ,useRef  } from "react"
 import eventsData from "../../JavaScript/eventsData"
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import MobileNavBar from "./navigationSmallScreen";
 
 export default function EventSection(){
 const landingHighlights = [
@@ -40,6 +41,8 @@ const [index, setIndex] = useState(0);
 const navigate = useNavigate()
 const [activeEvent, setActiveEvent] = useState(null);
 
+
+//auto slide text for 3 seconds
     useEffect(() => {
         const interval = setInterval(() => {
         setIndex((prev) => (prev + 1) % landingHighlights.length);
@@ -48,6 +51,19 @@ const [activeEvent, setActiveEvent] = useState(null);
         return () => clearInterval(interval);
     }, []);
 
+    // listen in scrolling when dialog is open
+    useEffect(() => {
+        if (!activeEvent) return;
+
+        const handleScroll = () => {
+            setActiveEvent(null);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [activeEvent]);
+
 
         return(
             <section id="event" className="h-screen grid grid-rows-1 p-4 justify-center">
@@ -55,11 +71,10 @@ const [activeEvent, setActiveEvent] = useState(null);
                         <div
                             className="relative 
                                         h-full rounded-2xl 
-                                        mt-12 md:mt-5"
+                                        md:mt-5 flex items-center justify-center " 
                         >
                             <div className="relative z-10 flex flex-col 
-                                            items-center justify-center 
-                                            
+                                            items-center justify-center md:w-full w-85
                                             h-full outline outline-white rounded-2xl">
                                     <span className="text-white text-4xl md:text-9xl font-serif ">Events</span>
                                 
@@ -78,7 +93,7 @@ const [activeEvent, setActiveEvent] = useState(null);
                       className="w-85 mb-15 md:mb-0 h-115 md:h-full md:w-full 
                                 md:outline-0 bg-transparent overflow-x-auto 
                                 md:hide-scrollbar hide-horizontal-scrollbar
-                                md:p-0 rounded-2xl mt-15 p-4
+                                md:p-0 rounded-2xl mt-5 md:mt-15 p-4
                                 outline outline-white " >
 
                                             
@@ -122,23 +137,24 @@ const [activeEvent, setActiveEvent] = useState(null);
                                                 }}
                                                 className="fixed inset-0 z-50 
                                                             flex  flex-col gap-5
-                                                            items-center justify-center bg-black/30"
+                                                            items-center justify-center 
+                                                            bg-black/25"
                                                 >
-                                                     
+                                                    
                                                     <div
                                                     style={{backgroundImage: `url(${activeEvent.image})`}}  
                                                     className="  md:h-[50%] md:w-[50%] w-[90%] h-[50%]
                                                                 bg-cover bg-center rounded-2xl 
-                                                                shadow-xs p-6 
+                                                                 p-6 
                                                                 flex flex-col gap-4 
-                                                                animate-popIn items-center justify-center relative shadow-white"
+                                                                animate-popIn items-center justify-center relative "
                                                     onClick={(e) => e.stopPropagation()}  >
-                                                        <div className="absolute rounded-2xl inset-0 bg-black/30"></div> 
+                                                        <div className="absolute rounded-2xl inset-0 bg-black/30 h-full"></div> 
                                                             
 
                                                             <div className="flex flex-col gap-4 items-center justify-center z-60 text-white ">
                                                                 <span className="font-serif text-2xl text-center md:text-4xl " >{activeEvent.title}</span>
-                                                                <span className="font-light md:text-2xl  font-sans flex text-center items-center" >{activeEvent.description}</span>
+                                                                <span className="font-bold md:text-2xl  font-sans flex text-center items-center" >{activeEvent.description}</span>
                                                             </div>
 
                                                             <div className="flex flex-col items-center justify-center text-white z-60 ">
@@ -205,6 +221,8 @@ const [activeEvent, setActiveEvent] = useState(null);
                         >
                             <ChevronRightIcon className="w-6 h-6 text-gray-800" />
                         </button>
+
+                        <MobileNavBar/>
                     
             </section>
         )

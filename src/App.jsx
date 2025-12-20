@@ -11,7 +11,9 @@ import Layout from './components/layoutBackground';
 import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from './components/scrollToTop';
 import RatingsSections from './components/MenuPageComponents/Ratings';
-
+import StoreSection from './components/GalleryPageComponents/storeSection';
+import EventSection from './components/GalleryPageComponents/eventSection';
+import CapturedMomentSection from './components/GalleryPageComponents/capturedMoments';
 
 
 function App() {
@@ -44,11 +46,44 @@ function App() {
                 
               } />
 
-              <Route path="/ratings" element={
-                  <RatingsSections/>
-                }>
-
+              
+              <Route 
+                path="/ratings" 
+                element={
+                  <RatingsSections/>}>
               </Route>
+
+              
+               
+              <Route 
+                path="/store" 
+                element={
+                  <Layout>
+                    <StoreSection/>
+                  </Layout>
+                  }>
+              </Route>
+
+              <Route 
+                path="/event" 
+                element={
+                  <Layout>
+                      <EventSection/>
+                  </Layout>
+                  }>
+              </Route>
+
+              <Route 
+                path="/moments" 
+                element={
+                  <Layout>
+                      <CapturedMomentSection/>
+                  </Layout>
+                  }>
+              </Route>
+
+
+
         </Routes>
       </AnimatePresence>
     

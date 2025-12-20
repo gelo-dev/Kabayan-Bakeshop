@@ -81,6 +81,15 @@ const navigate = useNavigate();
                                 <ScrollFadeSection>                    
                                     <EventSection/>
                                 </ScrollFadeSection>
+                                <div className="hidden md:block">
+                                    <ScrollFadeSection>
+                                        <StoreSection/>
+                                    </ScrollFadeSection>
+                                     <ScrollFadeSection>
+                                        <CapturedMomentSection/>  
+                                    </ScrollFadeSection>
+                                </div>
+                                 
                             </Layout>
 
                                 {/* <ScrollFadeSection>

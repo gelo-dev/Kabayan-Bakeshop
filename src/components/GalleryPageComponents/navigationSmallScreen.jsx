@@ -6,9 +6,10 @@ export default function MobileNavBar() {
   const location = useLocation();
 
   const navItems = [
-    { name: "Events", path: "/", icon: HomeIcon },
-    { name: "Store", path: "/orders", icon: ShoppingCartIcon },
-    { name: "Moments", path: "/profile", icon: UserIcon },
+    { name: "Home", path: "/", icon: HomeIcon },
+    { name: "Events", path: "/event", icon: HomeIcon },
+    { name: "Store", path: "/store", icon: ShoppingCartIcon },
+    { name: "Moments", path: "/moments", icon: UserIcon },
   ];
 
    const topNavItems = [
@@ -17,30 +18,7 @@ export default function MobileNavBar() {
 
   return (
     <>
-    <nav className="fixed top-0 left-0 w-full bg-white shadow-md border-t md:hidden z-50">
-      <ul className="flex justify-around items-center p-2">
-        {topNavItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = location.pathname === item.path;
-          return (
-            <li key={item.name}>
-              <button
-                onClick={() => navigate(item.path)}
-                className={`
-                  flex flex-col items-center justify-center
-                  text-gray-500
-                  ${isActive ? "text-amber-700" : "hover:text-amber-600"}
-                  transition-colors duration-200
-                `}
-              >
-                <Icon className="w-6 h-6 mb-1" />
-                <span className="text-xs font-medium">{item.name}</span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+  
 
 
     <nav className="fixed bottom-0 left-0 w-full bg-white shadow-md border-t md:hidden z-50">

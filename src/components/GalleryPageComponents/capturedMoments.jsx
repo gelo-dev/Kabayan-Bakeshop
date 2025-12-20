@@ -1,4 +1,6 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
+import MobileNavBar from "./navigationSmallScreen";
+
 
 export default function CapturedMomentSection(){
     return(
@@ -104,6 +106,8 @@ export default function CapturedMomentSection(){
                         </div>
                     
                 </div>
+            
+            <MobileNavBar/>
         </section>
     )
 }
