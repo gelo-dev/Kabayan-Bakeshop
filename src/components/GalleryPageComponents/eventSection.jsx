@@ -32,6 +32,7 @@ const scroll = (direction) => {
         behavior: "smooth",
     });
 };
+const isDesktop = window.innerWidth >= 768;
 
 
 
@@ -49,22 +50,24 @@ const [activeEvent, setActiveEvent] = useState(null);
 
 
         return(
-            <section id="event" className="h-screen grid grid-rows-1 p-4">
-                       
+            <section id="event" className="h-screen grid grid-rows-1 p-4 justify-center">
+                    
                         <div
-                            className="relative  bg-cover bg-center 
-                                       h-full rounded-2xl p-4"
-                         >
-                            
-
-                            
+                            className="relative 
+                                        h-full rounded-2xl 
+                                        mt-12 md:mt-5"
+                        >
                             <div className="relative z-10 flex flex-col 
-                                            justify-end md:items-center md:justify-center 
-                                            h-full md:outline outline-white rounded-2xl">
+                                            items-center justify-center 
+                                            
+                                            h-full outline outline-white rounded-2xl">
                                     <span className="text-white text-4xl md:text-9xl font-serif ">Events</span>
-                                <p className="text-sm md:text-2xl md:text-center text-white transition-opacity duration-500">
-                                {landingHighlights[index].text}
-                                </p>
+                                
+                                    <p className="text-xs md:text-2xl text-center text-white transition-opacity duration-500">
+                                        {landingHighlights[index].text}
+                                    </p>  
+                                
+                                
                             </div>
                             
                             
@@ -72,40 +75,115 @@ const [activeEvent, setActiveEvent] = useState(null);
                         </div>
                         <div
                         ref={scrollRef}
-                        className=" w-85 h-full md:w-full bg-transparent overflow-x-auto 
-                                        md:hide-scrollbar hide-horizontal-scrollbar
-                                         rounded-2xl " >
+                      className="w-85 mb-15 md:mb-0 h-115 md:h-full md:w-full 
+                                md:outline-0 bg-transparent overflow-x-auto 
+                                md:hide-scrollbar hide-horizontal-scrollbar
+                                md:p-0 rounded-2xl mt-15 p-4
+                                outline outline-white " >
 
                                             
-                            <ul className=" flex flex-col sm:flex-row 
-                                            gap-4 md:gap-2 md:w-full w-80 rounded-2xl">
+                            <ul className=" flex flex-col sm:flex-row items-center 
+                                            gap-3 md:gap-2 w-full rounded-2xl">
                                 {eventsData.map((item,index)=>(
-                                    <li key={index}>
+                                    <li className="md:p-0 pr-3 pl-3" key={index}>
                                         <div
                                         style={{backgroundImage: `url(${item.image})`}} 
-                                        className=" bg-amber-300 w-85 md:w-100 h-80 
+                                        className=" w-80 md:w-100 md:h-80 h-50 
                                                     flex gap-2 bg-cover -bg-center
-                                                    rounded-2xl p-4 relative">
+                                                    rounded-2xl p-4 relative ">
                                             <div className="absolute rounded-2xl inset-0 bg-black/20"></div>
                                                 <div className=" flex flex-col justify-center items-center
                                                                 outline-white outline-2 rounded-2xl 
-                                                                    gap-4 w-full z-10">
+                                                                    gap-2 md:gap-4 w-full z-10">
                                                         <div className=" flex flex-col items-center justify-center">
                                                             <span className="text-white text-xl md:text-2xl font-light">" {item.title} "</span>   
-                                                            <span className="text-white text-6xl font-bold font-serif">{item.day}</span>
+                                                            <span className="text-white text-4xl md:text-6xl font-bold font-serif">{item.day}</span>
                                                         
                                                             <span className="text-white text-xl ">{item.month}</span>  
                                                         </div>
                                                         <button
-                                                        className=" bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-2 rounded-2xl transition duration-300">
+                                                        onClick={() => setActiveEvent(item)}
+                                                        className=" bg-green-500 hover:bg-green-600
+                                                                    text-white font-semibold md:px-6 md:py-2 
+                                                                    rounded-2xl transition duration-300
+                                                                    px-4 py-1">
                                                                 View Details
                                                         </button>
                                                 
                                                 </div>  
-                                                    
+
+
+                                                {activeEvent  && (
+                                                <div
+                                                onClick={() => {
+                                                    if (isDesktop) {
+                                                    setActiveEvent(null);
+                                                    }
+                                                }}
+                                                className="fixed inset-0 z-50 
+                                                            flex  flex-col gap-5
+                                                            items-center justify-center bg-black/30"
+                                                >
+                                                     
+                                                    <div
+                                                    style={{backgroundImage: `url(${activeEvent.image})`}}  
+                                                    className="  md:h-[50%] md:w-[50%] w-[90%] h-[50%]
+                                                                bg-cover bg-center rounded-2xl 
+                                                                shadow-xs p-6 
+                                                                flex flex-col gap-4 
+                                                                animate-popIn items-center justify-center relative shadow-white"
+                                                    onClick={(e) => e.stopPropagation()}  >
+                                                        <div className="absolute rounded-2xl inset-0 bg-black/30"></div> 
+                                                            
+
+                                                            <div className="flex flex-col gap-4 items-center justify-center z-60 text-white ">
+                                                                <span className="font-serif text-2xl text-center md:text-4xl " >{activeEvent.title}</span>
+                                                                <span className="font-light md:text-2xl  font-sans flex text-center items-center" >{activeEvent.description}</span>
+                                                            </div>
+
+                                                            <div className="flex flex-col items-center justify-center text-white z-60 ">
+                                                                <div className="flex gap-2 font-bold">
+                                                                    <span>{activeEvent.day}</span>
+                                                                    <span>{activeEvent.month}</span>
+                                                                </div>
+                                                                <span className="font-bold ">{activeEvent.time}</span>
+                                                                <span className="font-serif">{activeEvent.location}</span>
+                                                            </div>
+                                                            <div className="flex justify-end pt-2  z-60 ">
+                                                                <button
+                                                                onClick={()=>navigate("/menu")} 
+                                                                className=" bg-green-500 hover:bg-green-600 
+                                                                                text-white font-semibold
+                                                                                px-5 py-2 rounded-xl transition">
+                                                                Go to Menu
+                                                                </button>
+                                                            </div>
+                                                            
+                                                    </div>
+
+                                                        <button
+                                                            onClick={() => setActiveEvent(null)}
+                                                            className="w-12 h-12 rounded-full opacity-50
+                                                                        bg-gray-300 text-white
+                                                                        flex items-center justify-center
+                                                                        text-xl font-bold
+                                                                        shadow-lg
+                                                                        hover:bg-gray-100
+                                                                        transition md:hidden"
+                                                            >
+                                                            ✕
+                                                        </button>
+                                                                                                    
+                                                </div>
+                                                )}    
                                             
                                         </div>
                                     </li>
+
+                                    
+
+
+
                                 ))}
                             </ul>
 
