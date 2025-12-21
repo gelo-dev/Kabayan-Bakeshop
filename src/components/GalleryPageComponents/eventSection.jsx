@@ -69,9 +69,9 @@ const [activeEvent, setActiveEvent] = useState(null);
             <section id="event" className="h-screen grid grid-rows-1 p-4 justify-center">
                     
                         <div
-                            className="relative 
+                            className="relative hidden
                                         h-full rounded-2xl 
-                                        md:mt-5 flex items-center justify-center " 
+                                        md:mt-5 md:flex items-center justify-center " 
                         >
                             <div className="relative z-10 flex flex-col 
                                             items-center justify-center md:w-full w-85
@@ -88,12 +88,13 @@ const [activeEvent, setActiveEvent] = useState(null);
                             
 
                         </div>
+
                         <div
                         ref={scrollRef}
-                      className="w-85 mb-15 md:mb-0 h-115 md:h-full md:w-full 
+                        className="w-85  md:mb-0 h-130 md:h-full md:w-full 
                                 md:outline-0 bg-transparent overflow-x-auto 
                                 md:hide-scrollbar hide-horizontal-scrollbar
-                                md:p-0 rounded-2xl mt-5 md:mt-15 p-4
+                                md:p-0 rounded-2xl mt-18 md:mt-15 p-4
                                 outline outline-white " >
 
                                             
@@ -145,7 +146,7 @@ const [activeEvent, setActiveEvent] = useState(null);
                                                     style={{backgroundImage: `url(${activeEvent.image})`}}  
                                                     className="  md:h-[50%] md:w-[50%] w-[90%] h-[50%]
                                                                 bg-cover bg-center rounded-2xl 
-                                                                 p-6 
+                                                                 p-6 outline-1 outline-white
                                                                 flex flex-col gap-4 
                                                                 animate-popIn items-center justify-center relative "
                                                     onClick={(e) => e.stopPropagation()}  >

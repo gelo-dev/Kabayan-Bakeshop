@@ -68,9 +68,9 @@ useEffect(() => {
     return () => clearInterval(interval);
 }, []);
         return(
-            <section id="store" className="h-screen grid grid-rows-1 p-4 gap-2">
+            <section id="store" className="h-screen grid grid-rows-1 p-4 gap-2 mt-5">
                 <div className="outline outline-white rounded-2xl justify-center 
-                                items-center flex md:h-full h-3/4
+                                items-center hidden  md:flex md:h-full h-3/4
                                 md:w-full">
                             <div className=" flex flex-col 
                                             items-center justify-center rounded-2xl">
@@ -85,11 +85,11 @@ useEffect(() => {
                
                 <div className="bg-transparent h-100 overflow-x-auto 
                                 hide-horizontal-scrollbar
-                                p-2 md:mb-0 mb-15">
-                        <ul className="h-full flex gap-2">
+                                p-2 md:mb-0 md:mt-0 mt-15">
+                        <ul className="h-full flex md:gap-2 gap-5">
                             {imagesOfStore.map((item,index)=>(
                                 <li
-                                className="flex gap-4 w-full items-center r" 
+                                className="flex gap-4 w-full items-center " 
                                 key={index}>
                                     <div
                                     style={{backgroundImage: `url(${item.image})`}} 
