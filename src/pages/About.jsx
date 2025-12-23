@@ -8,9 +8,9 @@ export default function AboutSection() {
 
 
     const sections = [
-  { id: 1, title: "Our Story", color: "bg-amber-300", component: OurStorySection },
-  { id: 2, title: "Mission", color: "bg-emerald-300", component: MissionSection },
-  { id: 3, title: "Vision", color: "bg-pink-300", component: VisionSection },
+  { id: 1, title: "Our Story", color: "bg-amber-300", component: OurStorySection , backgroundImage: "./AboutPageImages/vendor.png"},
+  { id: 2, title: "Mission", color: "bg-emerald-300", component: MissionSection ,backgroundImage: "./AboutPageImages/familyJeep.png"},
+  { id: 3, title: "Vision", color: "bg-pink-300", component: VisionSection , backgroundImage: "./PHFlag.jpg"},
 ];
 
     
@@ -66,7 +66,10 @@ export default function AboutSection() {
                     return (
                       <div
                         key={section.id}
-                        className={`shrink-0 w-full h-full ${section.color} rounded-lg flex items-center justify-center text-white text-xl font-bold relative`}
+                        style={{backgroundImage: `url(${section.backgroundImage})`}} 
+                        className={`shrink-0 w-full h-full 
+                                    rounded-lg 
+                                    bg-center bg-cover`}
                       >
                         <Component />
                       </div>
