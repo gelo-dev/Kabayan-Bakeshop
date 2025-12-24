@@ -61,6 +61,19 @@ export default function MenuSection ({ sendToHeader  }){
   };
 
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+  setCurrentIndex(i => Math.max(i - 1, 0));
+    scrollRef.current.scrollBy({ left: -700, behavior: "smooth" });
+  };
+
+const nextSlide = () => {
+  setCurrentIndex(i => Math.min(i + 1, menu.length - 1));
+    scrollRef.current.scrollBy({ left: 700, behavior: "smooth" });
+  };
+
+
     return (
         <section
             id="menu"
@@ -76,21 +89,21 @@ export default function MenuSection ({ sendToHeader  }){
                   
                         <h1 className="font-extralight md:font-light md:text-3xl text-white leading-tight">
                       Indulge in our freshly baked treats, from soft breads to rich pastries, <br></br>all made with love and the finest ingredients for a perfect start to your day.</h1>
-                         <button
-                          onClick={() => navigate("/menu")}
-                          className="
-                            hidden md:inline-flex items-center justify-center
-                           hover:bg-amber-500
-                            text-white font-semibold text-lg
-                            px-6 py-3 rounded-full
-                            outline hover:shadow-lg
-                            transition duration-300 ease-in-out
-                            transform hover:scale-105
-                            focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2
-                          "
-                        >
-                          Buy Fresh Goods
-                        </button>
+                        <button
+                        onClick={() => navigate("/menu")}
+                        className="
+                          hidden md:inline-flex items-center justify-center
+                          hover:bg-amber-500
+                          text-white font-semibold text-lg
+                          px-6 py-3 rounded-full
+                          outline hover:shadow-lg
+                          transition duration-300 ease-in-out
+                          transform hover:scale-105
+                          focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2
+                        "
+                      >
+                        Buy Fresh Goods
+                      </button>
 
 
                     </div>
@@ -99,12 +112,12 @@ export default function MenuSection ({ sendToHeader  }){
             
             
                 {/* Left Button - hidden on small screens */}
-              <button
-                onClick={scrollLeftBtn}
+              {currentIndex > 0 &&(<button
+                onClick={prevSlide}
                 className="hidden md:flex absolute left-0 top-3/4 -translate-y-1/2 bg-transparent text-white "
               >
               < ChevronLeftIcon className="w-10 h-10 stroke-3 " />
-              </button>
+              </button>)}
 
               {/* Scrollable Container */}
               <div
@@ -145,12 +158,12 @@ export default function MenuSection ({ sendToHeader  }){
               </div>
 
               {/* Right Button - hidden on small screens */}
-              <button
-                onClick={scrollRightBtn}
+              {currentIndex < menu.length - 1 &&(<button
+                onClick={nextSlide}
                 className="hidden md:flex absolute right-0 top-3/4 -translate-y-1/2 bg-transparent text-white z-20"
               >
                 <ChevronRightIcon className="w-10 h-10 stroke-3 " />
-              </button>
+              </button>)}
 
                <span className="block sm:hidden text-xs text-white ml-5 animate-pulse">Swipe left or right to explore our featured treats.</span>     
               <button

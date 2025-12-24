@@ -5,7 +5,7 @@ export default function VisionSection(){
                 <div className="h-1/2">1</div>
                 <div className=" mt-25 ml-5 flex flex-col">
                     <span className="text-4xl text-white flex ">Our</span>
-                    <span className="text-[10rem] text-white font-serif leading-none">Story</span>
+                    <span className="text-[10rem] text-white font-serif leading-none">Vision</span>
                 </div>
             </div>
             <div className="bg-transparent flex gap-5

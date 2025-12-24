@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import OurStorySection from "../components/AboutPageComponents/OurStory";
 import MissionSection from "../components/AboutPageComponents/Mission";
@@ -10,7 +10,7 @@ export default function AboutSection() {
     const sections = [
   { id: 1, title: "Our Story", color: "bg-amber-300", component: OurStorySection , backgroundImage: "./AboutPageImages/vendor.png"},
   { id: 2, title: "Mission", color: "bg-emerald-300", component: MissionSection ,backgroundImage: "./AboutPageImages/familyJeep.png"},
-  { id: 3, title: "Vision", color: "bg-pink-300", component: VisionSection , backgroundImage: "./PHFlag.jpg"},
+  { id: 3, title: "Vision", color: "bg-pink-300", component: VisionSection , backgroundImage: "./AboutPageImages/Vision.png"},
 ];
 
     
@@ -36,25 +36,35 @@ export default function AboutSection() {
               }
         }
       };
+const [currentIndex, setCurrentIndex] = useState(0);
+const prevSlide = () => {
+  setCurrentIndex(i => Math.max(i - 1, 0));
+   scroll("left")
+};
 
+const nextSlide = () => {
+  setCurrentIndex(i => Math.min(i + 1, sections.length - 1));
+  scroll("right")
+};
 
     return (
         <section id="about" className="h-screen relative flex items-center">
           
-            <button
-              onClick={() => scroll("left")}
-              className="hidden md:block absolute left-2 z-10 bg-white rounded-full p-2 shadow hover:bg-gray-200"
-            >
-              <ChevronLeftIcon className="w-6 h-6 text-gray-700" />
-            </button>
+              {currentIndex  > 0 && (<button
+                onClick={()=>prevSlide()}
+                className="hidden md:block absolute left-2 z-10 bg-white rounded-full p-2 shadow hover:bg-gray-200">
+                      <ChevronLeftIcon className="w-6 h-6 text-gray-700" />
+              </button>
+                )}
 
-     
-            <button
-              onClick={() => scroll("right")}
+            {(currentIndex < sections.length - 1 && <button
+              onClick={() => nextSlide()}
               className="hidden md:block absolute right-2 z-10 bg-white rounded-full p-2 shadow hover:bg-gray-200"
             >
-              <ChevronRightIcon className="w-6 h-6 text-gray-700" />
-            </button>
+              <ChevronRightIcon
+              onClick={()=>setHidePrevButton(true)} 
+              className="w-6 h-6 text-gray-700" />
+            </button>)}
 
 
             <div
