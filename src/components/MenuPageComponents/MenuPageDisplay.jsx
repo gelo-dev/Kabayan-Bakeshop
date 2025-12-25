@@ -15,7 +15,7 @@ export default function MenuDisplayPagesSection() {
       <ScrollFadeSection>
         <ProcessOrderSection />
       </ScrollFadeSection>
-       
+
 
     </section>
   );

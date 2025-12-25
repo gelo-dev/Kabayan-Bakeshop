@@ -7,7 +7,7 @@ export default function LoginSection( {showSignUpForm}) {
     const [isShowPassword ,setIsShowPassword]= useState(false)
     
     
-  
+
 
         return (
             <div className={`w-full h-80 md:h-100 max-w-md bg-transparent backdrop-blur-xs p-4 md:p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500`} >
