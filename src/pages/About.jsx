@@ -48,7 +48,7 @@ const nextSlide = () => {
 };
 
     return (
-        <section id="about" className="h-screen relative flex items-center">
+        <section id="about" className="h-screen relative flex items-center p-4">
           
               {currentIndex  > 0 && (<button
                 onClick={()=>prevSlide()}
@@ -71,7 +71,7 @@ const nextSlide = () => {
               ref={scrollRef}
               className="flex overflow-x-auto space-x-4 h-full w-full scroll-smooth p-4 hide-scrollbar"
             >
-               {sections.map((section) => {
+              {sections.map((section) => {
                     const Component = section.component; // get the component
                     return (
                       <div

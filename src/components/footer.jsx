@@ -1,4 +1,6 @@
-// Footer.jsx
+
+import { FaFacebook, FaInstagram, FaYoutube , FaTiktok} from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="bg-transparent outline-1 outline-white text-gray-800 py-6 mt-1">
@@ -7,9 +9,26 @@ export default function Footer() {
           Kabayans Bakeshop
         </div>
         <div className="flex gap-4">
-          <a href="#" className="hover:text-green-700">Facebook</a>
-          <a href="#" className="hover:text-green-700">Instagram</a>
-          <a href="#" className="hover:text-green-700">Tiktok</a>
+          <div className="items-center justify-center flex flex-col">
+                <FaFacebook/>
+              <a href="#" className="hover:text-green-700">Facebook</a>
+          </div>
+          
+          <div className="items-center justify-center flex flex-col">
+              <FaInstagram/>
+              <a href="#" className="hover:text-green-700">Instagram</a>
+          </div>
+          <div className="items-center justify-center flex flex-col">
+              <FaYoutube/>
+              <a href="#" className="hover:text-green-700">Youtube</a>
+          </div>
+          <div className="items-center justify-center flex flex-col">
+              <FaTiktok/>
+              <a href="#" className="hover:text-green-700">Tiktok</a>
+          </div>
+          
+          
+          
         </div>
       </div>
 
