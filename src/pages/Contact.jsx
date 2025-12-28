@@ -1,6 +1,7 @@
 
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
-import { MdLocationOn ,MdPhone, MdEmail } from "react-icons/md";
+import { MdLocationOn ,MdPhone, MdEmail ,MdHelpOutline  } from "react-icons/md";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ContactFormSection from "../components/ContactPageComponent/contactForm";
 
 export default function ContactSection() {
@@ -8,7 +9,9 @@ export default function ContactSection() {
     <section id="contact" className="h-screen grid grid-cols-2 p-2">
         <div
         className="bg-transparent flex flex-col p-4 items-center justify-center">
-          <div className=" flex flex-col text-white 
+          <div 
+          
+          className=" flex flex-col text-white 
                             items-center justify-center h-1/2" >
                               
               <span className="text-[5rem] font-serif">CONTACT US</span>
@@ -42,11 +45,29 @@ export default function ContactSection() {
                   </div>
                   <p className="text-white text-center font-light text-sm">Email us or give us a call for inquiries.</p>
               </div>
-              <div className="bg-white w-full">FAQ</div>
+             
+                  
+                    <div className=" w-full rounded-2xl flex flex-col items-center justify-center ">
+                      <MdHelpOutline 
+                       size={30} 
+                      className="text-white"/>
+                      <span className="text-white text-md font-serif"> FAQ's</span>
+                      <span className="text-white text-center text-sm font-light">Questions? </span>
+                      <span className="text-white text-center text-sm font-light">Find your answers here. </span>
+                      <button className=" outline outline-white text-white 
+                                          text-xs w-35 h-8 rounded-xl mt-5 
+                                          flex items-center justify-center
+                                          hover:bg-amber-600 hover:text-sm">
+                                  Get Help →
+                      </button>
+                      
+                  </div>
+              
           </div>
         </div>
         <div className="flex  p-4 justify-center items-center" >
           <ContactFormSection/>
+          
         </div>
     </section>
   );
