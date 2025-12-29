@@ -7,7 +7,7 @@ const eventsData = [
     day: "15",
     time: "8:00 AM – 6:00 PM",
     location: "Kabayans Bakeshop – Main Branch",
-    image: "./imagesForGallery/Events/grand-opening.jpg",
+    image: "./imagesForGallery/ImagesForEvents/grand-opening.jpg",
   },
   {
     title: "Fresh Pandesal Morning",
@@ -17,7 +17,7 @@ const eventsData = [
     day: "Saturday",
     time: "6:00 AM – 9:00 AM",
     location: "All Kabayans Bakeshop Branches",
-    image: "./imagesForGallery/Events/pandesal-morning.jpg",
+    image: "./imagesForGallery/ImagesForEvents/pandesal-morning.jpg",
   },
   {
     title: "Holiday Bread Specials",
@@ -27,7 +27,7 @@ const eventsData = [
     day: "1–24",
     time: "All Day",
     location: "Selected Branches",
-    image: "./imagesForGallery/Events/holiday-special.jpg",
+    image: "./imagesForGallery/ImagesForEvents/holiday-special.jpg",
   },
   {
     title: "Buy 2 Get 1 Free Friday",
@@ -37,7 +37,7 @@ const eventsData = [
     day: "Friday",
     time: "2:00 PM – 7:00 PM",
     location: "Main Branch Only",
-    image: "./imagesForGallery/Events/buy2get1.jpg",
+    image: "./imagesForGallery/ImagesForEvents/buy2get1.jpg",
   },
   {
     title: "Chocolate Croissant Week",
@@ -47,7 +47,7 @@ const eventsData = [
     day: "7–13",
     time: "All Day",
     location: "All Kabayans Bakeshop Branches",
-    image: "./imagesForGallery/Events/choco-croissant.jpg",
+    image: "./imagesForGallery/ImagesForEvents/choco-croissant.jpg",
   },
   {
     title: "Customer Appreciation Day",
@@ -57,7 +57,7 @@ const eventsData = [
     day: "20",
     time: "10:00 AM – 5:00 PM",
     location: "Main Branch",
-    image: "./imagesForGallery/Events/customer-appreciation.jpg",
+    image: "./imagesForGallery/ImagesForEvents/customer-appreciation.jpg",
   },
 ];
 

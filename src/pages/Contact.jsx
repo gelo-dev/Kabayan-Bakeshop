@@ -6,9 +6,15 @@ import ContactFormSection from "../components/ContactPageComponent/contactForm";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="h-screen grid grid-cols-2 p-2">
+    <section
+
+    id="contact"
+   
+    className="h-screen grid grid-cols-2 p-2">
+      
+   
         <div
-        className="bg-transparent flex flex-col p-4 items-center justify-center">
+        className="bg-transparent flex flex-col p-4 items-center justify-center z-10">
           <div 
           
           className=" flex flex-col text-white 
@@ -18,21 +24,25 @@ export default function ContactSection() {
               <span className="text-xl font-light">We'd love to hear from you! </span>
           </div>
           <div className="flex gap-5 h-1/4 w-full p-4">
-              <div className=" w-full rounded-2xl flex flex-col items-center justify-center ">
+              <div className="outline outline-white w-full 
+                              rounded-xl flex flex-col  backdrop-blur-xs 
+                              items-center justify-center p-2 ">
                 <MdLocationOn 
                 size={30} 
                 className="text-white"/>
                 <span className="text-white text-lg font-serif"> Our Branches</span>
                 <span className="text-white text-center text-sm font-light">Find our bakery locations and visit us near you.</span>
-                <button className=" outline outline-white text-white 
-                                    text-xs w-35 h-8 rounded-xl mt-5 
+                <button className="  text-white 
+                                    text-xs w-35 h-6 rounded-xl mt-5 
                                     flex items-center justify-center
-                                    hover:bg-amber-600 hover:text-sm">
+                                    hover:text-amber-500 hover:text-sm">
                             View locations →
                 </button>
                   
               </div>
-              <div className=" w-full flex flex-col items-center justify-center">
+              <div className=" w-full flex flex-col items-center justify-center 
+                              outline outline-white 
+                              backdrop-blur-xs  rounded-xl p-2">
                   <div className="flex gap-2">
                     <MdPhone size={20}
                     className="text-white"/>
@@ -43,25 +53,25 @@ export default function ContactSection() {
                     className="text-white"/>
                     <p className="text-white">contact@kabayanbakeshop.com</p>                        
                   </div>
-                  <p className="text-white text-center font-light text-sm">Email us or give us a call for inquiries.</p>
+                  <p className="text-white text-center font-light text-sm mt-3">Email us or give us a call for inquiries.</p>
               </div>
-             
-                  
-                    <div className=" w-full rounded-2xl flex flex-col items-center justify-center ">
-                      <MdHelpOutline 
-                       size={30} 
-                      className="text-white"/>
-                      <span className="text-white text-md font-serif"> FAQ's</span>
-                      <span className="text-white text-center text-sm font-light">Questions? </span>
-                      <span className="text-white text-center text-sm font-light">Find your answers here. </span>
-                      <button className=" outline outline-white text-white 
-                                          text-xs w-35 h-8 rounded-xl mt-5 
-                                          flex items-center justify-center
-                                          hover:bg-amber-600 hover:text-sm">
-                                  Get Help →
-                      </button>
-                      
-                  </div>
+            
+            
+              <div className=" w-full rounded-2xl flex flex-col backdrop-blur-xs
+                                outline p-2 outline-white items-center justify-center ">
+                <MdHelpOutline 
+                  size={30} 
+                className="text-white"/>
+                  <span className="text-white text-md font-serif"> FAQ's</span>
+                  <span className="text-white text-center text-sm font-light">Questions? </span>
+                  <span className="text-white text-center text-sm font-light">Find your answers here. </span>
+                  <button className="  text-white 
+                                      text-xs w-35  rounded-xl mt-2 
+                                      flex items-center justify-center
+                                      hover:text-amber-600 hover:text-sm">
+                              Get Help →
+                  </button>
+            </div>
               
           </div>
         </div>
