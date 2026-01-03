@@ -14,6 +14,7 @@ import RatingsSections from './components/MenuPageComponents/Ratings';
 import StoreSection from './components/GalleryPageComponents/storeSection';
 import EventSection from './components/GalleryPageComponents/eventSection';
 import CapturedMomentSection from './components/GalleryPageComponents/capturedMoments';
+import LogInPageSection from './pages/Log-in';
 
 
 function App() {
@@ -24,8 +25,8 @@ function App() {
       <AnimatePresence mode="wait">
       
         <Routes location={location} key={location.pathname}>
-
-              <Route path="/" element={<Navitagion/>  } />
+               <Route path="/" element={<LogInPageSection />} />
+              <Route path="/home" element={<Navitagion/>  } />
               
               <Route path="/menu"
               element={

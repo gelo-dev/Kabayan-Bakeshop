@@ -24,7 +24,7 @@ export default function HomeSection() {
     ];
 
     const[ displayText , setDisplayText ]= useState(0)
-    const[ isUserExisting , setisUserExisting] = useState(true)
+   
 
 
     const nextSlide = (i) =>{
@@ -35,26 +35,13 @@ export default function HomeSection() {
         }        
     }
 
-    const showSignUpForm =()=>{
-        setisUserExisting(!isUserExisting)
-    }
 
           
 
         return (
             
             <section id="home" className="h-screen relative grid grid-cols-1  md:grid-cols-2 md:flex-col-reverse p-8 md:pl-30 md:pr-15 justify-center items-center overflow-hidden">
-                {isUserExisting ? (
-                    <div className={`relative z-10 transition-opacity duration-500 ${isUserExisting ? "opacity-100":"opacity-0" } `}>
-                        <LoginSection showSignUpForm={showSignUpForm} />
-                        </div>
-                    ):(
-                       <div className={`relative z-10 transition-opacity duration-500 ${!isUserExisting ? "opacity-100":"opacity-0" } `}>
-                        <SignUpSection showSignUpForm={showSignUpForm} />
-                        </div>  
-                    )
-
-                }
+               
                 
                 
                

@@ -10,7 +10,7 @@ export default function LoginSection( {showSignUpForm}) {
 
 
         return (
-            <div className={`w-full h-80 md:h-100 max-w-md bg-transparent backdrop-blur-xs p-4 md:p-8 rounded-2xl shadow-xl border border-gray-200 transition-opacity duration-500`} >
+            <div className={`w-full h-80 md:h-100 max-w-md bg-transparent  p-4 md:p-8 rounded-2xl   transition-opacity duration-500`} >
                 <h2 className=" text-lg md:text-3xl font-semibold text-white  mb-2 md:mb-6 text-center">
                     Welcome Back!
                 </h2>

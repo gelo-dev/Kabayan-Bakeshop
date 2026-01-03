@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import sampleUsers from "../JavaScript/users";
 
 export default function SignUpSection ( {showSignUpForm} ) {
 
@@ -17,11 +18,37 @@ export default function SignUpSection ( {showSignUpForm} ) {
             setIsTransition(!isTransitionOn)
     }
 
+    const [users, setUsers] = useState(sampleUsers);
+
+    const insertUser = (newUser) => {
+    
+            const exists = users.some(
+                (user) => user.email === newUser.email
+            );
+
+            if (exists) {
+                alert("Email already registered!");
+                return;
+            }
+
+            setUsers((prevUsers) => [
+                ...prevUsers,
+                {
+                ...newUser,
+                role: "user",
+                dateRegistered: new Date().toISOString().split("T")[0],
+                },
+            ]);
+
+            alert("Signup successful!");
+    };
+
+
 
     
 
     return (
-         <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8 rounded-2xl shadow-xl border border-gray-200  transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
+         <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8   transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
             <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 text-center">
                 Create Your Account
             </h2>
