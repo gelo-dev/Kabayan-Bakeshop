@@ -15,17 +15,34 @@ import StoreSection from './components/GalleryPageComponents/storeSection';
 import EventSection from './components/GalleryPageComponents/eventSection';
 import CapturedMomentSection from './components/GalleryPageComponents/capturedMoments';
 import LogInPageSection from './pages/Log-in';
-
+import sampleUsers from './JavaScript/users';
+import { useEffect } from 'react';
+import { Toaster } from "react-hot-toast";
 
 function App() {
    const location = useLocation(); 
+
+    //this store users in local storage
+    useEffect(() => {
+        const storedUsers = localStorage.getItem("sampleUsers");
+
+        if (!storedUsers) {
+        localStorage.setItem(
+            "sampleUsers",
+            JSON.stringify(sampleUsers)
+        );
+        }
+    }, []);
+
+
   return (
     <>
+    <Toaster position="top-right" />
       <ScrollToTop />
       <AnimatePresence mode="wait">
       
         <Routes location={location} key={location.pathname}>
-               <Route path="/" element={<LogInPageSection />} />
+              <Route path="/" element={<LogInPageSection />} />
               <Route path="/home" element={<Navitagion/>  } />
               
               <Route path="/menu"
@@ -95,6 +112,8 @@ function App() {
     </>
   )
 }
+
+
 
 const PageWrapper = ({ children }) => (
   <motion.div

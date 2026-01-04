@@ -158,7 +158,7 @@ useEffect(() => {
 
                     <div className=' bg-transparent row-span-3 flex items-center justify-center '>
                         <button
-                        onClick={() => navigate("/")} 
+                        onClick={() => navigate("/home")} 
                         className='outline-2 hover:bg-white text-white hover:text-black outline-white rounded-full h-15 w-15 flex justify-center items-center'>
                             <HomeIcon className="h-6 w-6  cursor-pointer" />
                         </button>

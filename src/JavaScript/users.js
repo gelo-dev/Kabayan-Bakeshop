@@ -1,5 +1,6 @@
 const sampleUsers = [
   {
+    id:1,  
     email: "admin@company.com",
     fullname: "Angelo Garcia",
     password: "Admin@123",
@@ -7,6 +8,7 @@ const sampleUsers = [
     role: "admin",
   },
   {
+    id:2,
     email: "maria.santos@gmail.com",
     fullname: "Maria Santos",
     password: "MariaPass01",
@@ -14,6 +16,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:3,
     email: "paolo.reyes@yahoo.com",
     fullname: "Paolo Reyes",
     password: "Paolo2024",
@@ -21,6 +24,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:4,
     email: "angelica.lopez@gmail.com",
     fullname: "Angelica Lopez",
     password: "AngelicaPwd",
@@ -28,6 +32,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:5,
     email: "mark.villanueva@gmail.com",
     fullname: "Mark Villanueva",
     password: "Mark@456",
@@ -35,6 +40,7 @@ const sampleUsers = [
     role: "staff",
   },
   {
+    id:6,
     email: "joshua.mendoza@gmail.com",
     fullname: "Joshua Mendoza",
     password: "JoshMendoza",
@@ -42,6 +48,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:7,
     email: "karen.bautista@gmail.com",
     fullname: "Karen Bautista",
     password: "KarenPass",
@@ -49,6 +56,7 @@ const sampleUsers = [
     role: "staff",
   },
   {
+    id:8,
     email: "ronald.garcia@gmail.com",
     fullname: "Ronald Garcia",
     password: "RonGarcia1",
@@ -56,6 +64,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:9,
     email: "liza.torres@gmail.com",
     fullname: "Liza Torres",
     password: "Liza@2024",
@@ -63,6 +72,7 @@ const sampleUsers = [
     role: "user",
   },
   {
+    id:10,
     email: "supervisor@company.com",
     fullname: "Carlos Navarro",
     password: "Supervisor99",

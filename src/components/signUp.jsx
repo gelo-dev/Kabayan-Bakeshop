@@ -1,51 +1,59 @@
 import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import sampleUsers from "../JavaScript/users";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 export default function SignUpSection ( {showSignUpForm} ) {
+const navigate = useNavigate()
+const [isSignUPShowPassword ,setSignUPShowPassword]= useState(false)
 
-    const testButton= (item)=>{
-        alert(item)
-        console.log(showSignUpForm);
-        
-    }
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [fullname ,setFullName ]=useState("");
 
-    const [isTransitionOn ,setIsTransition]= useState(false)
-    const [isSignUPShowPassword ,setSignUPShowPassword]= useState(false)
 
-     const toggleTransition=()=>{
-            showSignUpForm()
-            setIsTransition(!isTransitionOn)
-    }
+const handleSubmit = (item) =>{
+    item.preventDefault(); // stop page refresh
 
-    const [users, setUsers] = useState(sampleUsers);
-
-    const insertUser = (newUser) => {
+    const listOfUsers = JSON.parse(localStorage.getItem("sampleUsers")) || []; //getting the list of users from local Storage
     
-            const exists = users.some(
-                (user) => user.email === newUser.email
-            );
-
-            if (exists) {
-                alert("Email already registered!");
+    //checking of user existence via email
+    const userEmailExist = 
+        listOfUsers.some((user)=> user.email === email); 
+            if (userEmailExist) {
+                toast.error("Email already registered");
                 return;
+            }else{
+                navigate('/home')
             }
 
-            setUsers((prevUsers) => [
-                ...prevUsers,
-                {
-                ...newUser,
-                role: "user",
-                dateRegistered: new Date().toISOString().split("T")[0],
-                },
-            ]);
-
-            alert("Signup successful!");
+    //inserting new user in localstorage
+    const newUser = {
+        id: listOfUsers.length +1,
+        email,
+        fullname,
+        password,
+        dateRegistered: new Date().toISOString().split("T")[0],
+        role: "user",
     };
 
+    //saving newUser in localStorage together with the others
+    localStorage.setItem(
+        "sampleUsers",
+        JSON.stringify([...listOfUsers, newUser])
+    );
 
+    //creating new key in local storage
+    localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify(newUser)
+    );
 
     
+
+} //end of handleSubmit
+
 
     return (
          <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8   transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
@@ -53,13 +61,15 @@ export default function SignUpSection ( {showSignUpForm} ) {
                 Create Your Account
             </h2>
 
-                <form className=" space-y-3 md:space-y-5">
+                <form onSubmit={handleSubmit} className=" space-y-3 md:space-y-5">
                 
                     <div>
                         <label className="block text-sm font-medium text-white">Full Name</label>
                         <input
                             type="text"
                             placeholder="First Name, Last Name"
+                            onChange={(e) => setFullName(e.target.value)}
+                            required
                             className="text-white mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         />
                     </div>
@@ -70,6 +80,8 @@ export default function SignUpSection ( {showSignUpForm} ) {
                         <input
                             type="email"
                             placeholder="email@example.com"
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
                             className="text-white mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             
                         />
@@ -80,6 +92,8 @@ export default function SignUpSection ( {showSignUpForm} ) {
                         <input
                             type={isSignUPShowPassword ? "text" : "password"}
                             placeholder="••••••••"
+                            required
+                            onChange={(e) => setPassword(e.target.value)}
                             className="text-white w-full px-4 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         />
 
@@ -95,10 +109,10 @@ export default function SignUpSection ( {showSignUpForm} ) {
                             )}
                         </button>
                     </div>
-
+                        
+                     
                     
                         <button
-                        onClick={()=>testButton(showSignUpForm)}
                         type="submit"
                         className="w-full py-3 bg-blue-700 hover:bg-blue-400 text-white font-semibold rounded-lg shadow-md transition-all"
                         >

@@ -1,6 +1,5 @@
 import { useState,  } from "react";
-import SignUpSection from "../components/signUp";
-import LoginSection from "../components/loginSection";
+
 
 export default function HomeSection() {
     const slides = [

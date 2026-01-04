@@ -27,7 +27,7 @@ export default function MobileNavBar() {
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md border-t md:hidden z-50">
       <div className="bg-white h-15 flex items-center justify-center gap-23">
         <ChevronLeftIcon
-        onClick={()=>navigate("/")} 
+        onClick={()=>navigate("/home")} 
         className="h-6 w-6 text-amber-700" />
         <div className="flex items-center gap-2">
           {Icon && <Icon className="h-6 w-6 text-amber-700" />}
