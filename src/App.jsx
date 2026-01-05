@@ -37,7 +37,7 @@ function App() {
 
   return (
     <>
-    <Toaster position="top-right" />
+    <Toaster position="top-center" reverseOrder={false} />
       <ScrollToTop />
       <AnimatePresence mode="wait">
       

@@ -3,24 +3,14 @@ import SignUpSection from "../components/signUp";
 import LoginSection from "../components/loginSection";
 
 export default function LogInPageSection() {
-   
-    const[ displayText , setDisplayText ]= useState(0)
     const[ isUserExisting , setisUserExisting] = useState(true)
-
-
-    const nextSlide = (i) =>{
-        if(i == i){
-            setDisplayText(i)
-        }else{
-            setDisplayText(displayText + 1);  
-        }        
-    }
 
     const showSignUpForm =()=>{
         setisUserExisting(!isUserExisting)
     }
 
-          
+  
+
 
         return (
             

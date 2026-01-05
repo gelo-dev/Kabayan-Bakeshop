@@ -1,11 +1,52 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import toast from "react-hot-toast";
 
 
 export default function LoginSection( {showSignUpForm}) {
-
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isShowPassword ,setIsShowPassword]= useState(false)
+
+    const  handleLogin = (e) =>{
+        e.prevenDefault();
+        const users = JSON.parse(localStorage.getItem('sampleUsers')) || null;
+        
+        const toastId = toast.loading(
+        <div className="flex items-center gap-2">
+            <div className="w-5 h-5 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
+            Checking credentials...
+        </div>
+        );
+
+         // 3️⃣ Simulate async login
+        setTimeout(() => {
+        
+            const foundUser = users.find((user) =>
+                user.email === email && user.password === password
+            );
+
+            if (!foundUser) {
+                toast.error("Invalid email or password", { id: toastId });
+                return;
+            }
+
+            localStorage.setItem(
+                "loggedInUser",
+                JSON.stringify(foundUser)
+            );
+
     
+            toast.success(`Welcome ${foundUser.fullname || foundUser.email}!`, {
+                id: toastId,
+            });
+
+        navigate("/home");
+        }, 2000); 
+    }
+
     
 
 
@@ -15,13 +56,18 @@ export default function LoginSection( {showSignUpForm}) {
                     Welcome Back!
                 </h2>
 
-                <form className="space-y-4 md:space-y-6">
+                <form
+                onSubmit={handleLogin} 
+                className="space-y-4 md:space-y-6">
                     
                     <div>
                         <label className="block text-sm font-medium text-white">Email Address</label>
                             <input
                                 type="email"
                                 placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                                 className="text-white mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                             />
                     </div>
@@ -31,6 +77,9 @@ export default function LoginSection( {showSignUpForm}) {
                         <input
                             type={isShowPassword ? "text" : "password"}
                             placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                             className="text-white w-full px-4 pr-12 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                         />
 

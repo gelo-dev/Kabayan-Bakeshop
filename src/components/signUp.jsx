@@ -26,6 +26,7 @@ const handleSubmit = (item) =>{
                 return;
             }else{
                 navigate('/home')
+                toast.success(`Welcome ${fullname}`)
             }
 
     //inserting new user in localstorage
@@ -56,7 +57,7 @@ const handleSubmit = (item) =>{
 
 
     return (
-         <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8   transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
+        <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8   transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
             <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 text-center">
                 Create Your Account
             </h2>
