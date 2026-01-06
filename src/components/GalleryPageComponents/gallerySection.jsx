@@ -68,7 +68,7 @@ const navigate = useNavigate();
                     </div>
                     <div className="items-center justify-center">
                         <button
-                        onClick={() => navigate("/")} 
+                        onClick={() => navigate("/home")} 
                         className="flex items-center w-50 gap-2 outline outline-white hover:bg-amber-500 text-white px-4 py-2 rounded-xl">                            
                             <ArrowLeftIcon className="h-5 w-5" />
                                 Home

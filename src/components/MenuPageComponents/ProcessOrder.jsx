@@ -185,11 +185,11 @@ useEffect(() => {
 
 {/* ANCHOR Right Page Component */}
                 <div className='w-1/3 bg-transparent hidden md:grid grid-rows-12 p-2 gap-1'>
-                    <div className='bg-gray-100 rounded-t-2xl row-span-1 flex justify-center items-center'>
-                        <h1 className='text-2xl font-bold font-sans text-black'>MY ORDER</h1>
+                    <div className=' backdrop-blur-sm outline outline-white rounded-t-2xl  row-span-1 flex justify-center items-center'>
+                        <h1 className='text-2xl font-bold font-sans text-white'>MY ORDER</h1>
                     </div>
                     {orderedProduct.length > 0 && 
-                    <div className='hidden md:flex flex-col gap-3 p-2 bg-white row-span-6 overflow-y-auto hide-scrollbar '> 
+                    <div className='hidden md:flex flex-col gap-3 p-2 backdrop-blur-sm outline outline-white row-span-6 overflow-y-auto hide-scrollbar '> 
 {/* ANCHOR LIST OF ORDER TABLE -  */}
                         <ul>
                             {orderedProduct.map((item, index)=>(
@@ -280,13 +280,13 @@ useEffect(() => {
                         </ul>
                                 
                     </div>}
-                    <div className='bg-gray-100 row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
-                        <h1 className=''>{orderedProduct.length > 1 ? 'Total Items: ' : 'Total Item: '}
+                    <div className='backdrop-blur-sm outline outline-white row-span-4 flex flex-col justify-center items-center gap-5 rounded-b-3xl'>
+                        <h1 className='text-white'>{orderedProduct.length > 1 ? 'Total Items: ' : 'Total Item: '}
                             <span className='font-bold text-lg'>{orderedProduct.length}</span>
                         </h1>
                         <div className=' flex flex-col items-center'>
-                            <h1 className='font-bold text-4xl '>{"₱ " +  totalPrice.toLocaleString()}</h1>
-                            <h6 className=''>Amount to Pay</h6>
+                            <h1 className='font-bold text-4xl text-white '>{"₱ " +  totalPrice.toLocaleString()}</h1>
+                            <h6 className='text-white'>Amount to Pay</h6>
 
                         </div>
                         {orderedProduct.length > 0 && <button

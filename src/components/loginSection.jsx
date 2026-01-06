@@ -11,7 +11,7 @@ export default function LoginSection( {showSignUpForm}) {
     const [isShowPassword ,setIsShowPassword]= useState(false)
 
     const  handleLogin = (e) =>{
-        e.prevenDefault();
+        e.preventDefault();
         const users = JSON.parse(localStorage.getItem('sampleUsers')) || null;
         
         const toastId = toast.loading(
@@ -20,6 +20,8 @@ export default function LoginSection( {showSignUpForm}) {
             Checking credentials...
         </div>
         );
+
+        
 
          // 3️⃣ Simulate async login
         setTimeout(() => {
@@ -39,7 +41,7 @@ export default function LoginSection( {showSignUpForm}) {
             );
 
     
-            toast.success(`Welcome ${foundUser.fullname || foundUser.email}!`, {
+            toast.success(`Welcome ${foundUser.fullname}!`, {
                 id: toastId,
             });
 
@@ -109,7 +111,7 @@ export default function LoginSection( {showSignUpForm}) {
                     
                     <div className="flex justify-between text-sm text-white mt-0 md:mt-2">
                     <a href="#" className="hover:underline">Forgot password?</a>
-                    <button onClick={showSignUpForm} className="text-blue-600 hover:underline font-medium" >Create an Account</button>
+                    <button onClick={showSignUpForm} className="text-blue-400 hover:underline font-medium" >Create an Account</button>
                     </div>
                 </form>
             </div>

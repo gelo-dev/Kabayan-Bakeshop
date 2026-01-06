@@ -71,8 +71,8 @@ export default function HomeSection() {
                             <button
                                 key={i}
                                 onClick={() => nextSlide(i)}
-                                className={`w-3 h-3 rounded-full transition-all ${
-                                i === slides.length ? "bg-amber-600 w-5 h-5" : "w-3 h-3 bg-white/40 hover:bg-white"
+                                className={` rounded-full transition-all ${
+                                i === displayText ? " w-3 h-3 bg-white" : "w-3 h-3 bg-white/50 hover:bg-white "
                                 }`}
 
                             ></button>

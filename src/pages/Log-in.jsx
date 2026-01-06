@@ -19,10 +19,10 @@ export default function LogInPageSection() {
             className="h-screen  bg-amber-900 flex items-center justify-center">
                 <div
 
-                className=" bg-amber-700 h-[70%] w-[60%] flex items-center drop-shadow-xl rounded-2xl  ">
+                className=" bg-amber-700 h-[70%] w-[60%] flex items-center shadow-xl shadow-black/90 rounded-4xl  ">
                     <div
                     style={{backgroundImage: `url(./LogInPageImages/LogInBG.png)`}}  
-                    className="w-1/2 h-full  bg-center bg-cover rounded-l-2xl flex justify-center items-center">
+                    className="w-1/2 h-full  bg-center bg-cover rounded-l-4xl flex justify-center items-center">
                         <div className="z-10  text-white ">
                             <span className="font-extralight font-serif text-2xl md:text-2xl italic">Tinapay ni</span>
                             <h1 className=" text-5xl md:text-7xl font-serif ">KABAYAN</h1>

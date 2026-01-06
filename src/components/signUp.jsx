@@ -123,7 +123,7 @@ const handleSubmit = (item) =>{
                     
                             <p className="text-center text-sm text-white">
                                 Already have an account?{" "}
-                                <button onClick={showSignUpForm} className="text-blue-600 hover:underline font-medium" >Log-in</button>
+                                <button onClick={showSignUpForm} className="text-blue-400 hover:underline font-medium" >Log-in</button>
                             </p>
                 </form>
         </div>

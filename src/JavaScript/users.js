@@ -1,7 +1,7 @@
 const sampleUsers = [
   {
     id:1,  
-    email: "admin@company.com",
+    email: "gelo@company.com",
     fullname: "Angelo Garcia",
     password: "Admin@123",
     dateRegistered: "2024-01-05",

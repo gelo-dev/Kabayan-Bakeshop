@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import {InformationCircleIcon ,ShoppingCartIcon} from "@heroicons/react/24/outline";
 import { CartContext } from "../../pages/CartContext";
-import { toast } from 'react-toastify';
-
+import toast from "react-hot-toast";
 
 
 
@@ -23,24 +22,10 @@ export default function ListOfProductsSection({category ,categoryName }){
         setOrderedProduct(prev => {
             const exists = prev.some(p => p.id === item.id && p.category === categoryName);
             if (exists) {
-            toast.warning("Already on the ordered list!", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            theme: "colored",
-            });
+                toast.error("Already on the ordered list!");
             return prev; // do not add duplicate
             }
-            toast.success("Item successfully added to your order!", {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: false,
-            theme: "colored",
-            });
+            toast.success("Item successfully added to your order!");
             return [...prev, itemWithCategory]; // add item if not exists
         });
     };

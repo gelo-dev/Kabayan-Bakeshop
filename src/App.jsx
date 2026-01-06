@@ -1,6 +1,6 @@
 
 import './App.css';
-
+import ProtectedRoute from './components/protectedRoutes';
 import { Routes, Route, useLocation  } from "react-router-dom";
 import Navitagion from  './components/header';
 import MenuPageDisplay from './components/MenuPageComponents/MenuPageDisplay';
@@ -43,24 +43,36 @@ function App() {
       
         <Routes location={location} key={location.pathname}>
               <Route path="/" element={<LogInPageSection />} />
-              <Route path="/home" element={<Navitagion/>  } />
+
+
+              <Route path="/home" element={
+                  <ProtectedRoute>
+                      <Navitagion/>
+                  </ProtectedRoute>
+                    } />
               
               <Route path="/menu"
               element={
-                <PageWrapper>
-                  <MenuPageDisplay />
-                </PageWrapper>
+                <ProtectedRoute>
+                    <PageWrapper>
+                      <MenuPageDisplay />
+                  </PageWrapper>
+                </ProtectedRoute>
+                
               } />
 
 
           
               <Route path="/gallery-section"
               element={
-                <Layout>
-                    <PageWrapper>
-                      <GalleryShowcaseSection />
-                    </PageWrapper>
-                </Layout>
+                <ProtectedRoute>
+                    <Layout>
+                      <PageWrapper>
+                        <GalleryShowcaseSection />
+                      </PageWrapper>
+                  </Layout>
+                </ProtectedRoute>
+                  
                 
               } />
 
@@ -68,7 +80,10 @@ function App() {
               <Route 
                 path="/ratings" 
                 element={
-                  <RatingsSections/>}>
+                  <ProtectedRoute>
+                    <RatingsSections/>
+                  </ProtectedRoute>
+                  }>
               </Route>
 
               
@@ -76,27 +91,37 @@ function App() {
               <Route 
                 path="/store" 
                 element={
-                  <Layout>
-                    <StoreSection/>
-                  </Layout>
+                  <ProtectedRoute>
+                      <Layout>
+                        <StoreSection/>
+                      </Layout>
+                  </ProtectedRoute>
+                  
                   }>
               </Route>
 
               <Route 
                 path="/event" 
                 element={
-                  <Layout>
-                      <EventSection/>
-                  </Layout>
+                  <ProtectedRoute>
+                      <Layout>
+                        <EventSection/>
+                      </Layout>
+                  </ProtectedRoute>
+                  
                   }>
               </Route>
 
               <Route 
                 path="/moments" 
                 element={
-                  <Layout>
-                      <CapturedMomentSection/>
-                  </Layout>
+                  <ProtectedRoute>
+                      <Layout>
+                        <CapturedMomentSection/>
+                      </Layout>
+                  </ProtectedRoute>
+                   
+                  
                   }>
               </Route>
 
