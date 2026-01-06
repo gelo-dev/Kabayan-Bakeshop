@@ -17,6 +17,9 @@ export default function LogInPageSection() {
             <section 
             id="log-in"
             className="h-screen  bg-amber-900 flex items-center justify-center">
+            <div
+            style={{backgroundImage: `url(./LogInPageImages/LoginBackDrop.png)`}}
+            className="h-screen w-full flex items-center justify-center bg-cover bg-center">
                 <div
 
                 className=" bg-amber-700 h-[70%] w-[60%] flex items-center shadow-xl shadow-black/90 rounded-4xl  ">
@@ -45,6 +48,8 @@ export default function LogInPageSection() {
                         </div>
                     </div>
                 </div>
+            </div>   
+                
                
 
                  

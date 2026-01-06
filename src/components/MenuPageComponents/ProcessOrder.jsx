@@ -210,11 +210,11 @@ useEffect(() => {
                                                         data-tooltip-id="remove-tooltip" 
                                                         data-tooltip-content={`Remove ${ item.name } from order.`} 
                                                         className=" h-4 w-4 text-red-700 "/> 
-                                                    <Tooltip 
-                                                        id="remove-tooltip"
-                                                        place="top"
-                                                        className="red-tooltip"
-                                                    />
+                                                <Tooltip 
+                                                    id="remove-tooltip"
+                                                    place="top"
+                                                    className="red-tooltip"
+                                                />
                                             </div>
                                             <div className='flex items-center  w-3/4 justify-between'>
                                                 <div className='flex flex-col items-center justify-center'>

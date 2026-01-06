@@ -10,6 +10,7 @@ import { useState,useRef, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import { ArrowRightEndOnRectangleIcon   } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
+import { Tooltip } from 'react-tooltip';
 
 
 
@@ -49,9 +50,7 @@ export default function ScrollPage() {
     };
 
 
-    const [open, setOpen] = useState(false);
 
-    const dropdownRef = useRef(null); 
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -73,14 +72,21 @@ export default function ScrollPage() {
                                     md:px-6 md:py-4 text-white bg-transparent
                                     top-0 left-0 w-full z-50 hidden ${menuState ? 'hidden' : 'md:fixed' }`}>
                     <div
-                    ref={dropdownRef} 
                     className='relative flex items-center gap-3'>
                         <h1 className='font-serif  md:text-xl font-dancing' > {loggedInUser ? loggedInUser.fullname : ''}</h1>
 
-                        <ArrowRightEndOnRectangleIcon  className='h-6 w-6'
+                        <ArrowRightEndOnRectangleIcon  
+                         data-tooltip-id="remove-tooltip" 
+                        data-tooltip-content="Log-out ?" 
+                        className='h-6 w-6'
                         onClick={() => {
                             logOut();
                         }}/>
+                        <Tooltip 
+                            id="remove-tooltip"
+                            place="bottom"
+                            className="red-tooltip"
+                        />
 
                     </div>
                     
@@ -94,27 +100,7 @@ export default function ScrollPage() {
                     </nav>
                 </div>}
 
-                {open && (
-                    <div className="absolute right-6 mt-15 w-40 bg-white border shadow-lg z-50">
-                    <ul className="flex flex-col">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  hover:outline outline-gray-400 ">
-                        Settings
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  hover:outline outline-gray-400 ">
-                        Menu
-                        </li>
-                        <li
-                        className="px-4 py-2 hover:bg-gray-100 hover:outline outline-gray-400 cursor-pointer text-red-600"
-                        onClick={() => {
-                        logOut();
-                        }}
-
-                        >
-                        Logout
-                        </li>
-                    </ul>
-                    </div>
-                )}
+                
                     
                    
                         
