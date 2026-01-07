@@ -57,7 +57,7 @@ const handleSubmit = (item) =>{
 
 
     return (
-        <div className={`w-full max-w-md bg-transparent backdrop-blur-xs p-3 md:p-8   transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
+        <div className={`w-full max-w-md  backdrop-blur-xs p-3 md:p-8 md:outline-0 outline outline-white/10 rounded-2xl  transition-opacity duration-500 ${showSignUpForm ? "opacity-100":"opacity-0"} `}>
             <h2 className="text-xl md:text-3xl font-semibold text-white mb-4 md:mb-6 text-center">
                 Create Your Account
             </h2>
@@ -121,7 +121,7 @@ const handleSubmit = (item) =>{
                         </button>
 
                     
-                            <p className="text-center text-sm text-white">
+                            <p className="text-center text-sm text-white flex justify-between p-4">
                                 Already have an account?{" "}
                                 <button onClick={showSignUpForm} className="text-blue-400 hover:underline font-medium" >Log-in</button>
                             </p>

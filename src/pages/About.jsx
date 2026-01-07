@@ -78,11 +78,12 @@ const nextSlide = () => {
                         key={section.id}
                         style={{backgroundImage: `url(${section.backgroundImage})`}} 
                         className={`shrink-0 w-full h-full 
-                                    rounded-lg 
+                                    rounded-lg
                                     bg-center bg-cover`}
                       >
                         <Component />
                       </div>
+                   
                     );
                 })}
             </div>

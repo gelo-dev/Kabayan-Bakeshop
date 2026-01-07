@@ -44,7 +44,7 @@ const hideBottomBar= () =>{
                         {showBottomBar && (
                             <div className="bg-amber-700 shadow-inner  w-full flex justify-around items-center p-2 ">
                             <button className="flex flex-col items-center text-white">
-                                <HomeIcon onClick={() => navigate("/")} className="h-6 w-6" />
+                                <HomeIcon onClick={() => navigate("/home")} className="h-6 w-6" />
                                 <span className="text-xs">Home</span>
                             </button>
 
