@@ -78,11 +78,28 @@ const nextSlide = () => {
                         key={section.id}
                         style={{backgroundImage: `url(${section.backgroundImage})`}} 
                         className={`shrink-0 w-full h-full 
-                                    rounded-lg
+                                    rounded-lg hidden md:block
                                     bg-center bg-cover`}
                       >
                         <Component />
                       </div>
+                      
+                   
+                    );
+                })}
+
+                {sections.map((section) => {
+                    const Component = section.component; // get the component
+                    return (
+                      <div
+                        key={section.id}
+                        className={`shrink-0 w-full h-full 
+                                    rounded-lg block md:hidden
+                                    outline outline-white`}
+                      >
+                        <Component />
+                      </div>
+                      
                    
                     );
                 })}

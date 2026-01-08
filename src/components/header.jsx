@@ -8,9 +8,10 @@ import ScrollFadeSection from './ScrollFadeSection'
 import Footer from './footer'
 import { useState,useRef, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-import { ArrowRightEndOnRectangleIcon   } from "@heroicons/react/24/outline";
+import { ArrowRightEndOnRectangleIcon ,ShoppingCartIcon  } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 import { Tooltip } from 'react-tooltip';
+  
 
 
 
@@ -129,8 +130,16 @@ export default function ScrollPage() {
                         <Contact />
                     </ScrollFadeSection> }  
 
-                    <Footer/>   
+                    <Footer/>  
+
+                    {/* <button
+                        className="fixed bottom-5 right-5 md:hidden w-14 h-14 bg-amber-700 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-amber-800 transition duration-200"
+                        >
+                        <ShoppingCartIcon className="w-8 h-8" />
+                    </button>  */}
                 </Layout> 
+
+                
             
             
         </div>

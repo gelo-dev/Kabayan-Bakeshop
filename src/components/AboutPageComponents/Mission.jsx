@@ -1,22 +1,46 @@
 export default function MissionSection(){
     return(
-         <section className="h-screen grid grid-cols-2">
-            <div className="bg-transparent flex flex-col">
-                <div className="h-1/2">1</div>
-                <div className=" mt-25 ml-5 flex flex-col">
-                    <span className="text-4xl text-white flex ">Our</span>
-                    <span className="text-[10rem] text-white font-serif leading-none">Mission</span>
-                </div>
-            </div>
-            <div className="bg-transparent flex gap-5
-                            flex-col items-center justify-center pr-10">
-                <span className="text-2xl text-white">
-                    Our mission is to provide freshly baked products made with quality ingredients, inspired by tradition, and prepared with care. 
-                    We are committed to serving our community with warmth, consistency, and affordability bringing comfort and joy to every customer, every day.
-                </span>
-            </div>
+        <section className="min-h-screen px-4 py-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className="hidden md:block" /> 
+                    
+                    <div className="flex flex-col gap-6">
+                        <div>
+                            <span className="text-2xl sm:text-3xl text-white block">
+                            Our
+                            </span>
+                            <span className="text-5xl sm:text-7xl md:text-[10rem] 
+                                            text-white font-serif leading-none block">
+                            Mission
+                            </span>
+                        </div>
+                        <p className="text-sm sm:text-base md:text-lg text-white max-w-xl">
+                            Our mission is to provide freshly baked products made with quality ingredients, inspired by tradition, and prepared with care. 
+                            We are committed to serving our community with warmth, consistency, and affordability bringing comfort and joy to every customer, every day.
+                        </p>
+                        <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
+                            {[1, 2, 3].map((item) => (
+                            <div
+                                key={item}
+                                className="min-w-[220px] h-[200px] bg-amber-200 rounded-lg flex items-center justify-center"
+                            >
+                                {item}
+                            </div>
+                            ))}
+                        </div>
+                    <div>
+                        <button className="
+                        outline outline-white
+                        w-40 h-10 rounded-lg text-white
+                        hover:bg-amber-500 hover:outline-0
+                        transition
+                        ">
+                        Learn More
+                        </button>
+                    </div>
 
-            
-        </section>
+                    </div>
+                </div>
+            </section>
     )
 }

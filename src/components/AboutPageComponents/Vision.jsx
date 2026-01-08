@@ -1,24 +1,47 @@
 export default function VisionSection(){
     return(
-         <section className="h-screen grid grid-cols-2">
-            <div className="bg-transparent flex flex-col">
-                <div className="h-1/2">1</div>
-                <div className=" mt-25 ml-5 flex flex-col">
-                    <span className="text-4xl text-white flex ">Our</span>
-                    <span className="text-[10rem] text-white font-serif leading-none">Vision</span>
-                </div>
-            </div>
-            <div className="bg-transparent flex gap-5
-                            flex-col items-center justify-center pr-10">
-                <span className="text-xl text-white">
-                  Our vision is to become a trusted and beloved bakeshop across the Philippines,
-                   known for preserving tradition, delivering consistent quality,
-                    and creating meaningful connections within every community we serve.
-                </span>               
-                
-            </div>
+        <section className="min-h-screen px-4 py-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div className="hidden md:block" /> 
+                    
+                    <div className="flex flex-col gap-6">
+                        <div>
+                            <span className="text-2xl sm:text-3xl text-white block">
+                            Our
+                            </span>
+                            <span className="text-5xl sm:text-7xl md:text-[10rem] 
+                                            text-white font-serif leading-none block">
+                            Story
+                            </span>
+                        </div>
+                        <p className="text-sm sm:text-base md:text-lg text-white max-w-xl">
+                            Our vision is to become a trusted and beloved bakeshop across the Philippines,
+                        known for preserving tradition, delivering consistent quality,
+                        and creating meaningful connections within every community we serve.
+                        </p>
+                        <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
+                            {[1, 2, 3].map((item) => (
+                            <div
+                                key={item}
+                                className="min-w-[220px] h-[200px] bg-amber-200 rounded-lg flex items-center justify-center"
+                            >
+                                {item}
+                            </div>
+                            ))}
+                        </div>
+                    <div>
+                        <button className="
+                        outline outline-white
+                        w-40 h-10 rounded-lg text-white
+                        hover:bg-amber-500 hover:outline-0
+                        transition
+                        ">
+                        Learn More
+                        </button>
+                    </div>
 
-            
-        </section>
+                    </div>
+                </div>
+            </section>
     )
 }
