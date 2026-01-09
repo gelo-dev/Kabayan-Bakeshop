@@ -16,6 +16,7 @@ import EventSection from './components/GalleryPageComponents/eventSection';
 import CapturedMomentSection from './components/GalleryPageComponents/capturedMoments';
 import StoryContentSection from './components/AboutPageComponents/StoryContent';
 import OurMssionContentSection from './components/AboutPageComponents/OurMssionContent';
+import OurVisionContentSection from './components/AboutPageComponents/OurVisionContent';
 import LogInPageSection from './pages/Log-in';
 import sampleUsers from './JavaScript/users';
 import { useEffect } from 'react';
@@ -141,18 +142,22 @@ function App() {
                 path="/our-mission" 
                 element={
                   <ProtectedRoute>
-                    <OurMssionContentSection/>
+                    <PageWrapper>
+                      <OurMssionContentSection/>
+                    </PageWrapper> 
                   </ProtectedRoute>
                   }>
               </Route>
-              {/* <Route 
+              <Route 
                 path="/our-vision" 
                 element={
                   <ProtectedRoute>
-                    <VisionSection/>
+                    <PageWrapper>
+                      <OurVisionContentSection/>
+                    </PageWrapper> 
                   </ProtectedRoute>
                   }>
-              </Route> */}
+              </Route>
 
 
 

@@ -2,7 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import AboutUsNavigationSection from "./aboutUsNavigation";
 
-export default function OurMssionContentSection(){
+export default function OurVisionContentSection(){
 
 const [isOpen, setIsOpen] = useState(false);
     
@@ -10,7 +10,7 @@ const [isOpen, setIsOpen] = useState(false);
         <section className="min-h-screen">
             
             <div
-                style={{ backgroundImage: `url(stoneOven.jpg)` }}
+                style={{ backgroundImage: `url(PHFlag.jpg)` }}
                 className=
                    {` relative transition-all duration-700 ease-in-out
                      ${isOpen ? 'md:h-[50vh] h-[30vh] ':  'h-screen'}
@@ -32,10 +32,10 @@ const [isOpen, setIsOpen] = useState(false);
                 />
 
                 <span className="text-[2rem] md:text-[4rem] font-light font-serif z-10 text-white">
-                    OUR MISSION
+                    OUR VISION
                 </span>
                 <p className="text-center text-sm md:text-lg text-white z-10 max-w-xl">
-                    Serving our community with care, quality, and freshly baked goodness.
+                    To grow while staying true to what matters most.
                 </p>
 
                 {/* Chevron button */}
@@ -68,9 +68,10 @@ const [isOpen, setIsOpen] = useState(false);
                 ${isOpen ? "min-h-screen opacity-100" : "max-h-0 opacity-0"}
             `}
             >
-                <div className=" bg-amber-900 flex flex-col md:flex-row h-[140vh] md:h-screen">
+                <div className=" bg-amber-900 flex flex-col md:flex-row h-[150vh] md:h-screen">
                      <div className="bg-amber-900 h-[20vh] mt-5 p-2 flex md:hidden">
-                        <p className="text-lg font-serif text-center text-white">"Baking with care, serving with heart, bringing our community together"</p>
+                        <p className="text-lg font-serif text-center text-white">"To grow as a trusted neighborhood bakery that continues to bring warmth,
+                            quality, and togetherness to every home we serve."</p>
                     </div>
                     <div
                         className="
@@ -80,7 +81,7 @@ const [isOpen, setIsOpen] = useState(false);
                         "
                     >
                         <div
-                        style={{ backgroundImage: `url(./AboutPageImages/MissionImage.jpg)` }}
+                        style={{ backgroundImage: `url(./AboutPageImages/KabayansBakery.jpg)` }}
                         className="h-full bg-center bg-cover" 
                         ></div>
                     </div>
@@ -93,21 +94,21 @@ const [isOpen, setIsOpen] = useState(false);
                         gap-6
                         ">
                         
-                        <p className="text-[3rem] hidden md:flex  font-serif text-start text-white">Baking with care, serving with heart, bringing our community together.</p>
+                        <p className="text-[2.5rem] hidden md:flex  font-serif text-start text-white">
+                            To grow as a trusted neighborhood bakery that continues to bring warmth, quality, and togetherness to every home we serve.</p>
                         <p className="text-sm md:text-lg font-light leading-relaxed">
-                            We serve our community with genuine care by treating every customer like family. 
-                            From the way we prepare our products to how we welcome people through our doors, we believe that kindness, 
-                            respect, and consistency are just as important as the bread we bake.
+                            Our vision is to grow while staying true to the traditions that shaped us. 
+                            We honor the familiar flavors, time-tested methods, and values that our community has come to love,
+                            ensuring that every step forward remains grounded in authenticity and care.
                         </p>
 
                         <p className="text-sm md:text-lg font-light leading-relaxed">
-                            Quality is at the heart of everything we do. We carefully select our ingredients, 
-                            follow trusted baking methods, and maintain high standards to ensure that every loaf, pastry, 
-                            and treat meets our promise of freshness, taste, and value.
+                            As we look ahead, we aim to continuously improve—refining our craft, expanding our offerings, and embracing better ways to serve our customers. 
+                            Growth, for us, means thoughtful progress that enhances quality, accessibility, and the overall experience without losing the warmth of a neighborhood bakery.
                         </p>
                         <p className="text-sm md:text-lg font-light leading-relaxed">
-                            Freshly baked goodness defines our everyday commitment. By baking daily and focusing on familiar, 
-                            comforting flavors, we aim to provide warm, reliable products that bring people together and make every visit feel like home.
+                            Ultimately, we envision a future where our bakery remains a trusted part of everyday life—bringing comfort to homes,
+                            supporting our community, and creating lasting connections through freshly baked goodness, today and for generations to come.
                         </p>
 
                     </div>

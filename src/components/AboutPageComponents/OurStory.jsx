@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import images from "../../JavaScript/imagesForAboutUs"
 export default function OurStorySection() {
 
 const navigate = useNavigate();
@@ -25,12 +25,13 @@ const navigate = useNavigate();
                             and freshly made goods every day.
                         </p>
                         <div className="flex  gap-4 overflow-x-auto pb-2 scroll-smooth">
-                            {[1, 2, 3].map((item) => (
+                            {images.map((item) => (
                             <div
-                                key={item}
-                                className="min-w-[220px] h-[200px] bg-amber-200 rounded-lg flex items-center justify-center"
+                                key={item.id}
+                                style={{ backgroundImage: `url(${item.image})` }}
+                                className="min-w-[220px] h-[200px] bg-transparent bg-cover bg-center rounded-lg flex items-center justify-center"
                             >
-                                {item}
+                                
                             </div>
                             ))}
                         </div>

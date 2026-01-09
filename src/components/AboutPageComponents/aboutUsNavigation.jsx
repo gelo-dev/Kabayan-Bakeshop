@@ -12,10 +12,14 @@ const navigate = useNavigate();
 
     return(
         <>
-            <nav className="flex gap-10 ">
+            <nav className="flex gap-5 md:gap-10 ">
                 <div className='flex flex-col items-center'>
                     <HomeIcon className='h-6 w-6'/>
                     <a onClick={()=> navigate('/home')} className=' hover:text-amber-300 hover:text-lg' >Home</a> 
+                </div>
+                <div className='flex flex-col items-center'>
+                    <FlagIcon className='h-6 w-6'/>
+                    <a onClick={()=> navigate('/our-story')} className=' hover:text-amber-300 hover:text-lg' >Our Story</a> 
                 </div>
                 <div className='flex flex-col items-center'>
                     <FlagIcon className='h-6 w-6'/>

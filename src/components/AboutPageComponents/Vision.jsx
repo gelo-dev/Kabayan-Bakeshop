@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom"
+import images from "../../JavaScript/imagesForAboutUs"
+
 export default function VisionSection(){
+   
+
+const navigate = useNavigate()    
     return(
         <section className="min-h-screen px-4 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -11,7 +17,7 @@ export default function VisionSection(){
                             </span>
                             <span className="text-5xl sm:text-7xl md:text-[10rem] 
                                             text-white font-serif leading-none block">
-                            Story
+                            Vision
                             </span>
                         </div>
                         <p className="text-sm sm:text-base md:text-lg text-white max-w-xl">
@@ -20,17 +26,20 @@ export default function VisionSection(){
                         and creating meaningful connections within every community we serve.
                         </p>
                         <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
-                            {[1, 2, 3].map((item) => (
+                            {images.map((item) => (
                             <div
-                                key={item}
-                                className="min-w-[220px] h-[200px] bg-amber-200 rounded-lg flex items-center justify-center"
+                                key={item.id}
+                                style={{ backgroundImage: `url(${item.image})` }}
+                                className="min-w-[220px] h-[200px] bg-transparent bg-cover bg-center rounded-lg flex items-center justify-center"
                             >
-                                {item}
+                                
                             </div>
                             ))}
                         </div>
                     <div>
-                        <button className="
+                        <button
+                        onClick={()=>navigate('/our-vision')} 
+                        className="
                         outline outline-white
                         w-40 h-10 rounded-lg text-white
                         hover:bg-amber-500 hover:outline-0
