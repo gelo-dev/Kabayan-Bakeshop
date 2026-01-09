@@ -39,7 +39,7 @@ export default function HomeSection() {
 
         return (
             
-            <section id="home" className="h-screen relative grid grid-cols-1  md:grid-cols-2 md:flex-col-reverse p-8 md:pl-30 md:pr-15 justify-center items-center overflow-hidden">
+            <section id="home" className="h-3/4 md:h-screen relative grid grid-cols-1  md:grid-cols-2 md:flex-col-reverse p-8 md:pl-30 md:pr-15 justify-center items-center overflow-hidden">
                
                 
                 
@@ -62,11 +62,11 @@ export default function HomeSection() {
                     
                     <div className="absolute inset-0 bg-black/30 pointer-events-none "></div>
                     
-                    <h1 className="relative font-light text-lg md:text-4xl text-white  md:ml-5  md:leading-tight">
+                    <h1 className="relative font-light text-md md:text-4xl text-white  md:ml-5  md:leading-tight">
                        {slides[displayText].text}</h1>
             
             
-                        <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex gap-5 md:gap-3">
+                        <div className="absolute left-1/2 -translate-x-1/2 bottom-2 md:bottom-8 flex gap-5 md:gap-3">
                             {slides.map((_, i) => (
                             <button
                                 key={i}

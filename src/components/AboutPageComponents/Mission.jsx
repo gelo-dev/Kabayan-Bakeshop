@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom"
+
 export default function MissionSection(){
+
+const navigate = useNavigate()
+    
     return(
         <section className="min-h-screen px-4 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -18,7 +23,7 @@ export default function MissionSection(){
                             Our mission is to provide freshly baked products made with quality ingredients, inspired by tradition, and prepared with care. 
                             We are committed to serving our community with warmth, consistency, and affordability bringing comfort and joy to every customer, every day.
                         </p>
-                        <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
+                        <div className="flex  gap-4 overflow-x-auto pb-2 scroll-smooth">
                             {[1, 2, 3].map((item) => (
                             <div
                                 key={item}
@@ -28,16 +33,18 @@ export default function MissionSection(){
                             </div>
                             ))}
                         </div>
-                    <div>
-                        <button className="
-                        outline outline-white
-                        w-40 h-10 rounded-lg text-white
-                        hover:bg-amber-500 hover:outline-0
-                        transition
-                        ">
-                        Learn More
-                        </button>
-                    </div>
+                        <div>
+                            <button
+                            onClick={()=>navigate('/our-mission')}
+                            className="
+                            outline outline-white
+                            w-40 h-10 rounded-lg text-white
+                            hover:bg-amber-500 hover:outline-0
+                            transition
+                            ">
+                            Learn More
+                            </button>
+                        </div>
 
                     </div>
                 </div>

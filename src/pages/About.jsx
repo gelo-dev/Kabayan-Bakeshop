@@ -109,19 +109,3 @@ const nextSlide = () => {
 
     );
 }
-
-
-//  {/* Only render video if it exists */}
-//                     {section.video && (
-//                       <video
-//                         autoPlay
-//                         loop
-//                         muted
-//                         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-//                       >
-//                         <source src={section.video} type="video/mp4" />
-//                         Your browser does not support the video tag.
-//                       </video>
-//                     )}
-
-//                     {/* Overlay text/content */}

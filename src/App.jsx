@@ -14,6 +14,8 @@ import RatingsSections from './components/MenuPageComponents/Ratings';
 import StoreSection from './components/GalleryPageComponents/storeSection';
 import EventSection from './components/GalleryPageComponents/eventSection';
 import CapturedMomentSection from './components/GalleryPageComponents/capturedMoments';
+import StoryContentSection from './components/AboutPageComponents/StoryContent';
+import OurMssionContentSection from './components/AboutPageComponents/OurMssionContent';
 import LogInPageSection from './pages/Log-in';
 import sampleUsers from './JavaScript/users';
 import { useEffect } from 'react';
@@ -124,6 +126,33 @@ function App() {
                   
                   }>
               </Route>
+
+              <Route 
+                path="/our-story" 
+                element={
+                  <ProtectedRoute>
+                    <PageWrapper>
+                       <StoryContentSection/>
+                    </PageWrapper>
+                  </ProtectedRoute>
+                  }>
+              </Route>
+              <Route 
+                path="/our-mission" 
+                element={
+                  <ProtectedRoute>
+                    <OurMssionContentSection/>
+                  </ProtectedRoute>
+                  }>
+              </Route>
+              {/* <Route 
+                path="/our-vision" 
+                element={
+                  <ProtectedRoute>
+                    <VisionSection/>
+                  </ProtectedRoute>
+                  }>
+              </Route> */}
 
 
 

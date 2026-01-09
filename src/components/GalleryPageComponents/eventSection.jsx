@@ -52,17 +52,18 @@ const [activeEvent, setActiveEvent] = useState(null);
     }, []);
 
     // listen in scrolling when dialog is open
-    useEffect(() => {
-        if (!activeEvent) return;
+   useEffect(() => {
+  if (activeEvent) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
-        const handleScroll = () => {
-            setActiveEvent(null);
-        };
-
-        window.addEventListener("scroll", handleScroll);
-
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [activeEvent]);
+  // Cleanup (VERY important)
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [activeEvent]);
 
 
         return(

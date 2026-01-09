@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 export default function OurStorySection() {
+
+const navigate = useNavigate();
+
         return (
             <section className="min-h-screen px-4 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -19,7 +24,7 @@ export default function OurStorySection() {
                             We are a community-focused bakery dedicated to serving quality, affordable,
                             and freshly made goods every day.
                         </p>
-                        <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
+                        <div className="flex  gap-4 overflow-x-auto pb-2 scroll-smooth">
                             {[1, 2, 3].map((item) => (
                             <div
                                 key={item}
@@ -30,7 +35,9 @@ export default function OurStorySection() {
                             ))}
                         </div>
                     <div>
-                        <button className="
+                        <button
+                        onClick={()=>(navigate('/our-story'))}
+                        className="
                         outline outline-white
                         w-40 h-10 rounded-lg text-white
                         hover:bg-amber-500 hover:outline-0
