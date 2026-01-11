@@ -71,14 +71,18 @@ const [isOpen, setIsOpen] = useState(false);
                 <div className=" bg-amber-900 flex flex-col md:flex-row h-screen md:h-[80vh]">
                 
                     <div
-                        style={{ backgroundImage: `url(./AboutPageImages/Storymonirng.png)` }}
+                       
                         className="
-
+                        
                         h-[40vh] md:h-full
                         w-full md:w-1/2
-                        bg-center bg-cover
+                        flex items-center justify-center
                         "
-                    />
+                    >
+                        <div
+                        style={{ backgroundImage: `url(./AboutPageImages/morning.jpg)` }}
+                        className="h-[60vh] w-[80vh] bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl">1</div>
+                    </div>
                     <div className="
                         w-full md:w-1/2
                         bg-amber-900
@@ -107,14 +111,18 @@ const [isOpen, setIsOpen] = useState(false);
                   <div className=" bg-amber-900 flex flex-col md:flex-row-reverse h-screen md:h-[80vh]">
                 
                     <div
-                        style={{ backgroundImage: `url(./AboutPageImages/StoreContent1.png)` }}
+                       
                         className="
-
+                        
                         h-[40vh] md:h-full
                         w-full md:w-1/2
-                        bg-center bg-cover
+                        flex items-center justify-center
                         "
-                    />
+                    >
+                        <div
+                        style={{ backgroundImage: `url(./AboutPageImages/vendor.jpg)` }}
+                        className="h-[60vh] w-[80vh] bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl">1</div>
+                    </div>
                     <div className="
                         w-full md:w-1/2
                         bg-amber-900
