@@ -77,11 +77,11 @@ const [isOpen, setIsOpen] = useState(false);
                         h-[40vh] md:h-full
                         w-full md:w-1/2
                         flex items-center justify-center
-                        "
+                        mt-2 md:mt-0"
                     >
                         <div
                         style={{ backgroundImage: `url(./AboutPageImages/morning.jpg)` }}
-                        className="h-[60vh] w-[80vh] bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl">1</div>
+                        className="  h-[40vh] w-[45vh] md:h-[60vh] md:w-[80vh]  bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl"></div>
                     </div>
                     <div className="
                         w-full md:w-1/2
@@ -121,7 +121,7 @@ const [isOpen, setIsOpen] = useState(false);
                     >
                         <div
                         style={{ backgroundImage: `url(./AboutPageImages/vendor.jpg)` }}
-                        className="h-[60vh] w-[80vh] bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl">1</div>
+                        className="h-[35vh] w-[45vh] md:h-[60vh] md:w-[80vh] bg-center bg-cover md:shadow-xl md:shadow-black/90 rounded-2xl">1</div>
                     </div>
                     <div className="
                         w-full md:w-1/2
