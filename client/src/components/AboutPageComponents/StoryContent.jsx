@@ -94,7 +94,7 @@ const [isOpen, setIsOpen] = useState(false);
                         
                         <p className="text-sm md:text-lg font-light leading-relaxed">
                             Established in 2018, our bakery began with a simple passion for baking at home—early mornings, small batches, 
-                            and the joy of sharing warm bread with family and friends. What started as a humble kitchen hobby soon grew into 
+                            and the joy of sharing warm bread with family and friends.What started as a humble kitchen hobby soon grew into 
                             something more as neighbors began stopping by, drawn by the familiar aroma of freshly baked bread and comforting flavors.
                         </p>
 
