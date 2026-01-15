@@ -21,6 +21,7 @@ const navigate = useNavigate()
                             </span>
                         </div>
                         <p className="text-sm sm:text-base md:text-lg text-white max-w-xl">
+                            
                             Our mission is to provide freshly baked products made with quality ingredients, inspired by tradition, and prepared with care. 
                             We are committed to serving our community with warmth, consistency, and affordability bringing comfort and joy to every customer every day.
                         </p>

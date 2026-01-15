@@ -44,7 +44,7 @@ const navigate = useNavigate();
                         hover:bg-amber-500 hover:outline-0
                         transition
                         ">
-                        Learn More
+                        Learn Moore
                         </button>
                     </div>
 

@@ -22,8 +22,8 @@ const navigate = useNavigate()
                         </div>
                         <p className="text-sm sm:text-base md:text-lg text-white max-w-xl">
                             Our vision is to become a trusted and beloved bakeshop across the Philippines,
-                        known for preserving tradition, delivering consistent quality,
-                        and creating meaningful connections within every community we serve.
+                            known for preserving tradition, delivering consistent quality,
+                            and creating meaningful connections within every community we serve.
                         </p>
                         <div className="flex gap-4 overflow-x-auto pb-2 scroll-smooth">
                             {images.map((item) => (
