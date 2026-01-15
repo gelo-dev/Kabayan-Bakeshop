@@ -28,3 +28,16 @@ Live site: [https://kabayans-bakeshop.netlify.app/](https://kabayans-bakeshop.ne
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/kabayan-bakeshop.git
+```
+2.Navigate to the project folder:
+```bash
+cd kabayan-bakeshop
+```
+3.Install dependencies:
+```bash
+npm install
+```
+4.Run the development server:
+```bash
+npm run dev
+
