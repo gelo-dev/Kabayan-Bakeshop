@@ -4,7 +4,7 @@ A modern and responsive **Bakeshop website** built with **React** and **Tailwind
 
 ## Demo
 
-Live site: [https://kabayan-bakeshop.vercel.app/](https://kabayan-bakeshop.vercel.app/)
+Live site: [https://kabayans-bakeshop.netlify.app/](https://kabayans-bakeshop.netlify.app/)
 
 ## Features
 
